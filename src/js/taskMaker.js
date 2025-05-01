@@ -1,10 +1,8 @@
 export default class TaskMaker {
-  constructor(title, description, due, priority, notes, status) {
+  constructor(title, description, due, priority) {
     this.title = title;
     this.description = description;
     this.due = due;
     this.priority = priority;
-    this.notes = notes;
-    this.status = status;
   }
 }
