@@ -1,24 +1,27 @@
 import "./../css/styles.css";
-import TaskMaker from "./taskMaker.js";
 import generateId from "./idGenerator.js";
+import TaskMaker from "./taskMaker.js";
 import addTaskItem from "./taskAdder.js";
+import makeProject from "./projectMaker.js";
+import addProject from "./projectAdder.js";
 
 const button = document.querySelector("button");
 if (button) {
   button.addEventListener("click", updateState);
 }
 
-const taskState = {
-  tasksByIds: {},
-  allTaskIds: [],
+const projectsCollection = {
+  allProjectIds: []
 };
 
 function updateState() {
-  let taskId = generateId();
-  //Regenerate a new task Id if task Id already exists
-  while (taskState.tasksByIds.hasOwnProperty(taskId)) {
-    taskId = generateId();
+  let projectId = generateId();
+  //Regenerate a new project Id if project Id already exists
+  while (projectsCollection.hasOwnProperty(projectId)) {
+    projectId = generateId();
   }
+  const newProject = makeProject(prompt("Enter a project title"));
+  addProject(projectId, projectsCollection, projectsCollection.allProjectIds, newProject);
 
   const taskItem = new TaskMaker(
     prompt("Name of Task"),
@@ -29,6 +32,6 @@ function updateState() {
     prompt("Status")
   );
 
-  addTaskItem(taskState, taskId, taskItem);
-  console.log(taskState);
+  addTaskItem(projectsCollection[projectId].tasksByIds, projectsCollection[projectId].allTaskIds, taskItem)
+  console.log({projectsCollection});
 }
