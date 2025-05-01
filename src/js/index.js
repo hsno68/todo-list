@@ -2,7 +2,7 @@ import "./../css/styles.css";
 import generateId from "./idGenerator.js";
 import TaskMaker from "./taskMaker.js";
 import addTaskItem from "./taskAdder.js";
-import makeProject from "./projectMaker.js";
+import ProjectMaker from "./projectMaker.js";
 import addProject from "./projectAdder.js";
 
 const addProjectButton = document.querySelector("button.addProject");
@@ -11,7 +11,7 @@ if (addProjectButton) {
   addProjectButton.addEventListener("click", updateProjectCollection);
 }
 if (addTaskButton) {
-  addTaskButton.addEventListener("click", updateTaskState);
+  addTaskButton.addEventListener("click", updateTaskCollection);
 }
 
 const projectsCollection = {
@@ -26,18 +26,25 @@ function updateProjectCollection() {
   while (projectsCollection.hasOwnProperty(projectId)) {
     projectId = generateId();
   }
-  const newProject = makeProject(prompt("Enter a project title"));
-  addProject(projectId, projectsCollection, projectsCollection.allProjectIds, newProject);
+  const project = new ProjectMaker(projectId, prompt("Name of Project?"));
+  addProject(projectId, projectsCollection, projectsCollection.allProjectIds, project);
   console.log({projectsCollection});
 }
 
-function updateTaskState() {
+function updateTaskCollection() {
+  let taskId = generateId();
+  const project = projectsCollection[projectId];
+  //Regenerate a new task Id if task Id already exists
+  while (project.tasksByIds.hasOwnProperty(taskId)) {
+    taskId = generateId();
+  }
   const taskItem = new TaskMaker(
+    taskId,
     prompt("Name of Task"),
     prompt("Description"),
     prompt("Due"),
     prompt("Priority"),
   );
-  addTaskItem(projectsCollection[projectId].tasksByIds, projectsCollection[projectId].allTaskIds, taskItem)
+  addTaskItem(taskId, project.tasksByIds, project.allTaskIds, taskItem)
   console.log({projectsCollection});
 }
