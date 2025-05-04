@@ -1,17 +1,17 @@
 import "./../css/styles.css";
 import generateId from "./idGenerator.js";
-import TaskMaker from "./taskMaker.js";
-import addTaskItem from "./taskAdder.js";
+import TodoMaker from "./todoMaker.js";
+import addTodoItem from "./todoAdder.js";
 import ProjectMaker from "./projectMaker.js";
 import addProject from "./projectAdder.js";
 
 const addProjectButton = document.querySelector("button.addProject");
-const addTaskButton = document.querySelector("button.addTask");
+const addTodoButton = document.querySelector("button.addTodo");
 if (addProjectButton) {
   addProjectButton.addEventListener("click", updateProjectCollection);
 }
-if (addTaskButton) {
-  addTaskButton.addEventListener("click", updateTaskCollection);
+if (addTodoButton) {
+  addTodoButton.addEventListener("click", updateTodoCollection);
 }
 
 const projectsCollection = {
@@ -31,20 +31,20 @@ function updateProjectCollection() {
   console.log({projectsCollection});
 }
 
-function updateTaskCollection() {
-  let taskId = generateId();
+function updateTodoCollection() {
+  let todoId = generateId();
   const project = projectsCollection[projectId];
-  //Regenerate a new task Id if task Id already exists
-  while (project.tasksByIds.hasOwnProperty(taskId)) {
-    taskId = generateId();
+  //Regenerate a new todo Id if todo Id already exists
+  while (project.todosByIds.hasOwnProperty(todoId)) {
+    todoId = generateId();
   }
-  const taskItem = new TaskMaker(
-    taskId,
-    prompt("Name of Task"),
+  const todoItem = new TodoMaker(
+    todoId,
+    prompt("Name of todo"),
     prompt("Description"),
     prompt("Due"),
     prompt("Priority"),
   );
-  addTaskItem(taskId, project.tasksByIds, project.allTaskIds, taskItem)
+  addTodoItem(todoId, project.todosByIds, project.allTodoIds, todoItem)
   console.log({projectsCollection});
 }
