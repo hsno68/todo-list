@@ -3,7 +3,15 @@ import generateId from "./idGenerator.js";
 import ProjectManager from "./projectManager.js";
 import TodoMaker from "./todoMaker.js";
 import ProjectMaker from "./projectMaker.js";
-import {renderProjects, renderTodos} from "./DOM.js";
+
+const addProjectButton = document.querySelector("button.addProject");
+const addTodoButton = document.querySelector("button.addTodo");
+const projects = document.querySelector("div#projects");
+const todos = document.querySelector("div#todos");
+
+function render(parent, child) {
+  parent.appendChild(child);
+}
 
 window.addEventListener("load", () => {
   const ProjectsCollection = new ProjectManager();
@@ -12,7 +20,7 @@ window.addEventListener("load", () => {
   ProjectsCollection.addProject(ProjectsCollection.currentProjectId, project);
 
   const projectElement = project.render();
-  renderProjects(projectElement);
+  render(projects, projectElement);
 
   const todo1 = new TodoMaker("Cook", "Make dinner", "5pm", "High");
   const todo2 = new TodoMaker("Homework", "Math", "9pm", "High");
@@ -25,9 +33,9 @@ window.addEventListener("load", () => {
   const todo1Element =  todo1.render();
   const todo2Element =  todo2.render();
   const todo3Element =  todo3.render();
-  renderTodos(todo1Element);
-  renderTodos(todo2Element);
-  renderTodos(todo3Element);
+  render(todos, todo1Element);
+  render(todos, todo2Element);
+  render(todos, todo3Element);
 
   console.log({ProjectsCollection});
 });

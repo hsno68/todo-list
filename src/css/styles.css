@@ -34,7 +34,9 @@ button:hover {
 }
 
 div#content {
+  margin-top: 12px;
   display: flex;
+  gap: 1rem;
 }
 
 .box {
