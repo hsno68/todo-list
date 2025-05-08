@@ -4,8 +4,31 @@
   box-sizing: border-box;
 }
 
+:root {
+  --main-text-color: #f1f1f1;
+  --main-background-color: #0f0f0f;
+  --main-ui-color: #222222;
+}
+
 body {
-  color: #f1f1f1;
-  background-color: #0f0f0f;
+  padding: 1rem;
+  color: var(--main-text-color);
+  background-color: var(--main-background-color);
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+button {
+  padding: 1rem;
+  font-weight: bold;
+  color: var(--main-text-color);
+  background-color: var(--main-ui-color);
+  border: none;
+  border-radius: 0.5rem;
+  transition: background-color 0.2s ease-in-out; 
+}
+
+button:active,
+button:hover {
+  cursor: pointer;
+  background-color: #303030;
 }
