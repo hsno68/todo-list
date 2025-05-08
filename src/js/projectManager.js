@@ -1,5 +1,10 @@
 export default class ProjectManager {
   currentProjectId;
-  projectsByIdObject = {};
+  projectsByIdsObject = {};
   allProjectIdsArray = [];
+
+  addProject(projectId, project) {
+    this.projectsByIdsObject[projectId] = project;
+    this.allProjectIdsArray.push(projectId);
+  }
 }
