@@ -1,6 +1,5 @@
 export default class TodoMaker {
-  constructor(todoId, title, description, due, priority) {
-    this.todoId = todoId;
+  constructor(title, description, due, priority) {
     this.title = title;
     this.description = description;
     this.due = due;

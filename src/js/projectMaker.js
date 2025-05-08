@@ -1,7 +1,6 @@
 export default class ProjectMaker {
-  constructor(projectId, name) {
-    this.projectId = projectId;
-    this.name = name;
+  constructor(title) {
+    this.title = title;
     this.todosByIds = {};
     this.allTodoIds = [];
   }
