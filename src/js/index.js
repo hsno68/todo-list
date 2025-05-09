@@ -6,36 +6,30 @@ import ProjectMaker from "./projectMaker.js";
 
 const addProjectButton = document.querySelector("button.addProject");
 const addTodoButton = document.querySelector("button.addTodo");
-const projects = document.querySelector("div#projects");
-const todos = document.querySelector("div#todos");
+const projectsDiv = document.querySelector("div#projects");
+const todosDiv = document.querySelector("div#todos");
+const dialog = document.querySelector("dialog");
 
-function render(parent, child) {
-  parent.appendChild(child);
-}
+const ProjectsCollection = new ProjectManager();
+const defaultProject = new ProjectMaker("Untitled");
+ProjectsCollection.currentProjectId = generateId();
+ProjectsCollection.addProject(ProjectsCollection.currentProjectId, defaultProject);
+const projectElement = defaultProject.render();
+projectsDiv.appendChild(projectElement);
 
-window.addEventListener("load", () => {
-  const ProjectsCollection = new ProjectManager();
-  const project = new ProjectMaker("Untitled");
-  ProjectsCollection.currentProjectId = generateId();
-  ProjectsCollection.addProject(ProjectsCollection.currentProjectId, project);
+// addTodoButton.addEventListener("click", () => {
+//   const todoItem = new TodoMaker(
+//     prompt("Title"),
+//     prompt("Description"),
+//     prompt("Due"),
+//     prompt("Priority")
+//   );
+//   const todoId = generateId();
+//   project.addTodoItem(todoId, todoItem);
+//   const todoElement = todoItem.render();
+//   todosDiv.appendChild(todoElement);
+// });
 
-  const projectElement = project.render();
-  render(projects, projectElement);
-
-  const todo1 = new TodoMaker("Cook", "Make dinner", "5pm", "High");
-  const todo2 = new TodoMaker("Homework", "Math", "9pm", "High");
-  const todo3 = new TodoMaker("Exercise", "N/A", "N/A", "Low");
-
-  project.addTodoItem("1", todo1);
-  project.addTodoItem("2", todo2);
-  project.addTodoItem("3", todo3);
-
-  const todo1Element =  todo1.render();
-  const todo2Element =  todo2.render();
-  const todo3Element =  todo3.render();
-  render(todos, todo1Element);
-  render(todos, todo2Element);
-  render(todos, todo3Element);
-
-  console.log({ProjectsCollection});
+addTodoButton.addEventListener("click", () => {
+  dialog.showModal();
 });
