@@ -8,7 +8,7 @@
 <body>
   <dialog>
     <h2>What would you like to do?</h2>
-    <form method="dialog">
+    <form method="dialog" id="form">
       <div>
         <label for="title">Title</label>
         <input type="text" id="title" name="title">
@@ -26,16 +26,16 @@
         <input type="text" id="priority" name="priority">
       </div>
       <menu>
-        <button formmethod="dialog" value="cancel">Cancel</button>
-        <button value="default">Ok</button>
+        <button formmethod="dialog" value="cancel" class="cancel">Cancel</button>
+        <button type="submit" value="confirm" class="confirm">Add</button>
       </menu>
     </form>
   </dialog>
-  <button type="button" class="addProject">Add Project</button>
-  <button type="button" class="addTodo">Add Todo</button>
+  <button type="button" class="add-project">Add Project</button>
+  <button type="button" class="add-todo">Add Todo</button>
   <div id="content">
-    <div id="projects"></div>
-    <div id="todos"></div>
+    <div class="projects"></div>
+    <div class="todos"></div>
   </div>
 </body>
 </html>

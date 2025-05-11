@@ -1,8 +1,12 @@
+import generateId from "./idGenerator.js";
+
 export default class ProjectMaker {
+  projectId = generateId();
+  todosByIdsObject = {};
+  allTodoIdsArray = [];
+
   constructor(title) {
     this.title = title;
-    this.todosByIdsObject = {};
-    this.allTodoIdsArray = [];
 
     Object.defineProperties(this, {
       todosByIdsObject: {enumerable: false},

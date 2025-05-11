@@ -1,35 +1,34 @@
 import "./../css/styles.css";
-import generateId from "./idGenerator.js";
 import ProjectManager from "./projectManager.js";
-import TodoMaker from "./todoMaker.js";
 import ProjectMaker from "./projectMaker.js";
 
-const addProjectButton = document.querySelector("button.addProject");
-const addTodoButton = document.querySelector("button.addTodo");
-const projectsDiv = document.querySelector("div#projects");
-const todosDiv = document.querySelector("div#todos");
 const dialog = document.querySelector("dialog");
+const form = document.querySelector("form");
+const addProjectButton = document.querySelector("button.add-project");
+const addTodoButton = document.querySelector("button.add-todo");
+const projectsContainer = document.querySelector("div.projects");
 
-const ProjectsCollection = new ProjectManager();
-const defaultProject = new ProjectMaker("Untitled");
-ProjectsCollection.currentProjectId = generateId();
-ProjectsCollection.addProject(ProjectsCollection.currentProjectId, defaultProject);
-const projectElement = defaultProject.render();
-projectsDiv.appendChild(projectElement);
+(function intialSetup() {
+  const projectsCollection = new ProjectManager();
+  const defaultProject = new ProjectMaker("Untitled");
+  projectsCollection.addProject(defaultProject.projectId, defaultProject);
+  const projectElement = defaultProject.render();
+  projectsContainer.appendChild(projectElement);
 
-// addTodoButton.addEventListener("click", () => {
-//   const todoItem = new TodoMaker(
-//     prompt("Title"),
-//     prompt("Description"),
-//     prompt("Due"),
-//     prompt("Priority")
-//   );
-//   const todoId = generateId();
-//   project.addTodoItem(todoId, todoItem);
-//   const todoElement = todoItem.render();
-//   todosDiv.appendChild(todoElement);
-// });
+  addProjectButton.addEventListener("click", () => {
+    console.log(projectsCollection)
+  });
+})();
 
 addTodoButton.addEventListener("click", () => {
   dialog.showModal();
+});
+
+dialog.addEventListener("close", () => {
+  if (dialog.returnValue === "" || dialog.returnValue === "cancel") {
+    return;
+  }
+
+  const formData =  new FormData(form);
+  const formObject =  Object.fromEntries(formData.entries());
 });

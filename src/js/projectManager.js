@@ -1,5 +1,4 @@
 export default class ProjectManager {
-  currentProjectId;
   projectsByIdsObject = {};
   allProjectIdsArray = [];
 
