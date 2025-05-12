@@ -14,7 +14,7 @@ export default class ProjectMaker {
     });
   }
 
-  addTodoItem(todoId, todoItem) {
+  addTodo(todoId, todoItem) {
     this.todosByIdsObject[todoId] = todoItem;
     this.allTodoIdsArray.push(todoId);
   }

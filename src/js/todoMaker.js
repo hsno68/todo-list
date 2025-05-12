@@ -8,6 +8,8 @@ export default class TodoMaker {
     this.description = description;
     this.due = due;
     this.priority = priority;
+
+    Object.defineProperty(this, "todoId", {enumerable: false})
   }
 
   render() {
