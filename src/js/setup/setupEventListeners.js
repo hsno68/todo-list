@@ -1,5 +1,5 @@
 import getDOMElements from "./../utility/dom";
-import { formSubmitHandler } from "./../utility/handler.js";
+import { formSubmitHandler } from "./handler.js";
 
 export default function setupEventListeners() {
   const { addTodoButton, cancelButton, dialog, form } = getDOMElements();
