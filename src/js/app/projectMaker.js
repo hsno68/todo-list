@@ -1,9 +1,11 @@
-import generateId from "./../utility/idGenerator.js";
+import getDOMElements from "./../setup/utils/dom.js";
+import { generateId } from "./../setup/utils/utility.js";
 
 export default class ProjectMaker {
+  static #DOM = getDOMElements();
   #projectId = generateId();
-  #todosByIdsObject = {};
-  #allTodoIdsArray = [];
+  #todosByIds = {};
+  #todoIds = [];
 
   constructor(title) {
     this.title = title;
@@ -14,9 +16,17 @@ export default class ProjectMaker {
     return this.#projectId;
   }
 
-  addTodo(todo) {
-    this.#todosByIdsObject[todo.id] = todo;
-    this.#allTodoIdsArray.push(todo.id);
+  add(todo) {
+    this.#todosByIds[todo.id] = todo;
+    this.#todoIds.push(todo.id);
+  }
+  
+  get(id) {
+    return this.#todosByIds[id];
+  }
+
+  edit(todo) {
+    this.#todosByIds[todo.id] = todo;
   }
 
   #render() {
@@ -27,6 +37,26 @@ export default class ProjectMaker {
     div.appendChild(content);
     return div;
   }
+
+  renderTodoItems() {
+    const { todosContainer } = ProjectMaker.#DOM;
+    todosContainer.replaceChildren();
+    for (const todoId in this.#todosByIds) {
+      todosContainer.appendChild(this.#todosByIds[todoId].element);
+    }
+  }
+}
+
+export function addTodo(project, todo) {
+  project.add(todo);
+}
+
+export function editTodo(project, todo) {
+  project.edit(todo);
+}
+
+export function renderTodos(project) {
+  project.renderTodoItems();
 }
 
 export const defaultProject = new ProjectMaker("Untitled");

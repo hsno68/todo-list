@@ -12,7 +12,7 @@ const selectors = {
   addProjectButton: "button.add-project",
   addTodoButton: "button.add-todo",
   cancelButton: "button.cancel",
-  confirmButton: "button.confirm",
+  submitButton: "button.submit",
   projectsContainer: "div.projects",
   todosContainer: "div.todos",
   titleInput: "input#title",

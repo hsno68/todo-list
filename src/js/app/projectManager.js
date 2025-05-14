@@ -1,10 +1,10 @@
 class ProjectManager {
-  #projectsByIdsObject = {};
-  #allProjectIdsArray = [];
+  #projectsByIds = {};
+  #projectIds = [];
 
-  addProject(project) {
-    this.#projectsByIdsObject[project.projectId] = project;
-    this.#allProjectIdsArray.push(project.projectId);
+  add(project) {
+    this.#projectsByIds[project.id] = project;
+    this.#projectIds.push(project.id);
   }
 }
 

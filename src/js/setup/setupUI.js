@@ -1,4 +1,4 @@
-import getDOMElements from "./../utility/dom.js";
+import getDOMElements from "./utils/dom.js";
 import { defaultProject } from "./../app/projectMaker.js";
                                
 export default function setupUI() {

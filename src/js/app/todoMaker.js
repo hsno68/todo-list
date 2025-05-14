@@ -1,5 +1,5 @@
-import generateId from "./../utility/idGenerator.js";
-import getDOMElements from "./../utility/dom.js";
+import getDOMElements from "./../setup/utils/dom.js";
+import { generateId, setupDialogForm } from "./../setup/utils/utility.js";
 
 export default class TodoMaker {
   static #DOM = getDOMElements();
@@ -31,6 +31,9 @@ export default class TodoMaker {
     const div = document.createElement("div");
     div.classList.add("box");
     for (const prop in this) {
+      if (prop === "element") {
+        continue;
+      }
       const content = document.createElement("p");
       content.textContent = this[prop];
       div.appendChild(content);
@@ -39,14 +42,15 @@ export default class TodoMaker {
   }
 
   #setupEventListeners() {
+    const { dialog } = TodoMaker.#DOM;
+
     this.element.addEventListener("click", () => {
-      TodoMaker.#DOM.titleInput.value = this.title;
-      TodoMaker.#DOM.descriptionInput.value = this.description;
-      TodoMaker.#DOM.dueInput.value = this.due;
-      TodoMaker.#DOM.priorityInput.value = this.priority;
-      TodoMaker.#DOM.confirmButton.textContent =  "Update";
-      TodoMaker.#DOM.confirmButton.value = "update";
-      TodoMaker.#DOM.dialog.showModal();
+      setupDialogForm({ mode: "edit", todo: this});
+      dialog.showModal();
     });
   }
+}
+
+export function updateTodo(todo, formObject) {
+  todo.update(formObject);
 }
