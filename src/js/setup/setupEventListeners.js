@@ -16,9 +16,12 @@ export default function setupEventListeners() {
   form.addEventListener("submit", (event) => {
     event.preventDefault();
     const submitType = event.submitter.value;
+    
     const formData = new FormData(form);
     const formObject = Object.fromEntries(formData.entries());
+
     formSubmitHandler(formObject, submitType);
+
     dialog.close();
   });
 }

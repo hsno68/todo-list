@@ -15,16 +15,19 @@ export function setupDialogForm({ mode, todo }) {
   if (mode === "add") {
     form.reset();
     form.removeAttribute("data-todo-id");
+
     submitButton.textContent =  "Add";
     submitButton.value = "confirm";
   }
 
   if (mode === "edit") {
     form.setAttribute("data-todo-id", todo.id);
+
     titleInput.value = todo.title;
     descriptionInput.value = todo.description;
     dueInput.value = todo.due;
     priorityInput.value = todo.priority;
+
     submitButton.textContent =  "Update";
     submitButton.value = "update";
   }
@@ -35,17 +38,21 @@ export function formSubmitHandler(formObject, submitType) {
 
   if (submitType === "confirm") {
     const todo = new TodoMaker(formObject)
+
     addTodo(defaultProject, todo);
     renderTodos(defaultProject);
+
     form.reset();
   }
   
   if (submitType === "update") {
     const todoId = form.dataset.todoId;
     const todo = defaultProject.get(todoId);
+
     updateTodo(todo, formObject);
     editTodo(defaultProject, todo);
     renderTodos(defaultProject);
+
     form.reset();
   }
 }

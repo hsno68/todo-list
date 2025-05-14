@@ -32,15 +32,19 @@ export default class ProjectMaker {
   #render() {
     const div = document.createElement("div");
     div.classList.add("box");
+
     const content = document.createElement("p");
     content.textContent = this.title;
+
     div.appendChild(content);
+
     return div;
   }
 
   renderTodoItems() {
     const { todosContainer } = ProjectMaker.#DOM;
     todosContainer.replaceChildren();
+
     for (const todoId in this.#todosByIds) {
       todosContainer.appendChild(this.#todosByIds[todoId].element);
     }

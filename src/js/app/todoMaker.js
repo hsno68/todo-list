@@ -30,14 +30,28 @@ export default class TodoMaker {
   #render() {
     const div = document.createElement("div");
     div.classList.add("box");
+
     for (const prop in this) {
       if (prop === "element") {
         continue;
       }
+
       const content = document.createElement("p");
       content.textContent = this[prop];
       div.appendChild(content);
     }
+
+    const button = document.createElement("button");
+    button.setAttribute("type", "button");
+    button.textContent = "Delete";
+
+    button.addEventListener("click", (event) => {
+      event.stopPropagation();
+      console.log(this)
+    });
+
+    div.appendChild(button);
+
     return div;
   }
 
