@@ -9,12 +9,16 @@ export default function getDOMElements() {
 }
 
 const selectors = {
-  dialog: "dialog",
-  form: "form",
+  projectDialog: "dialog#project-dialog",
+  projectForm: "form#project-form",
+  todoDialog: "dialog#todo-dialog",
+  todoForm: "form#todo-form",
   addProjectButton: "button.add-project",
   addTodoButton: "button.add-todo",
-  cancelButton: "button.cancel",
-  submitButton: "button.submit",
+  projectCancelButton: "button.project-cancel",
+  projectSubmitButton: "button.project-submit",
+  todoCancelButton: "button.todo-cancel",
+  todoSubmitButton: "button.todo-submit",
   projectsContainer: "div.projects",
   todosContainer: "div.todos",
   titleInput: "input#title",

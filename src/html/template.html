@@ -6,9 +6,22 @@
   <title>To-Do List</title>
 </head>
 <body>
-  <dialog>
+    <dialog id="project-dialog">
+    <h2>What would you like to title this project?</h2>
+    <form id="project-form">
+      <div>
+        <label for="title">Title</label>
+        <input type="text" id="title" name="title">
+      </div>
+      <menu>
+        <button type="button" class="project-cancel" value="cancel">Cancel</button>
+        <button type="submit" class="project-submit" value="confirm">Add</button>
+      </menu>
+    </form>
+  </dialog>
+  <dialog id="todo-dialog">
     <h2>What would you like to do?</h2>
-    <form>
+    <form id="todo-form">
       <div>
         <label for="title">Title</label>
         <input type="text" id="title" name="title">
@@ -26,8 +39,8 @@
         <input type="text" id="priority" name="priority">
       </div>
       <menu>
-        <button type="button" class="cancel" value="cancel">Cancel</button>
-        <button type="submit" class="submit" value="confirm">Add</button>
+        <button type="button" class="todo-cancel" value="cancel">Cancel</button>
+        <button type="submit" class="todo-submit" value="confirm">Add</button>
       </menu>
     </form>
   </dialog>

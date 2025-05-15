@@ -10,49 +10,49 @@ export function generateId() {
 }
 
 export function setupDialogForm({ mode, todo }) {
-  const { form, submitButton, titleInput, descriptionInput, dueInput, priorityInput } = elements;
+  const { todoForm, todoSubmitButton, titleInput, descriptionInput, dueInput, priorityInput } = elements;
 
   if (mode === "add") {
-    form.reset();
-    form.removeAttribute("data-todo-id");
+    todoForm.reset();
+    todoForm.removeAttribute("data-todo-id");
 
-    submitButton.textContent =  "Add";
-    submitButton.value = "confirm";
+    todoSubmitButton.textContent =  "Add";
+    todoSubmitButton.value = "confirm";
   }
 
   if (mode === "edit") {
-    form.setAttribute("data-todo-id", todo.id);
+    todoForm.setAttribute("data-todo-id", todo.id);
 
     titleInput.value = todo.title;
     descriptionInput.value = todo.description;
     dueInput.value = todo.due;
     priorityInput.value = todo.priority;
 
-    submitButton.textContent =  "Update";
-    submitButton.value = "update";
+    todoSubmitButton.textContent =  "Update";
+    todoSubmitButton.value = "update";
   }
 }
 
-export function formSubmitHandler(formObject, submitType) {
-  const { form } = elements;
+export function formSubmitHandler(todoFormObject, submitType) {
+  const { todoForm } = elements;
 
   if (submitType === "confirm") {
-    const todo = new TodoMaker(formObject)
+    const todo = new TodoMaker(todoFormObject)
 
     addTodo(defaultProject, todo);
     renderTodos(defaultProject);
 
-    form.reset();
+    todoForm.reset();
   }
   
   if (submitType === "update") {
-    const todoId = form.dataset.todoId;
+    const todoId = todoForm.dataset.todoId;
     const todo = defaultProject.getTodo(todoId);
 
-    updateTodo(todo, formObject);
+    updateTodo(todo, todoFormObject);
     editTodo(defaultProject, todo);
     renderTodos(defaultProject);
 
-    form.reset();
+    todoForm.reset();
   }
 }
