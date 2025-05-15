@@ -47,7 +47,7 @@ export function formSubmitHandler(formObject, submitType) {
   
   if (submitType === "update") {
     const todoId = form.dataset.todoId;
-    const todo = defaultProject.get(todoId);
+    const todo = defaultProject.getTodo(todoId);
 
     updateTodo(todo, formObject);
     editTodo(defaultProject, todo);

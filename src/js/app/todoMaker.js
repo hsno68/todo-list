@@ -1,5 +1,6 @@
 import getDOMElements from "./../setup/utils/dom.js";
 import { generateId, setupDialogForm } from "./../setup/utils/utility.js";
+import { renderTodos, deleteTodos, defaultProject } from "./projectMaker.js";
 
 export default class TodoMaker {
   static #DOM = getDOMElements();
@@ -25,6 +26,7 @@ export default class TodoMaker {
   update({ title, description, due, priority }) {
     this.#assignProperties({ title, description, due, priority });
     this.element = this.#render();
+    this.#setupEventListeners();
   }
 
   #render() {
@@ -47,7 +49,8 @@ export default class TodoMaker {
 
     button.addEventListener("click", (event) => {
       event.stopPropagation();
-      console.log(this)
+      deleteTodos(defaultProject, this);
+      renderTodos(defaultProject);
     });
 
     div.appendChild(button);

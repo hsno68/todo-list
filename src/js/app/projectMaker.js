@@ -21,12 +21,18 @@ export default class ProjectMaker {
     this.#todoIds.push(todo.id);
   }
   
-  get(id) {
+  getTodo(id) {
     return this.#todosByIds[id];
   }
 
   edit(todo) {
     this.#todosByIds[todo.id] = todo;
+  }
+
+  delete(todo) {
+    delete this.#todosByIds[todo.id];
+    const toBeDeletedTodoIndex = this.#todoIds.indexOf(todo.id);
+    this.#todoIds.splice(toBeDeletedTodoIndex, 1);
   }
 
   #render() {
@@ -45,7 +51,7 @@ export default class ProjectMaker {
     const { todosContainer } = ProjectMaker.#DOM;
     todosContainer.replaceChildren();
 
-    for (const todoId in this.#todosByIds) {
+    for (const todoId of this.#todoIds) {
       todosContainer.appendChild(this.#todosByIds[todoId].element);
     }
   }
@@ -55,12 +61,16 @@ export function addTodo(project, todo) {
   project.add(todo);
 }
 
+export function renderTodos(project) {
+  project.renderTodoItems();
+}
+
 export function editTodo(project, todo) {
   project.edit(todo);
 }
 
-export function renderTodos(project) {
-  project.renderTodoItems();
+export function deleteTodos(project, todo) {
+  project.delete(todo);
 }
 
 export const defaultProject = new ProjectMaker("Untitled");
