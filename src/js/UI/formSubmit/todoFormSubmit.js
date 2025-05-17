@@ -1,5 +1,5 @@
 import getDOMElements from "./../../utility/dom";
-import { defaultProject } from "../../app/projectMaker.js";
+import { defaultProject } from "./../../app/projectMaker.js";
 import TodoMaker from "./../../app/todoMaker.js";
 
 export default function todoFormSubmitHandler(todoFormObject, submitType) {

@@ -1,8 +1,8 @@
 import getDOMElements from "./../utility/dom.js";
-import setupProjectDialogForm from "./formSetup/projectFormSetup.js";
-import setupTodoDialogForm from "./formSetup/todoFormSetup.js";
-import projectFormSubmitHandler from "./formSubmit/projectFormSubmit.js";
-import todoFormSubmitHandler from "./formSubmit/todoFormSubmit.js";
+import setupProjectDialogForm from "./../UI/formSetup/projectFormSetup.js";
+import setupTodoDialogForm from "./../UI/formSetup/todoFormSetup.js";
+import projectFormSubmitHandler from "./../UI/formSubmit/projectFormSubmit.js";
+import todoFormSubmitHandler from "./../UI/formSubmit/todoFormSubmit.js";
 
 export default function setupEventListeners() {
   const {
