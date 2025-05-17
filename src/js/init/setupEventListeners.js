@@ -28,10 +28,10 @@ export default function setupEventListeners() {
   projectForm.addEventListener("submit", (event) => {
     event.preventDefault();
     const submitType = event.submitter.value;
-    
+
     const formData = new FormData(projectForm);
     const formObject = Object.fromEntries(formData.entries());
-    
+
     projectFormSubmitHandler(formObject, submitType);
 
     projectDialog.close();
@@ -49,7 +49,7 @@ export default function setupEventListeners() {
   todoForm.addEventListener("submit", (event) => {
     event.preventDefault();
     const submitType = event.submitter.value;
-    
+
     const formData = new FormData(todoForm);
     const formObject = Object.fromEntries(formData.entries());
 

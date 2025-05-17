@@ -11,7 +11,7 @@ export default function projectFormSubmitHandler(projectFormObject, submitType) 
     projectManager.render();
     projectForm.reset();
   }
-  
+
   if (submitType === "update") {
     const projectId = projectForm.dataset.projectId;
     const project = projectManager.get(projectId);

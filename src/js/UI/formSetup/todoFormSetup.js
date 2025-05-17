@@ -14,7 +14,7 @@ export default function setupTodoDialogForm({ mode, todo }) {
     todoForm.reset();
     todoForm.removeAttribute("data-todo-id");
 
-    todoSubmitButton.textContent =  "Add";
+    todoSubmitButton.textContent = "Add";
     todoSubmitButton.value = "confirm";
   }
 
@@ -26,7 +26,7 @@ export default function setupTodoDialogForm({ mode, todo }) {
     dueInput.value = todo.due;
     priorityInput.value = todo.priority;
 
-    todoSubmitButton.textContent =  "Update";
+    todoSubmitButton.textContent = "Update";
     todoSubmitButton.value = "update";
   }
 }

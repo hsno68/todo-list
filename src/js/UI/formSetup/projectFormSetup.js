@@ -11,7 +11,7 @@ export default function setupProjectDialogForm({ mode, project }) {
     projectForm.reset();
     projectForm.removeAttribute("data-project-id");
 
-    projectSubmitButton.textContent =  "Add";
+    projectSubmitButton.textContent = "Add";
     projectSubmitButton.value = "confirm";
   }
 
@@ -20,7 +20,7 @@ export default function setupProjectDialogForm({ mode, project }) {
 
     projectTitleInput.value = project.title;
 
-    projectSubmitButton.textContent =  "Update";
+    projectSubmitButton.textContent = "Update";
     projectSubmitButton.value = "update";
   }
 }

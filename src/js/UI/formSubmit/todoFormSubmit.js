@@ -13,7 +13,7 @@ export default function todoFormSubmitHandler(todoFormObject, submitType) {
 
     todoForm.reset();
   }
-  
+
   if (submitType === "update") {
     const todoId = todoForm.dataset.todoId;
     const todo = defaultProject.get(todoId);
