@@ -1,5 +1,6 @@
-import getDOMElements from "./../setup/utils/dom.js";
-import { generateId } from "./../setup/utils/utility.js";
+import getDOMElements from "./../utility/dom.js";
+import generateId from "./../utility/utility.js";
+import setupProjectDialogForm from "./../UI/formSetup/projectFormSetup.js";
 
 export default class ProjectMaker {
   static #DOM = getDOMElements();
@@ -7,9 +8,10 @@ export default class ProjectMaker {
   #todosByIds = {};
   #todoIds = [];
 
-  constructor(title) {
+  constructor({ title }) {
     this.title = title;
     this.element = this.#render();
+    this.#setupEventListeners();
   }
 
   get id() {
@@ -21,8 +23,8 @@ export default class ProjectMaker {
     this.#todoIds.push(todo.id);
   }
   
-  getTodo(id) {
-    return this.#todosByIds[id];
+  get(todoId) {
+    return this.#todosByIds[todoId];
   }
 
   edit(todo) {
@@ -33,6 +35,12 @@ export default class ProjectMaker {
     delete this.#todosByIds[todo.id];
     const toBeDeletedTodoIndex = this.#todoIds.indexOf(todo.id);
     this.#todoIds.splice(toBeDeletedTodoIndex, 1);
+  }
+
+  update({ title }) {
+    this.title = title;
+    this.element = this.#render();
+    this.#setupEventListeners();
   }
 
   #render() {
@@ -47,7 +55,7 @@ export default class ProjectMaker {
     return div;
   }
 
-  renderTodoItems() {
+  renderTodos() {
     const { todosContainer } = ProjectMaker.#DOM;
     todosContainer.replaceChildren();
 
@@ -55,22 +63,15 @@ export default class ProjectMaker {
       todosContainer.appendChild(this.#todosByIds[todoId].element);
     }
   }
+
+  #setupEventListeners() {
+    const { projectDialog } = ProjectMaker.#DOM;
+
+    this.element.addEventListener("click", () => {
+      setupProjectDialogForm({ mode: "edit", project: this});
+      projectDialog.showModal();
+    });
+  }
 }
 
-export function addTodo(project, todo) {
-  project.add(todo);
-}
-
-export function renderTodos(project) {
-  project.renderTodoItems();
-}
-
-export function editTodo(project, todo) {
-  project.edit(todo);
-}
-
-export function deleteTodos(project, todo) {
-  project.delete(todo);
-}
-
-export const defaultProject = new ProjectMaker("Untitled");
+export const defaultProject = new ProjectMaker({title: "Untitled"});

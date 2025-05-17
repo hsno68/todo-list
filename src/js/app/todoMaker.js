@@ -1,6 +1,7 @@
-import getDOMElements from "./../setup/utils/dom.js";
-import { generateId, setupDialogForm } from "./../setup/utils/utility.js";
-import { renderTodos, deleteTodos, defaultProject } from "./projectMaker.js";
+import getDOMElements from "./../utility/dom.js";
+import generateId from "./../utility/utility.js";
+import setupTodoDialogForm from "./../UI/formSetup/todoFormSetup.js";
+import { defaultProject } from "./projectMaker.js";
 
 export default class TodoMaker {
   static #DOM = getDOMElements();
@@ -49,8 +50,8 @@ export default class TodoMaker {
 
     button.addEventListener("click", (event) => {
       event.stopPropagation();
-      deleteTodos(defaultProject, this);
-      renderTodos(defaultProject);
+      defaultProject.delete(this);
+      defaultProject.renderTodos();
     });
 
     div.appendChild(button);
@@ -59,15 +60,11 @@ export default class TodoMaker {
   }
 
   #setupEventListeners() {
-    const { dialog } = TodoMaker.#DOM;
+    const { todoDialog } = TodoMaker.#DOM;
 
     this.element.addEventListener("click", () => {
-      setupDialogForm({ mode: "edit", todo: this});
-      dialog.showModal();
+      setupTodoDialogForm({ mode: "edit", todo: this});
+      todoDialog.showModal();
     });
   }
-}
-
-export function updateTodo(todo, formObject) {
-  todo.update(formObject);
 }

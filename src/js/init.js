@@ -1,9 +1,7 @@
-import setupProjects from "./setup/setupProjects.js";
-import setupUI from "./setup/setupUI.js";
-import setupEventListeners from "./setup/setupEventListeners.js"
+import setupProject from "./app/setupProject.js";
+import setupEventListeners from "./UI/setupEventListeners.js";
 
 export default function init() {
-  setupProjects();
-  setupUI();
+  setupProject();
   setupEventListeners();
 }

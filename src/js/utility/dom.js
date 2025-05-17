@@ -21,6 +21,7 @@ const selectors = {
   todoSubmitButton: "button.todo-submit",
   projectsContainer: "div.projects",
   todosContainer: "div.todos",
+  projectTitleInput: "input#project-title",
   titleInput: "input#title",
   descriptionInput: "input#description",
   dueInput: "input#due",
