@@ -17,7 +17,7 @@ export default function projectFormSubmitHandler(projectFormObject, submitType) 
     const project = projectManager.get(projectId);
 
     project.update(projectFormObject);
-    projectManager.update(project);
+    projectManager.edit(project);
     projectManager.render();
 
     projectForm.reset();

@@ -5,16 +5,16 @@ class ProjectManager {
   #projectsByIds = {};
   #projectIds = [];
 
+  get(projectId) {
+    return this.#projectsByIds[projectId];
+  }
+
   add(project) {
     this.#projectsByIds[project.id] = project;
     this.#projectIds.push(project.id);
   }
 
-  get(projectId) {
-    return this.#projectsByIds[projectId];
-  }
-  
-  update(project) {
+  edit(project) {
     this.#projectsByIds[project.id] = project;
   }
 

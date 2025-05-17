@@ -18,13 +18,19 @@ export default class ProjectMaker {
     return this.#projectId;
   }
 
+  get(todoId) {
+    return this.#todosByIds[todoId];
+  }
+
+  update({ title }) {
+    this.title = title;
+    this.element = this.#render();
+    this.#setupEventListeners();
+  }
+
   add(todo) {
     this.#todosByIds[todo.id] = todo;
     this.#todoIds.push(todo.id);
-  }
-  
-  get(todoId) {
-    return this.#todosByIds[todoId];
   }
 
   edit(todo) {
@@ -35,12 +41,6 @@ export default class ProjectMaker {
     delete this.#todosByIds[todo.id];
     const toBeDeletedTodoIndex = this.#todoIds.indexOf(todo.id);
     this.#todoIds.splice(toBeDeletedTodoIndex, 1);
-  }
-
-  update({ title }) {
-    this.title = title;
-    this.element = this.#render();
-    this.#setupEventListeners();
   }
 
   #render() {
