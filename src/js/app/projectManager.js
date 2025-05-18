@@ -18,6 +18,12 @@ class ProjectManager {
     this.#projectsByIds[project.id] = project;
   }
 
+  delete(project) {
+    delete this.#projectsByIds[project.id];
+    const toBeDeletedProjectIndex = this.#projectIds.indexOf(project.id);
+    this.#projectIds.splice(toBeDeletedProjectIndex, 1);
+  }
+
   render() {
     const { projectsContainer } = ProjectManager.#DOM;
     projectsContainer.replaceChildren();

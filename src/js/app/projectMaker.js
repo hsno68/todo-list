@@ -1,5 +1,6 @@
 import getDOMElements from "./../utility/dom.js";
 import generateId from "./../utility/utility.js";
+import projectManager from "./projectManager.js";
 import setupProjectDialogForm from "./../UI/formSetup/projectFormSetup.js";
 
 export default class ProjectMaker {
@@ -50,7 +51,15 @@ export default class ProjectMaker {
     const content = document.createElement("p");
     content.textContent = this.title;
 
-    div.appendChild(content);
+    const button = document.createElement("button");
+    button.textContent = "Delete"
+    button.addEventListener("click", (event)=> {
+      event.stopPropagation();
+      projectManager.delete(this);
+      projectManager.render();
+    });
+
+    div.append(content, button);
 
     return div;
   }
