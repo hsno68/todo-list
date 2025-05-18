@@ -69,6 +69,7 @@ export default class ProjectMaker {
 
     this.element.addEventListener("click", () => {
       setupProjectDialogForm({ mode: "edit", project: this});
+      this.renderTodos();
       projectDialog.showModal();
     });
   }
