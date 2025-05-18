@@ -5,7 +5,7 @@ import { defaultProject } from "./../app/projectMaker.js";
 export default function setupProject() {
   projectManager.add(defaultProject);
 
-  const { projectsContainer } = getDOMElements();
+  const { projectsContainer, projectForm } = getDOMElements();
   projectsContainer.appendChild(defaultProject.element);
-  defaultProject.element.setAttribute("data-project-id", defaultProject.id);
+  projectForm.setAttribute("data-project-id", defaultProject.id);
 }

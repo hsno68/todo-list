@@ -9,7 +9,6 @@ export default function setupProjectDialogForm({ mode, project }) {
 
   if (mode === "add") {
     projectForm.reset();
-    projectForm.removeAttribute("data-project-id");
 
     projectSubmitButton.textContent = "Add";
     projectSubmitButton.value = "confirm";

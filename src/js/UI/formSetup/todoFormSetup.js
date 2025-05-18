@@ -12,7 +12,6 @@ export default function setupTodoDialogForm({ mode, todo }) {
 
   if (mode === "add") {
     todoForm.reset();
-    todoForm.removeAttribute("data-todo-id");
 
     todoSubmitButton.textContent = "Add";
     todoSubmitButton.value = "confirm";

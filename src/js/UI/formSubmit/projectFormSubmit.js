@@ -7,6 +7,7 @@ export default function projectFormSubmitHandler(projectFormObject, submitType) 
 
   if (submitType === "confirm") {
     const project = new ProjectMaker(projectFormObject);
+    projectForm.setAttribute("data-project-id", project.id);
     projectManager.add(project);
     projectManager.render();
     projectForm.reset();
