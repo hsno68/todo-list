@@ -6,7 +6,7 @@ export default function todoDeleteHandler(todo) {
 
   const projectId = projectForm.dataset.projectId;
   const project = projectManager.get(projectId);
-  
+
   project.delete(todo);
   project.renderTodos()
 }

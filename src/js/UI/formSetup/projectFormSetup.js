@@ -1,6 +1,5 @@
 import getDOMElements from "./../../utility/dom.js";
 
-
 export default function setupProjectDialogForm({ mode, project }) {
   const {
     projectForm,

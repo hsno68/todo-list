@@ -46,7 +46,7 @@ export default class ProjectMaker {
 
   #render() {
     const { todosContainer } = ProjectMaker.#DOM;
-    
+
     const div = document.createElement("div");
     div.classList.add("box");
 
