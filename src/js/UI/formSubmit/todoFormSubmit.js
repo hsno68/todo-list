@@ -1,27 +1,33 @@
 import getDOMElements from "./../../utility/dom";
-import { defaultProject } from "./../../app/projectMaker.js";
+import projectManager from "./../../app/projectManager.js";
 import TodoMaker from "./../../app/todoMaker.js";
 
 export default function todoFormSubmitHandler(todoFormObject, submitType) {
-  const { todoForm } = getDOMElements();
+  const { projectForm, todoForm } = getDOMElements();
 
   if (submitType === "confirm") {
     const todo = new TodoMaker(todoFormObject)
+    const projectId = projectForm.dataset.projectId;
+    const project = projectManager.get(projectId);
 
     todoForm.setAttribute("data-todo-id", todo.id);
-    defaultProject.add(todo);
-    defaultProject.renderTodos();
+
+    project.add(todo);
+    project.renderTodos();
 
     todoForm.reset();
   }
 
   if (submitType === "update") {
+    const projectId = projectForm.dataset.projectId;
+    const project = projectManager.get(projectId);
+
     const todoId = todoForm.dataset.todoId;
-    const todo = defaultProject.get(todoId);
+    const todo = project.get(todoId);
 
     todo.update(todoFormObject);
-    defaultProject.edit(todo);
-    defaultProject.renderTodos();
+    project.edit(todo);
+    project.renderTodos();
 
     todoForm.reset();
   }

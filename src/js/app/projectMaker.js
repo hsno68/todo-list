@@ -45,6 +45,8 @@ export default class ProjectMaker {
   }
 
   #render() {
+    const { todosContainer } = ProjectMaker.#DOM;
+    
     const div = document.createElement("div");
     div.classList.add("box");
 
@@ -57,6 +59,7 @@ export default class ProjectMaker {
       event.stopPropagation();
       projectManager.delete(this);
       projectManager.render();
+      todosContainer.replaceChildren();
     });
 
     div.append(content, button);
@@ -78,7 +81,6 @@ export default class ProjectMaker {
 
     this.element.addEventListener("click", () => {
       setupProjectDialogForm({ mode: "edit", project: this});
-      console.log(this);
       this.renderTodos();
       projectDialog.showModal();
     });

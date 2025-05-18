@@ -1,7 +1,7 @@
 import getDOMElements from "./../utility/dom.js";
 import generateId from "./../utility/utility.js";
 import setupTodoDialogForm from "./../UI/formSetup/todoFormSetup.js";
-import { defaultProject } from "./projectMaker.js";
+import todoDeleteHandler from "./../UI/deleteHandler/todoDeleteHandler.js";
 
 export default class TodoMaker {
   static #DOM = getDOMElements();
@@ -50,8 +50,7 @@ export default class TodoMaker {
 
     button.addEventListener("click", (event) => {
       event.stopPropagation();
-      defaultProject.delete(this);
-      defaultProject.renderTodos();
+      todoDeleteHandler(this);
     });
 
     div.appendChild(button);
