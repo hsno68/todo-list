@@ -54,6 +54,7 @@ export default class ProjectMaker {
     content.textContent = this.title;
 
     const buttonsDiv = document.createElement("div");
+    buttonsDiv.classList.add("buttons");
 
     const editButton = document.createElement("button");
     editButton.setAttribute("type", "button");
@@ -70,7 +71,7 @@ export default class ProjectMaker {
     const deleteButton = document.createElement("button");
     deleteButton.setAttribute("type", "button");
     const deleteSpan = document.createElement("span");
-    deleteSpan.classList.add("material-symbols-rounded");
+    deleteSpan.classList.add("material-symbols-rounded", "delete-button");
     deleteSpan.textContent = "delete";
     deleteSpan.addEventListener("click", (event)=> {
       event.stopPropagation();
