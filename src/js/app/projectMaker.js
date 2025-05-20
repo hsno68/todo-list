@@ -45,24 +45,44 @@ export default class ProjectMaker {
   }
 
   #render() {
-    const { todosContainer } = ProjectMaker.#DOM;
+    const { todosContainer, projectDialog } = ProjectMaker.#DOM;
 
     const div = document.createElement("div");
-    div.classList.add("box");
+    div.classList.add("project-container");
 
     const content = document.createElement("p");
     content.textContent = this.title;
 
-    const button = document.createElement("button");
-    button.textContent = "Delete"
-    button.addEventListener("click", (event)=> {
+    const buttonsDiv = document.createElement("div");
+
+    const editButton = document.createElement("button");
+    editButton.setAttribute("type", "button");
+    const editSpan = document.createElement("span");
+    editSpan.classList.add("material-symbols-rounded");
+    editSpan.textContent = "edit_square";
+    editSpan.addEventListener("click", () => {
+      setupProjectDialogForm({ mode: "edit", project: this});
+      this.renderTodos();
+      projectDialog.showModal();
+    });
+    editButton.appendChild(editSpan);
+
+    const deleteButton = document.createElement("button");
+    deleteButton.setAttribute("type", "button");
+    const deleteSpan = document.createElement("span");
+    deleteSpan.classList.add("material-symbols-rounded");
+    deleteSpan.textContent = "delete";
+    deleteSpan.addEventListener("click", (event)=> {
       event.stopPropagation();
       projectManager.delete(this);
       projectManager.render();
       todosContainer.replaceChildren();
     });
+    deleteButton.appendChild(deleteSpan);
 
-    div.append(content, button);
+    buttonsDiv.append(editButton, deleteButton);
+
+    div.append(content, buttonsDiv);
 
     return div;
   }
@@ -79,11 +99,7 @@ export default class ProjectMaker {
   #setupEventListeners() {
     const { projectDialog } = ProjectMaker.#DOM;
 
-    this.element.addEventListener("click", () => {
-      setupProjectDialogForm({ mode: "edit", project: this});
-      this.renderTodos();
-      projectDialog.showModal();
-    });
+
   }
 }
 
