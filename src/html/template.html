@@ -11,7 +11,7 @@
   </header>
   <dialog id="project-dialog">
     <div>
-      <h2>What would you like to title this project?</h2>
+      <h2>New project</h2>
       <form id="project-form">
         <div>
           <label for="title">Title</label>
@@ -25,50 +25,54 @@
     </div>
   </dialog>
   <dialog id="todo-dialog">
-    <h2>What would you like to do?</h2>
-    <form id="todo-form">
-      <div>
-        <label for="title">Title</label>
-        <input type="text" id="title" name="title">
-      </div>
-      <div>
-        <label for="description">Description</label>
-        <input type="text" id="description" name="description">
-      </div>
-      <div>
-        <label for="due">Due</label>
-        <input type="text" id="due" name="due">
-      </div>
-      <div>
-        <label for="priority">Priority</label>
-        <input type="text" id="priority" name="priority">
-      </div>
-      <menu>
-        <button type="button" class="todo-cancel" value="cancel">Cancel</button>
-        <button type="submit" class="todo-submit" value="confirm">Add</button>
-      </menu>
-    </form>
+    <div>
+      <h2>What would you like to do?</h2>
+      <form id="todo-form">
+        <div>
+          <label for="title">Title</label>
+          <input type="text" id="title" name="title">
+        </div>
+        <div>
+          <label for="description">Description</label>
+          <input type="text" id="description" name="description">
+        </div>
+        <div>
+          <label for="due">Due</label>
+          <input type="text" id="due" name="due">
+        </div>
+        <div>
+          <label for="priority">Priority</label>
+          <input type="text" id="priority" name="priority">
+        </div>
+        <menu>
+          <button type="button" class="todo-cancel" value="cancel">Cancel</button>
+          <button type="submit" class="todo-submit" value="confirm">Add</button>
+        </menu>
+      </form>
+    </div>
   </dialog>
   <div id="content">
     <div class="content-sidebar">
       <nav>
         <ul>
-          <li><span class="material-symbols-rounded">inbox</span>Inbox</li>
-          <li><span class="material-symbols-rounded">today</span>Today</li>
-          <li><span class="material-symbols-rounded">date_range</span>This Week</li>
-          <li><span class="material-symbols-rounded">star</span>Important</li>
-          <li><span class="material-symbols-rounded">check_box</span>Completed</li>
+          <li><button type="button"><span class="material-symbols-rounded">inbox</span>Inbox</button></li>
+          <li><button type="button"><span class="material-symbols-rounded">today</span>Today</button></li>
+          <li><button type="button"><span class="material-symbols-rounded">date_range</span>This Week</button></li>
+          <li><button type="button"><span class="material-symbols-rounded">star</span>Important</button></li>
+          <li><button type="button"><span class="material-symbols-rounded">check_box</span>Completed</button></li>
         </ul>
       </nav>
-      <div class="new-project-div">
-        <h2>Projects</h2>
-        <button type="button" class="add-project" value="add-project"><span class="material-symbols-rounded">create_new_folder</span>New Project</button>
+      <div>
+        <button type="button" class="add-project" value="add-project">New project<span class="material-symbols-rounded">create_new_folder</span></button>
       </div>
-      <div class="projects"></div>
+      <div class="projects-container"></div>
     </div>
     <div class="content-main">
-      <button type="button" class="add-todo" value="add-todo">Add Todo</button>
-      <div class="todos"></div>
+      <h2 class="label">Todos</h2>
+      <div class="todo-wrapper">
+        <div class="border-container"><button type="button" class="add-todo" value="add-todo"><span class="material-symbols-rounded">add</span>Add todo</button></div>
+        <div class="todos-container"></div>
+      </div>
     </div>
   </div>
 </body>

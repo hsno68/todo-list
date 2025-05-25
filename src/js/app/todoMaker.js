@@ -31,8 +31,11 @@ export default class TodoMaker {
   }
 
   #render() {
+    const containingDiv = document.createElement("div");
+    containingDiv.classList.add("border-container");
+
     const div = document.createElement("div");
-    div.classList.add("box");
+    div.classList.add("todo");
 
     for (const prop in this) {
       if (prop === "element") {
@@ -44,24 +47,32 @@ export default class TodoMaker {
       div.appendChild(content);
     }
 
-    const button = document.createElement("button");
-    button.setAttribute("type", "button");
-    button.textContent = "Delete";
+    const buttonsDiv = document.createElement("div");
+    buttonsDiv.classList.add("buttons");
 
-    button.addEventListener("click", (event) => {
+    const deleteButton = document.createElement("button");
+    deleteButton.setAttribute("type", "button");
+    const deleteSpan = document.createElement("span");
+    deleteSpan.classList.add("material-symbols-rounded", "delete-button");
+    deleteSpan.textContent = "delete";
+    deleteSpan.addEventListener("click", (event)=> {
       event.stopPropagation();
       todoDeleteHandler(this);
     });
+    deleteButton.appendChild(deleteSpan);
 
-    div.appendChild(button);
+    buttonsDiv.appendChild(deleteButton);
 
-    return div;
+    div.append(buttonsDiv);
+    containingDiv.appendChild(div);
+
+    return containingDiv;
   }
 
   #setupEventListeners() {
-    const { todoDialog } = TodoMaker.#DOM;
+    const { todoDialog } = getDOMElements();
 
-    this.element.addEventListener("click", () => {
+    this.element.addEventListener("click", (event) => {
       setupTodoDialogForm({ mode: "edit", todo: this});
       todoDialog.showModal();
     });

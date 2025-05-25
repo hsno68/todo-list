@@ -12,7 +12,6 @@ export default class ProjectMaker {
   constructor({ title }) {
     this.title = title;
     this.element = this.#render();
-    this.#setupEventListeners();
   }
 
   get id() {
@@ -26,7 +25,6 @@ export default class ProjectMaker {
   update({ title }) {
     this.title = title;
     this.element = this.#render();
-    this.#setupEventListeners();
   }
 
   add(todo) {
@@ -48,7 +46,7 @@ export default class ProjectMaker {
     const { todosContainer, projectDialog } = ProjectMaker.#DOM;
 
     const div = document.createElement("div");
-    div.classList.add("project-container");
+    div.classList.add("project");
 
     const content = document.createElement("p");
     content.textContent = this.title;
@@ -95,12 +93,6 @@ export default class ProjectMaker {
     for (const todoId of this.#todoIds) {
       todosContainer.appendChild(this.#todosByIds[todoId].element);
     }
-  }
-
-  #setupEventListeners() {
-    const { projectDialog } = ProjectMaker.#DOM;
-
-
   }
 }
 
