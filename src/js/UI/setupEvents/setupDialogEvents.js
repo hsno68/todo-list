@@ -1,6 +1,6 @@
-export default function setupDialogEvents({ addButton, cancelButton, dialog, form, setupFormFunction, submitHandler }) {
+export default function setupDialogEvents({ addButton, cancelButton, dialog, form, setupForm, submitHandler }) {
   addButton.addEventListener("click", () => {
-    setupFormFunction({ mode: "add" });
+    setupForm({ mode: "add" });
     dialog.showModal();
   });
 
