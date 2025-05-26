@@ -12,6 +12,7 @@ export default class ProjectMaker {
   constructor({ title }) {
     this.title = title;
     this.element = this.#render();
+    this.#setupEventListeners();
   }
 
   get id() {
@@ -25,6 +26,7 @@ export default class ProjectMaker {
   update({ title }) {
     this.title = title;
     this.element = this.#render();
+    this.#setupEventListeners();
   }
 
   add(todo) {
@@ -93,6 +95,14 @@ export default class ProjectMaker {
     for (const todoId of this.#todoIds) {
       todosContainer.appendChild(this.#todosByIds[todoId].element);
     }
+  }
+
+  #setupEventListeners() {
+    const { projectForm } = ProjectMaker.#DOM;
+    this.element.addEventListener("click", () => {
+      projectForm.setAttribute("data-project-id", this.id);
+      this.renderTodos();
+    });
   }
 }
 
