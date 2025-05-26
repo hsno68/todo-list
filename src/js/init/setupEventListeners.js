@@ -1,5 +1,5 @@
 import getDOMElements from "./../utility/dom.js";
-import setupDialogEvents from "./../UI/setupEvents/setupDialogEvents.js";
+import setupDialogEvents from "./setupDialogEvents.js";
 import setupProjectDialogForm from "./../UI/formSetup/setupProjectDialogForm.js";
 import setupTodoDialogForm from "./../UI/formSetup/setupTodoDialogForm.js";
 import projectFormSubmitHandler from "./../UI/formSubmit/projectFormSubmitHandler.js";
