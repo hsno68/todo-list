@@ -64,15 +64,15 @@
   --dialog-btn-secondary-active: #B5D6C6;     /* Cool Mint Shadow */
 
   /* UI */
-  --color-sidebar-hover: #EDF3F7;             /* Icy Morning Blue */
-  --color-sidebar-active: #D6E1EB;            /* Muted Mist Blue */
-  --color-sidebar-button: #DDE8F0;            /* Frosted Sky Blue */
-  --color-sidebar-button-hover: #D0E7F3;      /* Sky Drift */
-  --color-sidebar-button-active: #AFCFE2;     /* Hushed Horizon Blue */
-  --todo-hover: rgba(255, 255, 255, 0.25);    /* soft white overlay */
+  --color-sidebar-hover: #EDF3F7;                  /* Icy Morning Blue */
+  --color-sidebar-active: #D6E1EB;                 /* Muted Mist Blue */
+  --color-sidebar-button: #DDE8F0;                 /* Frosted Sky Blue */
+  --color-sidebar-button-hover: #D0E7F3;           /* Sky Drift */
+  --color-sidebar-button-active: #AFCFE2;          /* Hushed Horizon Blue */
+  --todo-hover: rgba(255, 255, 255, 0.25);         /* soft white overlay */
+  --todo-active: rgba(190, 220, 210, 0.45);        /* muted mint press */
   --todo-button-hover: rgba(200, 200, 200, 0.3);   /* muted fog */
-  --todo-active: rgba(190, 220, 210, 0.45); /* muted mint press */
-  --todo-button-active: rgba(190, 220, 210, 0.45); /* muted mint press */
+  --todo-button-active: rgba(130, 180, 160, 0.6);  /* vivid mint press */
 
   --padding-header-top: 1.5rem;
   --padding-header-side: 2rem;
@@ -227,6 +227,10 @@ header h1 {
   background-color: var(--color-sidebar-active);
 }
 
+.project:has(.buttons button:active) {
+  background-color: var(--color-sidebar-hover);
+}
+
 .project button:hover {
   background-color: var(--color-sidebar-button-hover);
   box-shadow: var(--hover-box-shadow);
@@ -308,6 +312,10 @@ header h1 {
 .content-main button.add-todo:active,
 .todo:active {
   background-color: var(--todo-active);
+}
+
+.todo:has(.buttons button:active) {
+  background-color: var(--todo-hover);
 }
 
 .border-container {
