@@ -1,7 +1,7 @@
 import getDOMElements from "./../utility/dom.js";
 import generateId from "./../utility/utility.js";
 import projectManager from "./projectManager.js";
-import setupProjectDialogForm from "./../UI/formSetup/projectFormSetup.js";
+import setupProjectDialogForm from "./../UI/formSetup/setupProjectDialogForm.js";
 
 export default class ProjectMaker {
   static #DOM = getDOMElements();
@@ -61,9 +61,8 @@ export default class ProjectMaker {
     const editSpan = document.createElement("span");
     editSpan.classList.add("material-symbols-rounded");
     editSpan.textContent = "edit_square";
-    editSpan.addEventListener("click", () => {
+    editSpan.addEventListener("click", (event) => {
       setupProjectDialogForm({ mode: "edit", project: this});
-      this.renderTodos();
       projectDialog.showModal();
     });
     editButton.appendChild(editSpan);

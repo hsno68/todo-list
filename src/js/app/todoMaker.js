@@ -1,6 +1,6 @@
 import getDOMElements from "./../utility/dom.js";
 import generateId from "./../utility/utility.js";
-import setupTodoDialogForm from "./../UI/formSetup/todoFormSetup.js";
+import setupTodoDialogForm from "./../UI/formSetup/setupTodoDialogForm.js";
 import todoDeleteHandler from "./../UI/deleteHandler/todoDeleteHandler.js";
 
 export default class TodoMaker {

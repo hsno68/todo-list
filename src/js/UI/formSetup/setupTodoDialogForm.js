@@ -3,7 +3,7 @@ import getDOMElements from "./../../utility/dom.js";
 export default function setupTodoDialogForm({ mode, todo }) {
   const {
     todoForm,
-    todoSubmitButton,
+    todoFormSubmitButton,
     titleInput,
     descriptionInput,
     dueInput,
@@ -13,8 +13,8 @@ export default function setupTodoDialogForm({ mode, todo }) {
   if (mode === "add") {
     todoForm.reset();
 
-    todoSubmitButton.textContent = "Add";
-    todoSubmitButton.value = "confirm";
+    todoFormSubmitButton.textContent = "Add";
+    todoFormSubmitButton.value = "confirm";
   }
 
   if (mode === "edit") {
@@ -25,7 +25,7 @@ export default function setupTodoDialogForm({ mode, todo }) {
     dueInput.value = todo.due;
     priorityInput.value = todo.priority;
 
-    todoSubmitButton.textContent = "Update";
-    todoSubmitButton.value = "update";
+    todoFormSubmitButton.textContent = "Update";
+    todoFormSubmitButton.value = "update";
   }
 }

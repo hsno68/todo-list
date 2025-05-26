@@ -6,6 +6,7 @@ export default function setupProject() {
   projectManager.add(defaultProject);
 
   const { projectsContainer, projectForm } = getDOMElements();
+
   projectsContainer.appendChild(defaultProject.element);
   projectForm.setAttribute("data-project-id", defaultProject.id);
 }

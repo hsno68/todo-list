@@ -1,4 +1,4 @@
-import getDOMElements from "./../../utility/dom";
+import getDOMElements from "./../../utility/dom.js";
 import projectManager from "./../../app/projectManager.js";
 import TodoMaker from "./../../app/todoMaker.js";
 

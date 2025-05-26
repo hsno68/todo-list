@@ -1,15 +1,15 @@
 import getDOMElements from "./../utility/dom.js";
-import setupProjectDialogForm from "./../UI/formSetup/projectFormSetup.js";
-import setupTodoDialogForm from "./../UI/formSetup/todoFormSetup.js";
-import projectFormSubmitHandler from "./../UI/formSubmit/projectFormSubmit.js";
-import todoFormSubmitHandler from "./../UI/formSubmit/todoFormSubmit.js";
+import setupProjectDialogForm from "./../UI/formSetup/setupProjectDialogForm.js";
+import setupTodoDialogForm from "./../UI/formSetup/setupTodoDialogForm.js";
+import projectFormSubmitHandler from "./../UI/formSubmit/projectFormSubmitHandler.js";
+import todoFormSubmitHandler from "./../UI/formSubmit/todoFormSubmitHandler.js";
 
 export default function setupEventListeners() {
   const {
     addProjectButton,
     addTodoButton,
-    projectCancelButton,
-    todoCancelButton,
+    projectFormCancelButton,
+    todoFormCancelButton,
     projectDialog,
     projectForm,
     todoDialog,
@@ -21,7 +21,7 @@ export default function setupEventListeners() {
     projectDialog.showModal();
   })
 
-  projectCancelButton.addEventListener("click", () => {
+  projectFormCancelButton.addEventListener("click", () => {
     projectDialog.close();
   });
 
@@ -42,7 +42,7 @@ export default function setupEventListeners() {
     todoDialog.showModal();
   });
 
-  todoCancelButton.addEventListener("click", () => {
+  todoFormCancelButton.addEventListener("click", () => {
     todoDialog.close();
   });
 
