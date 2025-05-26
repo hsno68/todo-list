@@ -10,7 +10,6 @@ export default class TodoMaker {
   constructor({ title, description, due, priority }) {
     this.#assignProperties({ title, description, due, priority });
     this.element = this.#render();
-    this.#setupEventListeners();
   }
 
   #assignProperties({ title, description, due, priority }) {
@@ -27,10 +26,11 @@ export default class TodoMaker {
   update({ title, description, due, priority }) {
     this.#assignProperties({ title, description, due, priority });
     this.element = this.#render();
-    this.#setupEventListeners();
   }
 
   #render() {
+    const { todoDialog } = getDOMElements();
+
     const containingDiv = document.createElement("div");
     containingDiv.classList.add("border-container");
 
@@ -50,6 +50,17 @@ export default class TodoMaker {
     const buttonsDiv = document.createElement("div");
     buttonsDiv.classList.add("buttons");
 
+    const editButton = document.createElement("button");
+    editButton.setAttribute("type", "button");
+    const editSpan = document.createElement("span");
+    editSpan.classList.add("material-symbols-rounded");
+    editSpan.textContent = "edit_square";
+    editSpan.addEventListener("click", () => {
+      setupTodoDialogForm({ mode: "edit", todo: this});
+      todoDialog.showModal();
+    });
+    editButton.appendChild(editSpan);
+
     const deleteButton = document.createElement("button");
     deleteButton.setAttribute("type", "button");
     const deleteSpan = document.createElement("span");
@@ -61,20 +72,11 @@ export default class TodoMaker {
     });
     deleteButton.appendChild(deleteSpan);
 
-    buttonsDiv.appendChild(deleteButton);
+    buttonsDiv.append(editButton, deleteButton);
 
-    div.append(buttonsDiv);
+    div.appendChild(buttonsDiv);
     containingDiv.appendChild(div);
 
     return containingDiv;
-  }
-
-  #setupEventListeners() {
-    const { todoDialog } = getDOMElements();
-
-    this.element.addEventListener("click", (event) => {
-      setupTodoDialogForm({ mode: "edit", todo: this});
-      todoDialog.showModal();
-    });
   }
 }
