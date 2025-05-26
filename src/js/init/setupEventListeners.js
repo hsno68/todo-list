@@ -1,4 +1,5 @@
 import getDOMElements from "./../utility/dom.js";
+import setupDialogEvents from "./../UI/setupEvents/setupDialogEvents.js";
 import setupProjectDialogForm from "./../UI/formSetup/setupProjectDialogForm.js";
 import setupTodoDialogForm from "./../UI/formSetup/setupTodoDialogForm.js";
 import projectFormSubmitHandler from "./../UI/formSubmit/projectFormSubmitHandler.js";
@@ -16,45 +17,21 @@ export default function setupEventListeners() {
     todoForm
   } = getDOMElements();
 
-  addProjectButton.addEventListener("click", () => {
-    setupProjectDialogForm({mode: "add"});
-    projectDialog.showModal();
-  })
-
-  projectFormCancelButton.addEventListener("click", () => {
-    projectDialog.close();
+  setupDialogEvents({
+    addButton: addProjectButton,
+    cancelButton: projectFormCancelButton,
+    dialog: projectDialog,
+    form: projectForm,
+    setupForm: setupProjectDialogForm,
+    submitHandler: projectFormSubmitHandler
   });
 
-  projectForm.addEventListener("submit", (event) => {
-    event.preventDefault();
-    const submitType = event.submitter.value;
-
-    const formData = new FormData(projectForm);
-    const formObject = Object.fromEntries(formData.entries());
-
-    projectFormSubmitHandler(formObject, submitType);
-
-    projectDialog.close();
-  });
-
-  addTodoButton.addEventListener("click", () => {
-    setupTodoDialogForm({ mode: "add" });
-    todoDialog.showModal();
-  });
-
-  todoFormCancelButton.addEventListener("click", () => {
-    todoDialog.close();
-  });
-
-  todoForm.addEventListener("submit", (event) => {
-    event.preventDefault();
-    const submitType = event.submitter.value;
-
-    const formData = new FormData(todoForm);
-    const formObject = Object.fromEntries(formData.entries());
-
-    todoFormSubmitHandler(formObject, submitType);
-
-    todoDialog.close();
+  setupDialogEvents({
+    addButton: addTodoButton,
+    cancelButton: todoFormCancelButton,
+    dialog: todoDialog,
+    form: todoForm,
+    setupForm: setupTodoDialogForm,
+    submitHandler: todoFormSubmitHandler
   });
 }
