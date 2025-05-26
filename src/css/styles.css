@@ -283,7 +283,7 @@ header h1 {
   border-radius: 1rem;
 }
 
-.content-main .todo-wrapper .border-container > button {
+.content-main button.add-todo {
   padding: 1rem 1.5rem;
   width: 100%;
   min-height: 60px;
@@ -300,12 +300,12 @@ header h1 {
   transition: background-color 0.2s ease-in-out;
 }
 
-.content-main .todo-wrapper .border-container > button:hover,
+.content-main button.add-todo:hover,
 .todo:hover {
   background-color: var(--todo-hover);
 }
 
-.content-main .todo-wrapper .border-container > button:active,
+.content-main button.add-todo:active,
 .todo:active {
   background-color: var(--todo-active);
 }
@@ -316,7 +316,7 @@ header h1 {
 }
 
 .todo {
-  padding: 1rem 1.5rem;
+  padding: 0.5rem 1.5rem;
   width: 100%;
   min-height: 60px;
   display: flex;
@@ -325,6 +325,11 @@ header h1 {
   border-radius: 12px;
   cursor: pointer;
   transition: background-color 0.2s ease-in-out;
+}
+
+.todo .buttons {
+  display:flex;
+  gap: 5px;
 }
 
 .todo button {
