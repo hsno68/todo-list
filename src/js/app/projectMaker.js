@@ -10,9 +10,13 @@ export default class ProjectMaker {
   #todoIds = [];
 
   constructor({ title }) {
-    this.title = title;
+    this.#assignProperties({ title });
     this.element = this.#render();
     this.#setupEventListeners();
+  }
+
+  #assignProperties({ title }) {
+    this.title = title;
   }
 
   get id() {
@@ -24,7 +28,7 @@ export default class ProjectMaker {
   }
 
   update({ title }) {
-    this.title = title;
+    this.#assignProperties({ title });
     this.element = this.#render();
     this.#setupEventListeners();
   }
