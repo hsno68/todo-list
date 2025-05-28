@@ -66,7 +66,7 @@ export default class TodoMaker {
     const deleteSpan = document.createElement("span");
     deleteSpan.classList.add("material-symbols-rounded", "delete-button");
     deleteSpan.textContent = "delete";
-    deleteSpan.addEventListener("click", (event)=> {
+    deleteSpan.addEventListener("click", (event) => {
       event.stopPropagation();
       todoDeleteHandler(this);
     });

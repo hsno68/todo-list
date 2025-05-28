@@ -65,7 +65,7 @@ export default class ProjectMaker {
     const editSpan = document.createElement("span");
     editSpan.classList.add("material-symbols-rounded");
     editSpan.textContent = "edit_square";
-    editSpan.addEventListener("click", (event) => {
+    editSpan.addEventListener("click", () => {
       setupProjectDialogForm({ mode: "edit", project: this});
       projectDialog.showModal();
     });
@@ -76,7 +76,7 @@ export default class ProjectMaker {
     const deleteSpan = document.createElement("span");
     deleteSpan.classList.add("material-symbols-rounded", "delete-button");
     deleteSpan.textContent = "delete";
-    deleteSpan.addEventListener("click", (event)=> {
+    deleteSpan.addEventListener("click", (event) => {
       event.stopPropagation();
       projectManager.delete(this);
       projectManager.render();
