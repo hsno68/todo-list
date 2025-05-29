@@ -2,6 +2,7 @@ import getDOMElements from "./../../utility/dom.js";
 
 export default function setupTodoDialogForm({ mode, todo }) {
   const {
+    todoDialog,
     todoForm,
     todoFormSubmitButton,
     titleInput,
@@ -28,4 +29,6 @@ export default function setupTodoDialogForm({ mode, todo }) {
     todoFormSubmitButton.textContent = "Update";
     todoFormSubmitButton.value = "update";
   }
+
+  todoDialog.showModal();
 }

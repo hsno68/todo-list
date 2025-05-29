@@ -46,7 +46,6 @@ export default class TodoMaker {
       iconName: "edit_square",
       callback: () => {
         setupTodoDialogForm({ mode: "edit", todo: this});
-        todoDialog.showModal();
       }
     });
 

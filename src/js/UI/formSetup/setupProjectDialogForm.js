@@ -2,6 +2,7 @@ import getDOMElements from "./../../utility/dom.js";
 
 export default function setupProjectDialogForm({ mode, project }) {
   const {
+    projectDialog,
     projectForm,
     projectFormSubmitButton,
     projectTitleInput
@@ -20,4 +21,6 @@ export default function setupProjectDialogForm({ mode, project }) {
     projectFormSubmitButton.textContent = "Update";
     projectFormSubmitButton.value = "update";
   }
+
+  projectDialog.showModal();
 }

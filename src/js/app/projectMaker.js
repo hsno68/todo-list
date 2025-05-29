@@ -72,7 +72,6 @@ export default class ProjectMaker {
       iconName: "edit_square",
       callback: () => {
         setupProjectDialogForm({ mode: "edit", project: this});
-        projectDialog.showModal();
       }
     });
 
