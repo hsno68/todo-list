@@ -52,23 +52,33 @@
       </form>
     </div>
   </dialog>
-  <div id="content">
-    <div class="content-sidebar">
+  <main id="content">
+    <aside class="content-sidebar">
       <nav>
         <ul>
-          <li><button type="button"><span class="material-symbols-rounded">inbox</span>Inbox</button></li>
-          <li><button type="button"><span class="material-symbols-rounded">today</span>Today</button></li>
-          <li><button type="button"><span class="material-symbols-rounded">date_range</span>This Week</button></li>
-          <li><button type="button"><span class="material-symbols-rounded">star</span>Important</button></li>
-          <li><button type="button"><span class="material-symbols-rounded">check_box</span>Completed</button></li>
+          <li>
+            <button type="button"><span class="material-symbols-rounded">inbox</span>Inbox</button>
+          </li>
+          <li>
+            <button type="button"><span class="material-symbols-rounded">today</span>Today</button>
+          </li>
+          <li>
+            <button type="button"><span class="material-symbols-rounded">date_range</span>This Week</button>
+          </li>
+          <li>
+            <button type="button"><span class="material-symbols-rounded">star</span>Important</button>
+          </li>
+          <li>
+            <button type="button"><span class="material-symbols-rounded">check_box</span>Completed</button>
+          </li>
         </ul>
       </nav>
       <div>
         <button type="button" class="add-project" value="add-project">New project<span class="material-symbols-rounded">create_new_folder</span></button>
       </div>
       <div class="projects-container"></div>
-    </div>
-    <div class="content-main">
+    </aside>
+    <section class="content-main">
       <h2 class="label">Todos</h2>
       <div class="todo-wrapper">
         <div class="border-container">
@@ -76,7 +86,7 @@
         </div>
         <div class="todos-container"></div>
       </div>
-    </div>
-  </div>
+    </section>
+  </main>
 </body>
 </html>
