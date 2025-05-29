@@ -14,6 +14,5 @@ export default function setupDialogEvents({ addButton, cancelButton, dialog, for
     const formObject = Object.fromEntries(formData.entries());
 
     submitHandler(formObject, submitType);
-    dialog.close();
   });
 }
