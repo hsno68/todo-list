@@ -134,7 +134,7 @@ header h1 {
 /* Sidebar -- Nav Start */
 
 .content-sidebar {
-  width: clamp(250px, 300vw, 350px);
+  width: clamp(250px, 30vw, 350px);
   padding: 3rem var(--padding-side);
   text-shadow: var(--text-shadow);
   background-color: var(--color-sidebar-bg);
