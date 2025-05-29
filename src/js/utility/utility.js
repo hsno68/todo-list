@@ -3,6 +3,22 @@ export function generateId() {
   return timestampBase36Id;
 }
 
+export function createItem({ className, object }) {
+  const div = document.createElement("div");
+  div.classList.add(className);
+
+  for (const prop in object) {
+    if (prop === "element") {
+      continue;
+    }
+    const content = document.createElement("p");
+    content.textContent = object[prop];
+    div.appendChild(content);
+  }
+
+  return div;
+}
+
 export function createButton({ iconName, buttonClass, callback }) {
   const button = document.createElement("button");
   button.setAttribute("type", "button");
