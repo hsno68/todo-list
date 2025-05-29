@@ -1,5 +1,5 @@
 import getDOMElements from "./../utility/dom.js";
-import { generateId } from "./../utility/utility.js";
+import { generateId, createButton } from "./../utility/utility.js";
 import setupProjectDialogForm from "./../UI/formSetup/setupProjectDialogForm.js";
 import projectDeleteHandler from "./../UI/deleteHandler/projectDeleteHandler.js";
 
@@ -48,47 +48,6 @@ export default class ProjectMaker {
     this.#todoIds.splice(toBeDeletedTodoIndex, 1);
   }
 
-  #render() {
-    const { todosContainer, projectDialog } = ProjectMaker.#DOM;
-
-    const div = document.createElement("div");
-    div.classList.add("project");
-
-    const content = document.createElement("p");
-    content.textContent = this.title;
-
-    const buttonsDiv = document.createElement("div");
-    buttonsDiv.classList.add("buttons");
-
-    const editButton = document.createElement("button");
-    editButton.setAttribute("type", "button");
-    const editSpan = document.createElement("span");
-    editSpan.classList.add("material-symbols-rounded");
-    editSpan.textContent = "edit_square";
-    editSpan.addEventListener("click", () => {
-      setupProjectDialogForm({ mode: "edit", project: this});
-      projectDialog.showModal();
-    });
-    editButton.appendChild(editSpan);
-
-    const deleteButton = document.createElement("button");
-    deleteButton.setAttribute("type", "button");
-    const deleteSpan = document.createElement("span");
-    deleteSpan.classList.add("material-symbols-rounded", "delete-button");
-    deleteSpan.textContent = "delete";
-    deleteSpan.addEventListener("click", (event) => {
-      event.stopPropagation();
-      projectDeleteHandler(this);
-    });
-    deleteButton.appendChild(deleteSpan);
-
-    buttonsDiv.append(editButton, deleteButton);
-
-    div.append(content, buttonsDiv);
-
-    return div;
-  }
-
   renderTodos() {
     const { todosContainer } = ProjectMaker.#DOM;
     todosContainer.replaceChildren();
@@ -96,6 +55,41 @@ export default class ProjectMaker {
     for (const todoId of this.#todoIds) {
       todosContainer.appendChild(this.#todosByIds[todoId].element);
     }
+  }
+
+  #render() {
+    const { projectDialog } = ProjectMaker.#DOM;
+
+    const project = document.createElement("div");
+    project.classList.add("project");
+
+    const content = document.createElement("p");
+    content.textContent = this.title;
+
+    const buttons = document.createElement("div");
+    buttons.classList.add("buttons");
+
+    const editButton = createButton({
+      iconName: "edit_square",
+      callback: () => {
+        setupProjectDialogForm({ mode: "edit", project: this});
+        projectDialog.showModal();
+      }
+    });
+
+    const deleteButton = createButton({
+      iconName: "delete",
+      buttonClass: "delete-button",
+      callback: (event) => {
+        event.stopPropagation();
+        projectDeleteHandler(this);
+      }
+    });
+
+    buttons.append(editButton, deleteButton);
+    project.append(content, buttons);
+
+    return project;
   }
 
   #setupEventListeners() {

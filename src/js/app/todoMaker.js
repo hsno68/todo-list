@@ -1,5 +1,5 @@
 import getDOMElements from "./../utility/dom.js";
-import { generateId } from "./../utility/utility.js";
+import { generateId, createButton } from "./../utility/utility.js";
 import setupTodoDialogForm from "./../UI/formSetup/setupTodoDialogForm.js";
 import todoDeleteHandler from "./../UI/deleteHandler/todoDeleteHandler.js";
 
@@ -31,52 +31,45 @@ export default class TodoMaker {
   #render() {
     const { todoDialog } = TodoMaker.#DOM;
 
-    const containingDiv = document.createElement("div");
-    containingDiv.classList.add("border-container");
+    const container = document.createElement("div");
+    container.classList.add("border-container");
 
-    const div = document.createElement("div");
-    div.classList.add("todo");
+    const todo = document.createElement("div");
+    todo.classList.add("todo");
 
     for (const prop in this) {
       if (prop === "element") {
         continue;
       }
-
       const content = document.createElement("p");
       content.textContent = this[prop];
-      div.appendChild(content);
+      todo.appendChild(content);
     }
 
-    const buttonsDiv = document.createElement("div");
-    buttonsDiv.classList.add("buttons");
+    const buttons = document.createElement("div");
+    buttons.classList.add("buttons");
 
-    const editButton = document.createElement("button");
-    editButton.setAttribute("type", "button");
-    const editSpan = document.createElement("span");
-    editSpan.classList.add("material-symbols-rounded");
-    editSpan.textContent = "edit_square";
-    editSpan.addEventListener("click", () => {
-      setupTodoDialogForm({ mode: "edit", todo: this});
-      todoDialog.showModal();
+    const editButton = createButton({
+      iconName: "edit_square",
+      callback: () => {
+        setupTodoDialogForm({ mode: "edit", todo: this});
+        todoDialog.showModal();
+      }
     });
-    editButton.appendChild(editSpan);
 
-    const deleteButton = document.createElement("button");
-    deleteButton.setAttribute("type", "button");
-    const deleteSpan = document.createElement("span");
-    deleteSpan.classList.add("material-symbols-rounded", "delete-button");
-    deleteSpan.textContent = "delete";
-    deleteSpan.addEventListener("click", (event) => {
-      event.stopPropagation();
-      todoDeleteHandler(this);
+    const deleteButton = createButton({
+      iconName: "delete",
+      buttonClass: "delete-button",
+      callback: (event) => {
+        event.stopPropagation();
+        todoDeleteHandler(this);
+      }
     });
-    deleteButton.appendChild(deleteSpan);
 
-    buttonsDiv.append(editButton, deleteButton);
+    buttons.append(editButton, deleteButton);
+    todo.appendChild(buttons);
+    container.appendChild(todo);
 
-    div.appendChild(buttonsDiv);
-    containingDiv.appendChild(div);
-
-    return containingDiv;
+    return container;
   }
 }

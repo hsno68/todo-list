@@ -149,7 +149,7 @@ header h1 {
   font-variation-settings: 'opsz' 18;
 }
 
-.content-sidebar .material-symbols-rounded.delete-button {
+.content-sidebar .delete-button > span {
   color: #DA6E6E;
 }
 
@@ -266,7 +266,7 @@ header h1 {
   font-variation-settings: 'opsz' 24;
 }
 
-.content-main .material-symbols-rounded.delete-button {
+.content-main .delete-button > span {
   color: #DA6E6E;
 }
 
