@@ -8,5 +8,5 @@ export default function todoDeleteHandler(todo) {
   const project = projectManager.get(projectId);
 
   project.delete(todo);
-  project.renderTodos()
+  project.renderTodos();
 }
