@@ -1,7 +1,7 @@
 import getDOMElements from "./../utility/dom.js";
-import generateId from "./../utility/utility.js";
-import projectManager from "./projectManager.js";
+import { generateId } from "./../utility/utility.js";
 import setupProjectDialogForm from "./../UI/formSetup/setupProjectDialogForm.js";
+import projectDeleteHandler from "./../UI/deleteHandler/projectDeleteHandler.js";
 
 export default class ProjectMaker {
   static #DOM = getDOMElements();
@@ -78,9 +78,7 @@ export default class ProjectMaker {
     deleteSpan.textContent = "delete";
     deleteSpan.addEventListener("click", (event) => {
       event.stopPropagation();
-      projectManager.delete(this);
-      projectManager.render();
-      todosContainer.replaceChildren();
+      projectDeleteHandler(this);
     });
     deleteButton.appendChild(deleteSpan);
 
