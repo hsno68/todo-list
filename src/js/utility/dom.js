@@ -23,7 +23,7 @@ const selectors = {
   todosContainer: "div.todos-container",
   projectTitleInput: "input#project-title",
   titleInput: "input#title",
-  descriptionInput: "input#description",
+  descriptionInput: "textarea#description",
   dueInput: "input#due",
   priorityInput: "input#priority",
 };

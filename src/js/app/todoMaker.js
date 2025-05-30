@@ -4,7 +4,6 @@ import setupTodoDialogForm from "./../UI/formSetup/setupTodoDialogForm.js";
 import todoDeleteHandler from "./../UI/deleteHandler/todoDeleteHandler.js";
 
 export default class TodoMaker {
-  static #DOM = getDOMElements();
   #todoId = generateId();
 
   constructor({ title, description, due, priority }) {
@@ -31,7 +30,7 @@ export default class TodoMaker {
   }
 
   #render() {
-    const { todoDialog } = TodoMaker.#DOM;
+    const { todoDialog } = getDOMElements();
 
     const container = document.createElement("div");
     container.classList.add("border-container");

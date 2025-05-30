@@ -1,7 +1,6 @@
 import getDOMElements from "./../utility/dom.js";
 
 class ProjectManager {
-  static #DOM = getDOMElements();
   #projectsByIds = {};
   #projectIds = [];
 
@@ -25,7 +24,7 @@ class ProjectManager {
   }
 
   render() {
-    const { projectsContainer } = ProjectManager.#DOM;
+    const { projectsContainer } = getDOMElements();
     projectsContainer.replaceChildren();
 
     for (const projectId of this.#projectIds) {

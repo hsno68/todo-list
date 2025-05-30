@@ -4,7 +4,6 @@ import setupProjectDialogForm from "./../UI/formSetup/setupProjectDialogForm.js"
 import projectDeleteHandler from "./../UI/deleteHandler/projectDeleteHandler.js";
 
 export default class ProjectMaker {
-  static #DOM = getDOMElements();
   #projectId = generateId();
   #todosByIds = {};
   #todoIds = [];
@@ -49,7 +48,7 @@ export default class ProjectMaker {
   }
 
   renderTodos() {
-    const { todosContainer } = ProjectMaker.#DOM;
+    const { todosContainer } = getDOMElements();
     todosContainer.replaceChildren();
 
     for (const todoId of this.#todoIds) {
@@ -58,7 +57,7 @@ export default class ProjectMaker {
   }
 
   #render() {
-    const { projectDialog } = ProjectMaker.#DOM;
+    const { projectDialog } = getDOMElements();
 
     const project = createItem({
       className: "project",
@@ -91,7 +90,7 @@ export default class ProjectMaker {
   }
 
   #setupEventListeners() {
-    const { projectForm } = ProjectMaker.#DOM;
+    const { projectForm } = getDOMElements();
     this.element.addEventListener("click", () => {
       projectForm.setAttribute("data-project-id", this.id);
       this.renderTodos();

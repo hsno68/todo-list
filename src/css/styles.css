@@ -404,7 +404,8 @@ label {
   width: 100%;
 }
 
-input {
+input,
+textarea {
   flex: 1;
   padding: 0.5rem;
   appearance: none;
@@ -419,6 +420,12 @@ input {
 input:focus {
   outline: none;
   border-color: var(--dialog-input-focus);
+}
+
+textarea {
+  width: 500px;
+  height: 250px;
+  resize: none;
 }
 
 menu {
