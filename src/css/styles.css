@@ -334,6 +334,10 @@ header h1 {
   transition: background-color 0.2s ease-in-out;
 }
 
+.todo h3 {
+  font-weight: normal;
+}
+
 .todo .buttons {
   display:flex;
   gap: 5px;

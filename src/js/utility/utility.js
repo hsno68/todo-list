@@ -12,28 +12,34 @@ function dateFormatter(date) {
   return `${month}/${day}/${year}`;
 }
 
-export function createItem({ className, object }) {
+export function createTodoElement(todo) {
   const div = document.createElement("div");
-  div.classList.add(className);
+  div.classList.add("todo");
 
-  for (const prop in object) {
-    if (prop === "element") {
-      continue;
-    }
+  const title = document.createElement("h3");
+  title.textContent = todo.title;
 
-    const content = document.createElement("p");
+  const description = document.createElement("p");
+  description.textContent = todo.description;
 
-    if (prop === "due") {
-      content.textContent = dateFormatter(object[prop]);
-    }
-    else {
-      content.textContent = object[prop];
-    }
+  const dueDate = document.createElement("p");
+  dueDate.textContent = dateFormatter(todo.due);
 
-    div.appendChild(content);
-  }
+  div.append(title, description, dueDate);
 
   return div;
+}
+
+export function createProjectElement(project) {
+    const div = document.createElement("div");
+    div.classList.add("project");
+
+    const content = document.createElement("p");
+    content.textContent = project.title;
+
+    div.appendChild(content);
+
+    return div;
 }
 
 export function createButton({ iconName, buttonClass, callback }) {

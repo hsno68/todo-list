@@ -1,5 +1,5 @@
 import getDOMElements from "./../utility/dom.js";
-import { generateId, createItem, createButton } from "./../utility/utility.js";
+import { generateId, createTodoElement, createButton } from "./../utility/utility.js";
 import setupTodoDialogForm from "./../UI/formSetup/setupTodoDialogForm.js";
 import todoDeleteHandler from "./../UI/deleteHandler/todoDeleteHandler.js";
 
@@ -34,10 +34,7 @@ export default class TodoMaker {
     const container = document.createElement("div");
     container.classList.add("border-container");
 
-    const todo = createItem({
-      className: "todo",
-      object: this
-    });
+    const todo = createTodoElement(this);
 
     const buttons = document.createElement("div");
     buttons.classList.add("buttons");

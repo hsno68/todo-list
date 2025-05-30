@@ -1,5 +1,5 @@
 import getDOMElements from "./../utility/dom.js";
-import { generateId, createItem, createButton } from "./../utility/utility.js";
+import { generateId, createProjectElement, createButton } from "./../utility/utility.js";
 import setupProjectDialogForm from "./../UI/formSetup/setupProjectDialogForm.js";
 import projectDeleteHandler from "./../UI/deleteHandler/projectDeleteHandler.js";
 
@@ -57,12 +57,7 @@ export default class ProjectMaker {
   }
 
   #render() {
-    const { projectDialog } = getDOMElements();
-
-    const project = createItem({
-      className: "project",
-      object: this
-    });
+    const project = createProjectElement(this);
 
     const buttons = document.createElement("div");
     buttons.classList.add("buttons");
