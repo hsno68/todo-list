@@ -10,6 +10,7 @@ export default class TodoMaker {
   constructor({ title, description, due, priority }) {
     this.#assignProperties({ title, description, due, priority });
     this.element = this.#render();
+    this.#setupEventListeners();
   }
 
   #assignProperties({ title, description, due, priority }) {
@@ -26,6 +27,7 @@ export default class TodoMaker {
   update({ title, description, due, priority }) {
     this.#assignProperties({ title, description, due, priority });
     this.element = this.#render();
+    this.#setupEventListeners();
   }
 
   #render() {
@@ -63,5 +65,12 @@ export default class TodoMaker {
     container.appendChild(todo);
 
     return container;
+  }
+
+  #setupEventListeners() {
+    const { todoForm } = getDOMElements();
+    this.element.addEventListener("click", () => {
+      todoForm.setAttribute("data-todo-id", this.id);
+    });
   }
 }

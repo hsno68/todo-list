@@ -19,8 +19,6 @@ export default function setupTodoDialogForm({ mode, todo }) {
   }
 
   if (mode === "edit") {
-    todoForm.setAttribute("data-todo-id", todo.id);
-
     titleInput.value = todo.title;
     descriptionInput.value = todo.description;
     dueInput.value = todo.due;
