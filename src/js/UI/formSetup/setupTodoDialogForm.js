@@ -7,8 +7,7 @@ export default function setupTodoDialogForm({ mode, todo }) {
     todoFormSubmitButton,
     titleInput,
     descriptionInput,
-    dueInput,
-    priorityInput
+    dueInput
   } = getDOMElements();
 
   if (mode === "add") {
@@ -22,7 +21,6 @@ export default function setupTodoDialogForm({ mode, todo }) {
     titleInput.value = todo.title;
     descriptionInput.value = todo.description;
     dueInput.value = todo.due;
-    priorityInput.value = todo.priority;
 
     todoFormSubmitButton.textContent = "Update";
     todoFormSubmitButton.value = "update";

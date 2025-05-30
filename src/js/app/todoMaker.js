@@ -12,19 +12,18 @@ export default class TodoMaker {
     this.#setupEventListeners();
   }
 
-  #assignProperties({ title, description, due, priority }) {
+  #assignProperties({ title, description, due }) {
     this.title = title;
     this.description = description;
     this.due = due;
-    this.priority = priority;
   }
 
   get id() {
     return this.#todoId;
   }
 
-  update({ title, description, due, priority }) {
-    this.#assignProperties({ title, description, due, priority });
+  update({ title, description, due }) {
+    this.#assignProperties({ title, description, due });
     this.element = this.#render();
     this.#setupEventListeners();
   }

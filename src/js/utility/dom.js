@@ -26,5 +26,4 @@ const selectors = {
   titleInput: "input#title",
   descriptionInput: "textarea#description",
   dueInput: "input#due",
-  priorityInput: "input#priority",
 };
