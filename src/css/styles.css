@@ -42,7 +42,6 @@
   --sidebar-content-border: #B4C4D1;          /* Dusty Ice Blue */
 
   /* Dialog Backdrop */
-  --backdrop-blur: blur(4px);
   --backdrop-color: rgba(0, 0, 0, 0.3);
 
   /* Dialog Background */
@@ -378,7 +377,6 @@ dialog {
 }
 
 dialog::backdrop {
-  backdrop-filter: var(--backdrop-blur);
   background-color: var(--backdrop-color);
 }
 
