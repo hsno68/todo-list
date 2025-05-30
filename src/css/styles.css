@@ -419,7 +419,8 @@ textarea {
   border-radius: 8px;
 }
 
-input:focus {
+input:focus,
+textarea:focus {
   outline: none;
   border-color: var(--dialog-input-focus);
 }
