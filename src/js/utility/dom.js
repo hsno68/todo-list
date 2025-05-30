@@ -9,6 +9,7 @@ export default function getDOMElements() {
 }
 
 const selectors = {
+  projectTitle: "h2.project-title",
   projectDialog: "dialog#project-dialog",
   projectForm: "form#project-form",
   todoDialog: "dialog#todo-dialog",
