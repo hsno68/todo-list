@@ -5,7 +5,7 @@ export function generateId() {
 
 function dateFormatter(date) {
   if (!date) {
-    return "";
+    return "No due date";
   }
 
   const [year, month, day] = date.split("-");
