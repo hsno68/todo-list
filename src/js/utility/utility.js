@@ -3,6 +3,15 @@ export function generateId() {
   return timestampBase36Id;
 }
 
+function dateFormatter(date) {
+  if (!date) {
+    return "";
+  }
+
+  const [year, month, day] = date.split("-");
+  return `${month}/${day}/${year}`;
+}
+
 export function createItem({ className, object }) {
   const div = document.createElement("div");
   div.classList.add(className);
@@ -11,8 +20,16 @@ export function createItem({ className, object }) {
     if (prop === "element") {
       continue;
     }
+
     const content = document.createElement("p");
-    content.textContent = object[prop];
+
+    if (prop === "due") {
+      content.textContent = dateFormatter(object[prop]);
+    }
+    else {
+      content.textContent = object[prop];
+    }
+
     div.appendChild(content);
   }
 
