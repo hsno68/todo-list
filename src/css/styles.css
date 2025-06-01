@@ -248,7 +248,7 @@ header h1 {
   padding: 42px 4rem;
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 1.5rem;
   background: linear-gradient(
     90deg,
     var(--color-header-start) 0%,
