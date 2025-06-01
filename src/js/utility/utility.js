@@ -20,9 +20,11 @@ export function createTodoElement(todo) {
   title.textContent = todo.title;
 
   const description = document.createElement("p");
+  description.classList.add("description");
   description.textContent = todo.description;
 
   const dueDate = document.createElement("p");
+  dueDate.classList.add("due-date");
   dueDate.textContent = dateFormatter(todo.due);
 
   div.append(title, description, dueDate);

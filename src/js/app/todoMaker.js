@@ -29,8 +29,6 @@ export default class TodoMaker {
   }
 
   #render() {
-    const { todoDialog } = getDOMElements();
-
     const container = document.createElement("div");
     container.classList.add("border-container");
 

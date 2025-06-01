@@ -244,8 +244,8 @@ header h1 {
 /* Main Content Start */
 
 .content-main {
-  padding: 42px 4rem;
   flex: 1;
+  padding: 42px 4rem;
   display: flex;
   flex-direction: column;
   gap: 2rem;
@@ -274,9 +274,8 @@ header h1 {
 }
 
 .content-main .todo-wrapper {
+  flex: 1;
   padding: 2rem;
-  width: max(450px, 100%);
-  height: 100%;
   background: linear-gradient(
     145deg,
     var(--color-todos-start) 0%,
@@ -329,13 +328,20 @@ header h1 {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 0.5rem;
   border-radius: 12px;
   cursor: pointer;
   transition: background-color 0.2s ease-in-out;
 }
 
 .todo h3 {
+  width: 100%;
   font-weight: normal;
+}
+
+.todo .due-date {
+  margin-left: auto;
+  margin-right: 0.5rem;
 }
 
 .todo .buttons {
@@ -423,6 +429,10 @@ input:focus,
 textarea:focus {
   outline: none;
   border-color: var(--dialog-input-focus);
+}
+
+input[type="date"] {
+  cursor: pointer;
 }
 
 textarea {
