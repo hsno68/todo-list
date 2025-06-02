@@ -10,21 +10,46 @@ export default function setupTodoDialogForm({ mode, todo }) {
     dueInput
   } = getDOMElements();
 
-  if (mode === "add") {
-    todoForm.reset();
+  const config = {
+    add: {
+      reset: true,
+      readOnly: false,
+      buttonText: "Add",
+      buttonValue: "confirm"
+    },
+    edit: {
+      reset: false,
+      readOnly: false,
+      buttonText: "Update",
+      buttonValue: "update"
+    },
+    view: {
+      reset: false,
+      readOnly: true,
+      buttonText: "Edit",
+      buttonValue: "edit"
+    },
+  };
 
-    todoFormSubmitButton.textContent = "Add";
-    todoFormSubmitButton.value = "confirm";
+  const { reset, readOnly, buttonText, buttonValue } = config[mode];
+
+  if (reset) {
+    todoForm.reset();
   }
 
-  if (mode === "edit") {
+  if (todo) {
+    todoForm.setAttribute("data-todo-id", todo.id);
     titleInput.value = todo.title;
     descriptionInput.value = todo.description;
     dueInput.value = todo.due;
-
-    todoFormSubmitButton.textContent = "Update";
-    todoFormSubmitButton.value = "update";
   }
+
+  titleInput.readOnly = readOnly;
+  descriptionInput.readOnly = readOnly;
+  dueInput.readOnly = readOnly;
+
+  todoFormSubmitButton.textContent = buttonText;
+  todoFormSubmitButton.value = buttonValue;
 
   todoDialog.showModal();
 }

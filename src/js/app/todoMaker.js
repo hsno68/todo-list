@@ -39,7 +39,8 @@ export default class TodoMaker {
 
     const editButton = createButton({
       iconName: "edit_square",
-      callback: () => {
+      callback: (event) => {
+        event.stopPropagation();
         setupTodoDialogForm({ mode: "edit", todo: this});
       }
     });
@@ -63,7 +64,7 @@ export default class TodoMaker {
   #setupEventListeners() {
     const { todoForm } = getDOMElements();
     this.element.addEventListener("click", () => {
-      todoForm.setAttribute("data-todo-id", this.id);
+      setupTodoDialogForm({ mode: "view", todo: this});
     });
   }
 }

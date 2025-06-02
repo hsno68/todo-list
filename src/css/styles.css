@@ -324,7 +324,7 @@ header h1 {
 .todo {
   padding: 0.5rem 1.5rem;
   display: grid;
-  grid-template-columns: auto 1fr min-content min-content;
+  grid-template-columns: auto 1fr auto min-content;
   grid-template-rows: repeat(3, 1fr);
   align-items: center;
   column-gap: 0.5rem;
