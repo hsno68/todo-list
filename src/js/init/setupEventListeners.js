@@ -14,7 +14,8 @@ export default function setupEventListeners() {
     projectDialog,
     projectForm,
     todoDialog,
-    todoForm
+    todoForm,
+    dueInput
   } = getDOMElements();
 
   setupDialogEvents({
@@ -34,4 +35,8 @@ export default function setupEventListeners() {
     setupForm: setupTodoDialogForm,
     submitHandler: todoFormSubmitHandler
   });
+
+  if (typeof dueInput.showPicker === 'function') {
+    dueInput.addEventListener('click', () => dueInput.showPicker());
+  }
 }

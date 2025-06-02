@@ -449,6 +449,13 @@ textarea:focus {
 }
 
 input[type="date"] {
+  appearance: auto;
+  -webkit-appearance: auto;
+  -moz-appearance: auto;
+  cursor: pointer;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
   cursor: pointer;
 }
 
