@@ -15,13 +15,17 @@ export default function todoFormSubmitHandler(todoFormObject, submitType) {
     return;
   }
 
+  if (submitType === "edit") {
+    const todoId = todoForm.dataset.todoId;
+    const todo = project.get(todoId);
+    setupTodoDialogForm({ mode: "edit", todo: todo});
+    return;
+  }
+
   if (submitType === "confirm") {
     const todo = new TodoMaker(todoFormObject)
     todoForm.setAttribute("data-todo-id", todo.id);
     project.add(todo);
-    project.renderTodos();
-    todoForm.reset();
-    todoDialog.close();
   }
 
   if (submitType === "update") {
@@ -29,14 +33,9 @@ export default function todoFormSubmitHandler(todoFormObject, submitType) {
     const todo = project.get(todoId);
     todo.update(todoFormObject);
     project.edit(todo);
-    project.renderTodos();
-    todoForm.reset();
-    todoDialog.close();
   }
 
-  if (submitType === "edit") {
-    const todoId = todoForm.dataset.todoId;
-    const todo = project.get(todoId);
-    setupTodoDialogForm({ mode: "edit", todo: todo});
-  }
+  project.renderTodos();
+  todoForm.reset();
+  todoDialog.close();
 }
