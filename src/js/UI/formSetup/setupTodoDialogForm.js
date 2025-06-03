@@ -52,4 +52,5 @@ export default function setupTodoDialogForm({ mode, todo }) {
   todoFormSubmitButton.value = buttonValue;
 
   todoDialog.showModal();
+  setTimeout(() => titleInput.focus(), 0);
 }
