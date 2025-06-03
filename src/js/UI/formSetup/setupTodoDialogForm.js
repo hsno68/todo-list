@@ -23,12 +23,6 @@ export default function setupTodoDialogForm({ mode, todo }) {
       buttonText: "Update",
       buttonValue: "update"
     },
-    view: {
-      reset: false,
-      readOnly: true,
-      buttonText: "Edit",
-      buttonValue: "edit"
-    },
   };
 
   const { reset, readOnly, buttonText, buttonValue } = config[mode];
