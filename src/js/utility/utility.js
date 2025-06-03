@@ -16,18 +16,33 @@ export function createTodoElement(todo) {
   const div = document.createElement("div");
   div.classList.add("todo");
 
+  const checkbox = createCheckbox();
+
+  const container = document.createElement("div");
+  container.classList.add("title-container");
+
   const title = document.createElement("h3");
   title.textContent = todo.title;
 
   const description = document.createElement("p");
-  description.classList.add("description");
+  description.classList.add("description", "hidden");
   description.textContent = todo.description;
+
+  const descriptionButton = createButton({
+    iconName: "more_horiz",
+    callback: (event) => {
+      event.stopPropagation();
+      description.classList.toggle("hidden");
+    }
+  });
+
+  container.append(title, descriptionButton);
 
   const dueDate = document.createElement("p");
   dueDate.classList.add("due-date");
   dueDate.textContent = dateFormatter(todo.due);
 
-  div.append(title, description, dueDate);
+  div.append(checkbox, container, description, dueDate);
 
   return div;
 }
@@ -59,4 +74,18 @@ export function createButton({ iconName, buttonClass, callback }) {
   button.addEventListener("click", callback);
 
   return button;
+}
+
+const checkboxAttributes = {
+  type: "checkbox",
+  id: "status",
+  name: "completed",
+};
+
+function createCheckbox() {
+  const checkbox = document.createElement("input");
+  for (const [attribute, value] of Object.entries(checkboxAttributes)) {
+    checkbox.setAttribute(attribute, value);
+  }
+  return checkbox;
 }

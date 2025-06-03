@@ -6,26 +6,25 @@ import todoDeleteHandler from "./../UI/deleteHandler/todoDeleteHandler.js";
 export default class TodoMaker {
   #todoId = generateId();
 
-  constructor({ title, description, due, priority }) {
-    this.#assignProperties({ title, description, due, priority });
+  constructor({ title, description, due, priority, completed }) {
+    this.#assignProperties({ title, description, due, priority, completed });
     this.element = this.#render();
-    this.#setupEventListeners();
   }
 
-  #assignProperties({ title, description, due }) {
+  #assignProperties({ title, description, due, completed }) {
     this.title = title;
     this.description = description;
     this.due = due;
+    this.completed = completed;
   }
 
   get id() {
     return this.#todoId;
   }
 
-  update({ title, description, due }) {
-    this.#assignProperties({ title, description, due });
+  update({ title, description, due, completed }) {
+    this.#assignProperties({ title, description, due, completed });
     this.element = this.#render();
-    this.#setupEventListeners();
   }
 
   #render() {
@@ -59,12 +58,5 @@ export default class TodoMaker {
     container.appendChild(todo);
 
     return container;
-  }
-
-  #setupEventListeners() {
-    const { todoForm } = getDOMElements();
-    this.element.addEventListener("click", () => {
-      setupTodoDialogForm({ mode: "view", todo: this});
-    });
   }
 }
