@@ -5,8 +5,8 @@ import todoDeleteHandler from "./../UI/deleteHandler/todoDeleteHandler.js";
 export default class TodoMaker {
   #todoId = generateId();
 
-  constructor({ title, description, due, priority, completed }) {
-    this.#assignProperties({ title, description, due, priority, completed });
+  constructor({ title, description, due, completed }) {
+    this.#assignProperties({ title, description, due, completed });
     this.element = this.#render();
   }
 
