@@ -278,11 +278,13 @@ header h1 {
 }
 
 .content-main h2 {
+  padding-left: 1rem;
   font-size: calc(2 * var(--text-size));
 }
 
 .content-main .todo-wrapper {
   flex: 1;
+  min-width: 600px;
   padding: 2rem;
   background: linear-gradient(
     145deg,
@@ -291,7 +293,6 @@ header h1 {
     var(--color-todos-end) 100%
   );
   border-radius: 1rem;
-  border: 1px solid red;
 }
 
 .content-main button.add-todo {
