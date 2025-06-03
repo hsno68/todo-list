@@ -248,7 +248,7 @@ header h1 {
   padding: 42px 4rem;
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  align-items: center;
   background: linear-gradient(
     90deg,
     var(--color-header-start) 0%,
@@ -257,6 +257,14 @@ header h1 {
   );
   box-shadow: var(--main-content-box-shadow);
   border-radius: 12px;
+}
+
+.content-main > .container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 50%;
 }
 
 .content-main .material-symbols-rounded {
@@ -269,7 +277,7 @@ header h1 {
   color: #DA6E6E;
 }
 
-.content-main > h2 {
+.content-main h2 {
   font-size: calc(2 * var(--text-size));
 }
 
@@ -283,6 +291,7 @@ header h1 {
     var(--color-todos-end) 100%
   );
   border-radius: 1rem;
+  border: 1px solid red;
 }
 
 .content-main button.add-todo {
@@ -344,6 +353,7 @@ header h1 {
   width: 100%;
   font-size: 1.1rem;
   font-weight: 700;
+  grid-row: 1;
 }
 
 .todo .description {
@@ -447,6 +457,7 @@ textarea:focus {
   border-color: var(--dialog-input-focus);
 }
 
+input[type="checkbox"],
 input[type="date"] {
   appearance: auto;
   -webkit-appearance: auto;
