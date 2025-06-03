@@ -9,7 +9,7 @@ export default function setupProjectDialogForm({ mode, project }) {
     projectTitleInput
   } = getDOMElements();
 
-    const config = {
+  const config = {
     add: {
       reset: true,
       titleText: "New project",
@@ -31,11 +31,12 @@ export default function setupProjectDialogForm({ mode, project }) {
   }
 
   if (project) {
+    projectForm.setAttribute("data-project-id", project.id);
     projectTitleInput.value = project.title;
   }
 
   projectTitle.textContent = titleText;
   projectFormSubmitButton.textContent = buttonText;
-  projectFormSubmitButton.vaue = buttonValue;
+  projectFormSubmitButton.value = buttonValue;
   projectDialog.showModal();
 }

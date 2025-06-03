@@ -9,6 +9,12 @@ export default function todoFormSubmitHandler(todoFormObject, submitType) {
   const projectId = projectForm.dataset.projectId;
   const project = projectManager.get(projectId);
 
+  if (!project) {
+    console.log('Project not found');
+    todoDialog.close();
+    return;
+  }
+
   if (submitType === "confirm") {
     const todo = new TodoMaker(todoFormObject)
     todoForm.setAttribute("data-todo-id", todo.id);

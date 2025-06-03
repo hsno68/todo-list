@@ -64,7 +64,8 @@ export default class ProjectMaker {
 
     const editButton = createButton({
       iconName: "edit_square",
-      callback: () => {
+      callback: (event) => {
+        event.stopPropagation();
         setupProjectDialogForm({ mode: "edit", project: this});
       }
     });
