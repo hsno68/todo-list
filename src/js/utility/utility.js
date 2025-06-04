@@ -24,19 +24,22 @@ export function createTodoElement(todo) {
   const title = document.createElement("h3");
   title.textContent = todo.title;
 
+  container.appendChild(title);
+
   const description = document.createElement("p");
   description.classList.add("description", "hidden");
   description.textContent = todo.description;
 
-  const descriptionButton = createButton({
-    iconName: "more_horiz",
-    callback: (event) => {
-      event.stopPropagation();
-      description.classList.toggle("hidden");
-    }
-  });
-
-  container.append(title, descriptionButton);
+  if (todo.description) {
+    const descriptionButton = createButton({
+      iconName: "more_horiz",
+      callback: (event) => {
+        event.stopPropagation();
+        description.classList.toggle("hidden");
+      }
+    });
+    container.appendChild(descriptionButton);
+  }
 
   const dueDate = document.createElement("p");
   dueDate.classList.add("due-date");

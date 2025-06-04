@@ -11,7 +11,12 @@ export default class TodoMaker {
   }
 
   #assignProperties({ title, description, due, completed }) {
-    this.title = title;
+    if (title.trim() === "") {
+      this.title = "Untitled";
+    }
+    else {
+      this.title = title;
+    }
     this.description = description;
     this.due = due;
     this.completed = completed;
