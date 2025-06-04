@@ -283,7 +283,6 @@ header h1 {
 
 .content-main .todo-wrapper {
   flex: 1;
-  min-width: 600px;
   padding: 2rem;
   background: linear-gradient(
     145deg,

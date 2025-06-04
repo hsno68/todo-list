@@ -5,12 +5,13 @@ import todoDeleteHandler from "./../UI/deleteHandler/todoDeleteHandler.js";
 export default class TodoMaker {
   #todoId = generateId();
 
-  constructor({ title, description, due, completed }) {
-    this.#assignProperties({ title, description, due, completed });
+  constructor({ title, description, due }) {
+    this.#assignProperties({ title, description, due });
     this.element = this.#render();
+    this.#setupEventListeners();
   }
 
-  #assignProperties({ title, description, due, completed }) {
+  #assignProperties({ title, description, due}) {
     if (title.trim() === "") {
       this.title = "Untitled";
     }
@@ -19,16 +20,16 @@ export default class TodoMaker {
     }
     this.description = description;
     this.due = due;
-    this.completed = completed;
   }
 
   get id() {
     return this.#todoId;
   }
 
-  update({ title, description, due, completed }) {
-    this.#assignProperties({ title, description, due, completed });
+  update({ title, description, due }) {
+    this.#assignProperties({ title, description, due });
     this.element = this.#render();
+    this.#setupEventListeners();
   }
 
   #render() {
@@ -62,5 +63,17 @@ export default class TodoMaker {
     container.appendChild(todo);
 
     return container;
+  }
+
+  #setupEventListeners() {
+    const checkbox = this.element.querySelector('input[type="checkbox"]#status');
+
+    this.element.addEventListener("click", (event) => {
+      if (event.target !== checkbox) {
+        checkbox.checked = !checkbox.checked;
+      }
+      this.completed = checkbox.checked;
+      console.log(this.completed);
+    });
   }
 }
