@@ -1,4 +1,4 @@
-import { generateId, createTodoElement, createButton } from "./../utility/utility.js";
+import { generateId, createTodoElement, createButton, toggleCheckbox } from "./../utility/utility.js";
 import setupTodoDialogForm from "./../UI/formSetup/setupTodoDialogForm.js";
 import todoDeleteHandler from "./../UI/deleteHandler/todoDeleteHandler.js";
 
@@ -67,13 +67,6 @@ export default class TodoMaker {
 
   #setupEventListeners() {
     const checkbox = this.element.querySelector('input[type="checkbox"]#status');
-
-    this.element.addEventListener("click", (event) => {
-      if (event.target !== checkbox) {
-        checkbox.checked = !checkbox.checked;
-      }
-      this.completed = checkbox.checked;
-      console.log(this.completed);
-    });
+    toggleCheckbox(this, checkbox);
   }
 }

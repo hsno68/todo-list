@@ -92,3 +92,12 @@ function createCheckbox() {
   }
   return checkbox;
 }
+
+export function toggleCheckbox(todo, checkbox) {
+  todo.element.addEventListener("click", (event) => {
+    if (event.target !== checkbox) {
+      checkbox.checked = !checkbox.checked;
+    }
+    todo.completed = checkbox.checked;
+  });
+}
