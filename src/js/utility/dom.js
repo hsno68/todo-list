@@ -26,4 +26,5 @@ const selectors = {
   titleInput: "input#title",
   descriptionInput: "textarea#description",
   dueInput: "input#due",
+  label: "h2.label",
 };

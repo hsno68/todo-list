@@ -48,7 +48,8 @@ export default class ProjectMaker {
   }
 
   renderTodos() {
-    const { todosContainer } = getDOMElements();
+    const { label, todosContainer } = getDOMElements();
+    label.textContent = this.title;
     todosContainer.replaceChildren();
 
     for (const todoId of this.#todoIds) {
