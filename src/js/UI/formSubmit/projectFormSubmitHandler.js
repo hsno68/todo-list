@@ -19,7 +19,7 @@ export default function projectFormSubmitHandler(projectFormObject, submitType) 
     projectManager.edit(project);
   }
 
-  projectManager.render();
+  projectManager.renderProjects();
   projectForm.reset();
   projectDialog.close();
 }

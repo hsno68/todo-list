@@ -30,7 +30,7 @@ class ProjectManager {
     });
   }
 
-  render() {
+  renderProjects() {
     const { projectsContainer } = getDOMElements();
     projectsContainer.replaceChildren();
 
