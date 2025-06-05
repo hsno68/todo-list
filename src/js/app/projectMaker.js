@@ -47,6 +47,10 @@ export default class ProjectMaker {
     this.#todoIds.splice(toBeDeletedTodoIndex, 1);
   }
 
+  getAllTodos() {
+    return this.#todoIds;
+  }
+
   renderTodos() {
     const { label, todosContainer } = getDOMElements();
     label.textContent = this.title;

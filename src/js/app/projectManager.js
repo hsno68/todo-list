@@ -23,6 +23,16 @@ class ProjectManager {
     this.#projectIds.splice(toBeDeletedProjectIndex, 1);
   }
 
+  getAllTodos() {
+    const allTodos = [];
+    for (const projectId of this.#projectIds) {
+      allTodos.push(this.#projectsByIds[projectId].getAllTodos());
+    }
+    const flat = allTodos.flat();
+    console.log(flat);
+    return flat;
+  }
+
   render() {
     const { projectsContainer } = getDOMElements();
     projectsContainer.replaceChildren();

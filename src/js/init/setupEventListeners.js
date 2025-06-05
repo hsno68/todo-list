@@ -4,6 +4,7 @@ import setupProjectDialogForm from "./../UI/formSetup/setupProjectDialogForm.js"
 import setupTodoDialogForm from "./../UI/formSetup/setupTodoDialogForm.js";
 import projectFormSubmitHandler from "./../UI/formSubmit/projectFormSubmitHandler.js";
 import todoFormSubmitHandler from "./../UI/formSubmit/todoFormSubmitHandler.js";
+import projectManager from "../app/projectManager.js";
 
 export default function setupEventListeners() {
   const {
@@ -16,6 +17,7 @@ export default function setupEventListeners() {
     todoDialog,
     todoForm,
     dueInput,
+    inbox
   } = getDOMElements();
 
   setupDialogEvents({
@@ -44,5 +46,9 @@ export default function setupEventListeners() {
     if (typeof dueInput.showPicker === 'function') {
       dueInput.showPicker();
     }
+  });
+
+  inbox.addEventListener("click", () => {
+    projectManager.getAllTodos();
   });
 }
