@@ -24,13 +24,10 @@ class ProjectManager {
   }
 
   getAllTodos() {
-    const allTodos = [];
-    for (const projectId of this.#projectIds) {
-      allTodos.push(this.#projectsByIds[projectId].getAllTodos());
-    }
-    const flat = allTodos.flat();
-    console.log(flat);
-    return flat;
+    return this.#projectIds.flatMap(projectId => {
+      const project = this.#projectsByIds[projectId];
+      return project.getAllTodos();
+    });
   }
 
   render() {

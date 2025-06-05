@@ -49,6 +49,6 @@ export default function setupEventListeners() {
   });
 
   inbox.addEventListener("click", () => {
-    projectManager.getAllTodos();
+    console.log(projectManager.getAllTodos());
   });
 }

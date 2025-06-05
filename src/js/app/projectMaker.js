@@ -48,7 +48,7 @@ export default class ProjectMaker {
   }
 
   getAllTodos() {
-    return this.#todoIds;
+    return this.#todoIds.map(todoId => this.#todosByIds[todoId]);
   }
 
   renderTodos() {
