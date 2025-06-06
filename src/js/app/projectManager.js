@@ -1,4 +1,5 @@
 import getDOMElements from "./../utility/dom.js";
+import { isDueThisWeek } from "./../utility/utility.js";
 
 class ProjectManager {
   #projectsByIds = {};
@@ -28,6 +29,23 @@ class ProjectManager {
       const project = this.#projectsByIds[projectId];
       return project.getAllTodos();
     });
+  }
+
+  getInboxTodos() {
+    return this.getAllTodos();
+  }
+
+  getTodayTodos() {
+    const today = new Date().toISOString().split("T")[0];
+    return this.getAllTodos.filter(todo => todo.due === today);
+  }
+
+  getWeekTodos() {
+    return this.getAllTodos.filter(todo => isDueThisWeek(todo.due));
+  }
+
+  getCompletedTodos() {
+    return this.getAllTodos().filter(todo => todo.completed);
   }
 
   renderProjects() {

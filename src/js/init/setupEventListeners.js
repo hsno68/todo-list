@@ -47,8 +47,4 @@ export default function setupEventListeners() {
       dueInput.showPicker();
     }
   });
-
-  inbox.addEventListener("click", () => {
-    console.log(projectManager.getAllTodos());
-  });
 }

@@ -100,3 +100,19 @@ export function toggleCheckbox(todo, checkbox) {
     todo.completed = checkbox.checked;
   });
 }
+
+export function isDueThisWeek(due) {
+  const today = new Date();
+  const dayOfWeek = today.getDay();
+
+  const startOfWeek = new Date(today);
+  startOfWeek.setDate(today.getDate() - dayOfWeek);
+  startOfWeek.setHours(0, 0, 0, 0);
+
+  const endOfWeek = new Date(today);
+  endOfWeek.setDate(startOfWeek.getDate() + 6);
+  endOfWeek.setHours(23, 59, 59, 999);
+
+  const dueDate = new Date(due);
+  return dueDate >= startOfWeek && dueDate <= endOfWeek;
+}
