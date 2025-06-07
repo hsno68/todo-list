@@ -67,6 +67,9 @@ export default class TodoMaker {
 
   #setupEventListeners() {
     const checkbox = this.element.querySelector('input[type="checkbox"]');
-    toggleCheckbox(this, checkbox);
+    this.element.addEventListener("click", (event) => {
+      toggleCheckbox(this, checkbox, event);
+      this.element.classList.toggle("completed", this.completed);
+    });
   }
 }
