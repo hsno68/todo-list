@@ -1,9 +1,16 @@
 import getDOMElements from "./../utility/dom.js";
-import { isDueThisWeek } from "./../utility/utility.js";
+import { isDueToday, isDueThisWeek } from "./../utility/utility.js";
 
 class ProjectManager {
   #projectsByIds = {};
   #projectIds = [];
+
+  static #filters = {
+    inbox: todos => todos,
+    today: todos => todos.filter(todo => isDueToday(todo.due)),
+    week: todos => todos.filter(todo => isDueThisWeek(todo.due)),
+    completed: todos => todos.filter(todo => todo.completed),
+  };
 
   get(projectId) {
     return this.#projectsByIds[projectId];
@@ -24,28 +31,28 @@ class ProjectManager {
     this.#projectIds.splice(toBeDeletedProjectIndex, 1);
   }
 
-  getAllTodos() {
+  #getAllTodos() {
     return this.#projectIds.flatMap(projectId => {
       const project = this.#projectsByIds[projectId];
       return project.getAllTodos();
     });
   }
 
-  getInboxTodos() {
-    return this.getAllTodos();
+  #getFilteredTodos(filter) {
+    const todos = this.#getAllTodos();
+    filter = ProjectManager.#filters[filter];
+    return filter(todos);
   }
 
-  getTodayTodos() {
-    const today = new Date().toISOString().split("T")[0];
-    return this.getAllTodos.filter(todo => todo.due === today);
-  }
+  renderTodos(filter) {
+    const { todosContainer } = getDOMElements();
+    todosContainer.replaceChildren();
 
-  getWeekTodos() {
-    return this.getAllTodos.filter(todo => isDueThisWeek(todo.due));
-  }
+    const todos = this.#getFilteredTodos(filter);
 
-  getCompletedTodos() {
-    return this.getAllTodos().filter(todo => todo.completed);
+    for (const todo of todos) {
+      todosContainer.appendChild(todo.element);
+    }
   }
 
   renderProjects() {
@@ -58,4 +65,4 @@ class ProjectManager {
   }
 }
 
-export default new ProjectManager();
+export default new ProjectManager(); 

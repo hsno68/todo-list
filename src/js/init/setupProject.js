@@ -3,8 +3,8 @@ import projectManager from "./../app/projectManager.js";
 import { defaultProject } from "./../app/projectMaker.js";
 
 export default function setupProject() {
-  const { projectsContainer, projectForm } = getDOMElements();
+  const { projectForm } = getDOMElements();
   projectManager.add(defaultProject);
-  projectsContainer.appendChild(defaultProject.element);
+  projectManager.renderProjects();
   projectForm.setAttribute("data-project-id", defaultProject.id);
 }

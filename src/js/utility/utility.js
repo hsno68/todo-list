@@ -101,6 +101,11 @@ export function toggleCheckbox(todo, checkbox) {
   });
 }
 
+export function isDueToday(due) {
+  const today = new Date().toISOString().split("T")[0];
+  return due === today;
+}
+
 export function isDueThisWeek(due) {
   const today = new Date();
   const dayOfWeek = today.getDay();

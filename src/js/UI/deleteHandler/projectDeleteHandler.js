@@ -4,6 +4,6 @@ import projectManager from "./../../app/projectManager.js";
 export default function projectDeleteHandler(project) {
   const { todosContainer } = getDOMElements();
   projectManager.delete(project);
-  projectManager.render();
+  projectManager.renderProjects();
   todosContainer.replaceChildren();
 }
