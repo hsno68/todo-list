@@ -27,5 +27,8 @@ const selectors = {
   descriptionInput: "textarea#description",
   dueInput: "input#due",
   label: "h2.label",
-  inbox: "button.inbox"
+  inbox: "button#inbox",
+  today: "button#today",
+  week: "button#week",
+  completed: "button#completed",
 };

@@ -1,10 +1,10 @@
 import getDOMElements from "./../utility/dom.js";
 import setupDialogEvents from "./setupDialogEvents.js";
+import setupFilterEvents from "./setupFilterEvents.js";
 import setupProjectDialogForm from "./../UI/formSetup/setupProjectDialogForm.js";
 import setupTodoDialogForm from "./../UI/formSetup/setupTodoDialogForm.js";
 import projectFormSubmitHandler from "./../UI/formSubmit/projectFormSubmitHandler.js";
 import todoFormSubmitHandler from "./../UI/formSubmit/todoFormSubmitHandler.js";
-import projectManager from "../app/projectManager.js";
 
 export default function setupEventListeners() {
   const {
@@ -17,8 +17,18 @@ export default function setupEventListeners() {
     todoDialog,
     todoForm,
     dueInput,
-    inbox
+    inbox,
+    today,
+    week,
+    completed,
   } = getDOMElements();
+
+  const filters = [
+    { button: inbox, filter: "inbox" },
+    { button: today, filter: "today" },
+    { button: week, filter: "week" },
+    { button: completed, filter: "completed" },
+  ];
 
   setupDialogEvents({
     addButton: addProjectButton,
@@ -26,7 +36,7 @@ export default function setupEventListeners() {
     dialog: projectDialog,
     form: projectForm,
     setupForm: setupProjectDialogForm,
-    submitHandler: projectFormSubmitHandler
+    submitHandler: projectFormSubmitHandler,
   });
 
   setupDialogEvents({
@@ -35,8 +45,10 @@ export default function setupEventListeners() {
     dialog: todoDialog,
     form: todoForm,
     setupForm: setupTodoDialogForm,
-    submitHandler: todoFormSubmitHandler
+    submitHandler: todoFormSubmitHandler,
   });
+
+  filters.forEach(filter => setupFilterEvents(filter));
 
   dueInput.addEventListener('click', () => {
     if (dueInput.disabled || dueInput.readOnly) {
@@ -46,9 +58,5 @@ export default function setupEventListeners() {
     if (typeof dueInput.showPicker === 'function') {
       dueInput.showPicker();
     }
-  });
-
-  inbox.addEventListener("click", () => {
-    projectManager.renderTodos("inbox");
   });
 }
