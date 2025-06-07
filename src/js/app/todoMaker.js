@@ -11,7 +11,7 @@ export default class TodoMaker {
     this.#setupEventListeners();
   }
 
-  #assignProperties({ title, description, due}) {
+  #assignProperties({ title, description, due }) {
     if (title.trim() === "") {
       this.title = "Untitled";
     }

@@ -81,7 +81,7 @@ export function createButton({ iconName, buttonClass, callback }) {
 
 const checkboxAttributes = {
   type: "checkbox",
-  name: "completed"
+  name: "completed",
 };
 
 function createCheckbox() {
