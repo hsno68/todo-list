@@ -1,7 +1,6 @@
 import getDOMElements from "./../../utility/dom.js";
 import projectManager from "./../../app/projectManager.js";
 import TodoMaker from "./../../app/todoMaker.js";
-import setupTodoDialogForm from "./../formSetup/setupTodoDialogForm.js";
 
 export default function todoFormSubmitHandler(todoFormObject, submitType) {
   const { todoDialog, projectForm, todoForm } = getDOMElements();
@@ -12,13 +11,6 @@ export default function todoFormSubmitHandler(todoFormObject, submitType) {
   if (!project) {
     console.log('Project not found');
     todoDialog.close();
-    return;
-  }
-
-  if (submitType === "edit") {
-    const todoId = todoForm.dataset.todoId;
-    const todo = project.get(todoId);
-    setupTodoDialogForm({ mode: "edit", todo: todo});
     return;
   }
 
