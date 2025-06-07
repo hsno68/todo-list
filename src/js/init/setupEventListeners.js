@@ -50,6 +50,7 @@ export default function setupEventListeners() {
 
   filters.forEach(filter => setupFilterEvents(filter));
 
+  //Allows entire date picker input to be clicked
   dueInput.addEventListener('click', () => {
     if (dueInput.disabled || dueInput.readOnly) {
       return;
