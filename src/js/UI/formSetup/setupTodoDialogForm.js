@@ -7,25 +7,23 @@ export default function setupTodoDialogForm({ mode, todo }) {
     todoFormSubmitButton,
     titleInput,
     descriptionInput,
-    dueInput
+    dueInput,
   } = getDOMElements();
 
   const config = {
     add: {
       reset: true,
-      readOnly: false,
       buttonText: "Add",
       buttonValue: "confirm"
     },
     edit: {
       reset: false,
-      readOnly: false,
       buttonText: "Update",
       buttonValue: "update"
     },
   };
 
-  const { reset, readOnly, buttonText, buttonValue } = config[mode];
+  const { reset, buttonText, buttonValue } = config[mode];
 
   if (reset) {
     todoForm.reset();
@@ -37,10 +35,6 @@ export default function setupTodoDialogForm({ mode, todo }) {
     descriptionInput.value = todo.description;
     dueInput.value = todo.due;
   }
-
-  titleInput.readOnly = readOnly;
-  descriptionInput.readOnly = readOnly;
-  dueInput.readOnly = readOnly;
 
   todoFormSubmitButton.textContent = buttonText;
   todoFormSubmitButton.value = buttonValue;

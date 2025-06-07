@@ -6,7 +6,7 @@ export default function setupProjectDialogForm({ mode, project }) {
     projectDialog,
     projectForm,
     projectFormSubmitButton,
-    projectTitleInput
+    projectTitleInput,
   } = getDOMElements();
 
   const config = {
@@ -14,13 +14,13 @@ export default function setupProjectDialogForm({ mode, project }) {
       reset: true,
       titleText: "New project",
       buttonText: "Add",
-      buttonValue: "confirm"
+      buttonValue: "confirm",
     },
     edit: {
       reset: false,
       titleText: "Edit project",
       buttonText: "Update",
-      buttonValue: "update"
+      buttonValue: "update",
     }
   };
 
