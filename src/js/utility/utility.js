@@ -21,6 +21,7 @@ export function createTodoElement(todo) {
   }
 
   const checkbox = createCheckbox();
+  checkbox.checked = todo.completed;
 
   const container = document.createElement("div");
   container.classList.add("title-container");
