@@ -16,6 +16,10 @@ export function createTodoElement(todo) {
   const div = document.createElement("div");
   div.classList.add("todo");
 
+  if (todo.completed) {
+    div.classList.add("completed");
+  }
+
   const checkbox = createCheckbox();
 
   const container = document.createElement("div");

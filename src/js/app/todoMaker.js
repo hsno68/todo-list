@@ -33,9 +33,6 @@ export default class TodoMaker {
   }
 
   #render() {
-    const container = document.createElement("div");
-    container.classList.add("border-container");
-
     const todo = createTodoElement(this);
 
     const buttons = document.createElement("div");
@@ -60,9 +57,8 @@ export default class TodoMaker {
 
     buttons.append(editButton, deleteButton);
     todo.appendChild(buttons);
-    container.appendChild(todo);
 
-    return container;
+    return todo;
   }
 
   #setupEventListeners() {
