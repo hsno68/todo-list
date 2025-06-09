@@ -11,7 +11,7 @@ function dateFormatter(date) {
   const parsedDate = new Date(date + "T00:00:00");
   return parsedDate.toLocaleDateString("en-US", {
     weekday: "short", // e.g., Mon
-    month: "2-digit", // e.g., 06
+    month: "short", // e.g., Jun
     day: "2-digit",   // e.g., 09
     year: "numeric",  // e.g., 2025
   });
