@@ -121,6 +121,6 @@ export function isDueThisWeek(due) {
   endOfWeek.setDate(startOfWeek.getDate() + 6);
   endOfWeek.setHours(23, 59, 59, 999);
 
-  const dueDate = new Date(due);
+  const dueDate = new Date(due + "T00:00:00");
   return dueDate >= startOfWeek && dueDate <= endOfWeek;
 }
