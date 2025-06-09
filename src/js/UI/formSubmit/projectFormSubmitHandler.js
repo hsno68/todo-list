@@ -9,7 +9,6 @@ export default function projectFormSubmitHandler(projectFormObject, submitType) 
     const project = new ProjectMaker(projectFormObject);
     projectForm.setAttribute("data-project-id", project.id);
     projectManager.add(project)
-    project.renderTodos();
   }
 
   if (submitType === "update") {
@@ -20,6 +19,7 @@ export default function projectFormSubmitHandler(projectFormObject, submitType) 
   }
 
   projectManager.renderProjects();
+  project.renderTodos();
   projectForm.reset();
   projectDialog.close();
 }
