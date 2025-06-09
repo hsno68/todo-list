@@ -1,11 +1,13 @@
-import { generateId, createTodoElement, createButton, toggleCheckbox } from "./../utility/utility.js";
+import { generateId, createTodoElement, createButton, toggleCheckbox, toggleImportant } from "./../utility/utility.js";
 import setupTodoDialogForm from "./../UI/formSetup/setupTodoDialogForm.js";
 import todoDeleteHandler from "./../UI/deleteHandler/todoDeleteHandler.js";
 
 export default class TodoMaker {
   #todoId = generateId();
 
-  constructor({ title, description, due }) {
+  constructor({ title, description, due, completed = false, important = false }) {
+    this.completed = false;
+    this.important = false;
     this.#assignProperties({ title, description, due });
     this.element = this.#render();
     this.#setupEventListeners();
@@ -38,6 +40,15 @@ export default class TodoMaker {
     const buttons = document.createElement("div");
     buttons.classList.add("buttons");
 
+    const importantButton = createButton({
+      iconName: "star",
+      buttonClass: "important-button",
+      callback: (event) => {
+        event.stopPropagation();
+        toggleImportant(this);
+      }
+    });
+
     const editButton = createButton({
       iconName: "edit_square",
       callback: (event) => {
@@ -55,7 +66,7 @@ export default class TodoMaker {
       }
     });
 
-    buttons.append(editButton, deleteButton);
+    buttons.append(importantButton, editButton, deleteButton);
     todo.appendChild(buttons);
 
     return todo;
