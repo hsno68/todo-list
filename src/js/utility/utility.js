@@ -17,7 +17,7 @@ function dateFormatter(date) {
   });
 }
 
-export function createTodoElement(todo) {
+export function createTodoElement(todo, projectTitle) {
   const div = document.createElement("div");
   div.classList.add("todo");
 
@@ -31,6 +31,10 @@ export function createTodoElement(todo) {
 
   const checkbox = createCheckbox();
   checkbox.checked = todo.completed;
+
+  const project = document.createElement("div");
+  project.classList.add("todo-project");
+  project.textContent = projectTitle;
 
   const container = document.createElement("div");
   container.classList.add("title-container");
@@ -59,7 +63,7 @@ export function createTodoElement(todo) {
   dueDate.classList.add("due-date");
   dueDate.textContent = dateFormatter(todo.due);
 
-  div.append(checkbox, container, description, dueDate);
+  div.append(checkbox, project, container, description, dueDate);
 
   return div;
 }

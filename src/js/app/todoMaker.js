@@ -1,13 +1,16 @@
+import projectManager from "./projectManager.js";
 import { generateId, createTodoElement, createButton, toggleCheckbox, toggleImportant } from "./../utility/utility.js";
 import setupTodoDialogForm from "./../UI/formSetup/setupTodoDialogForm.js";
 import todoDeleteHandler from "./../UI/deleteHandler/todoDeleteHandler.js";
 
 export default class TodoMaker {
   #todoId = generateId();
+  #projectId;
 
-  constructor({ title, description, due, completed = false, important = false }) {
+  constructor({ title, description, due, projectId }) {
     this.completed = false;
     this.important = false;
+    this.#projectId = projectId;
     this.#assignProperties({ title, description, due });
     this.element = this.#render();
     this.#setupEventListeners();
@@ -35,7 +38,9 @@ export default class TodoMaker {
   }
 
   #render() {
-    const todo = createTodoElement(this);
+    const projectTitle = projectManager.get(this.#projectId).title;
+
+    const todo = createTodoElement(this, projectTitle);
 
     const buttons = document.createElement("div");
     buttons.classList.add("buttons");
