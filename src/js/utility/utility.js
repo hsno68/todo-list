@@ -104,6 +104,10 @@ export function toggleCheckbox(todo, checkbox, event) {
   todo.completed = checkbox.checked;
 }
 
+export function toggleImportant(todo) {
+  todo.important = !todo.important;
+}
+
 export function isDueToday(due) {
   const today = new Date().toLocaleDateString("en-CA");
   return due === today;

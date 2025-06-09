@@ -111,7 +111,9 @@ header {
 
 header .material-symbols-rounded {
   font-size: 40px;
-  font-variation-settings: 'opsz' 40;
+  font-variation-settings: 
+    'opsz' 40,
+    'wght' 700;
 }
 
 header h1 {
@@ -143,8 +145,10 @@ header h1 {
 
 .content-sidebar .material-symbols-rounded {
   color: var(--color-text-primary);
-  font-size: var(--text-size);
-  font-variation-settings: 'opsz' 18;
+  font-size: 20px;
+  font-variation-settings:
+    'opsz' 20,
+    'wght' 700;
 }
 
 .content-sidebar .delete-button > span {
@@ -266,12 +270,6 @@ header h1 {
   width: 50%;
 }
 
-.content-main .material-symbols-rounded {
-  color: var(--color-text-primary);
-  font-size: 24px;
-  font-variation-settings: 'opsz' 24;
-}
-
 .content-main .delete-button > span {
   color: #DA6E6E;
 }
@@ -309,6 +307,14 @@ header h1 {
   border: none;
   border-radius: 12px;
   transition: background-color 0.2s ease-in-out;
+}
+
+.content-main button.add-todo .material-symbols-rounded {
+  color: var(--color-text-primary);
+  font-size: 24px;
+  font-variation-settings:
+    'opsz' 24,
+    'wght' 700;
 }
 
 .content-main button.add-todo:hover,
@@ -370,9 +376,30 @@ header h1 {
   display: none;
 }
 
-.important .material-symbols-rounded {
+.important-button .material-symbols-rounded {
   font-variation-settings:
-  'FILL' 1
+    'FILL' 0;
+  transition: color 0.3s ease-in-out, text-shadow 0.3s ease-in-out;
+}
+
+.important .important-button .material-symbols-rounded {
+  font-variation-settings:
+    'FILL' 1;
+  color: #F7E9A6;
+  text-shadow:
+    -1px -1px 0 #3A3A3A,  /* top-left */
+     1px -1px 0 #3A3A3A,  /* top-right */
+    -1px  1px 0 #3A3A3A,  /* bottom-left */
+     1px  1px 0 #3A3A3A;  /* bottom-right */
+  transition: color 0.3s ease-in-out, text-shadow 0.3s ease-in-out;
+}
+
+.todo .material-symbols-rounded {
+  color: var(--color-text-primary);
+  font-size: 24px;
+  font-variation-settings:
+    'opsz' 24,
+    'wght' 500;
 }
 
 .todo .due-date {
@@ -408,6 +435,7 @@ header h1 {
   cursor: pointer;
   transition: background-color 0.2s ease-in-out, box-shadow 0.2s ease;
 }
+
 
 .todo button:hover {
   background-color: var(--todo-button-hover);

@@ -46,6 +46,7 @@ export default class TodoMaker {
       callback: (event) => {
         event.stopPropagation();
         toggleImportant(this);
+        this.element.classList.toggle("important", this.important);
       }
     });
 
