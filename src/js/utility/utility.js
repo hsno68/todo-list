@@ -20,6 +20,10 @@ export function createTodoElement(todo) {
     div.classList.add("completed");
   }
 
+  if (todo.important) {
+    div.classList.add("important");
+  }
+
   const checkbox = createCheckbox();
   checkbox.checked = todo.completed;
 
