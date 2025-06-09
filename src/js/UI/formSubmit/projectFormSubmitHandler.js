@@ -5,15 +5,17 @@ import ProjectMaker from "./../../app/projectMaker.js";
 export default function projectFormSubmitHandler(projectFormObject, submitType) {
   const { projectDialog, projectForm } = getDOMElements();
 
+  let project;
+
   if (submitType === "confirm") {
-    const project = new ProjectMaker(projectFormObject);
+    project = new ProjectMaker(projectFormObject);
     projectForm.setAttribute("data-project-id", project.id);
     projectManager.add(project)
   }
 
   if (submitType === "update") {
     const projectId = projectForm.dataset.projectId;
-    const project = projectManager.get(projectId);
+    project = projectManager.get(projectId);
     project.update(projectFormObject);
     projectManager.edit(project);
   }
