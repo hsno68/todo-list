@@ -13,6 +13,14 @@ class ProjectManager {
     completed: todos => todos.filter(todo => todo.completed),
   };
 
+  static #filterLabels = {
+    inbox: "Inbox",
+    today: "Today",
+    week: "This Week",
+    important: "Important",
+    completed: "Completed",
+  }
+
   get(projectId) {
     return this.#projectsByIds[projectId];
   }
@@ -45,9 +53,12 @@ class ProjectManager {
     return filter(todos);
   }
 
-  renderTodos(filter) {
-    const { todosContainer } = getDOMElements();
+  renderTodos(filter = "inbox") {
+    const { label, todosContainer } = getDOMElements();
     todosContainer.replaceChildren();
+
+    const labelText = ProjectManager.#filterLabels[filter];
+    label.textContent = labelText;
 
     const todos = this.#getFilteredTodos(filter);
 

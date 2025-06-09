@@ -25,11 +25,11 @@ export default function setupEventListeners() {
   } = getDOMElements();
 
   const filters = [
-    { button: inbox, filter: "inbox", labelText: "Inbox", },
-    { button: today, filter: "today", labelText: "Today", },
-    { button: week, filter: "week", labelText: "This Week", },
-    { button: important, filter: "important", labelText: "Important", },
-    { button: completed, filter: "completed", labelText: "Completed", },
+    { button: inbox, filter: "inbox", },
+    { button: today, filter: "today", },
+    { button: week, filter: "week", },
+    { button: important, filter: "important", },
+    { button: completed, filter: "completed", },
   ];
 
   setupDialogEvents({
