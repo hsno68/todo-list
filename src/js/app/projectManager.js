@@ -9,6 +9,7 @@ class ProjectManager {
     inbox: todos => todos,
     today: todos => todos.filter(todo => isDueToday(todo.due)),
     week: todos => todos.filter(todo => isDueThisWeek(todo.due)),
+    important: todos => todos.filter(todo => todo.important),
     completed: todos => todos.filter(todo => todo.completed),
   };
 

@@ -30,5 +30,6 @@ const selectors = {
   inbox: "button#inbox",
   today: "button#today",
   week: "button#week",
+  important: "button#important",
   completed: "button#completed",
 };

@@ -20,6 +20,7 @@ export default function setupEventListeners() {
     inbox,
     today,
     week,
+    important,
     completed,
   } = getDOMElements();
 
@@ -27,6 +28,7 @@ export default function setupEventListeners() {
     { button: inbox, filter: "inbox", labelText: "Inbox", },
     { button: today, filter: "today", labelText: "Today", },
     { button: week, filter: "week", labelText: "This Week", },
+    { button: important, filter: "important", labelText: "Important", },
     { button: completed, filter: "completed", labelText: "Completed", },
   ];
 
