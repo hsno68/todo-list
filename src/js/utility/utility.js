@@ -8,8 +8,13 @@ function dateFormatter(date) {
     return "No due date";
   }
 
-  const [year, month, day] = date.split("-");
-  return `${month}/${day}/${year}`;
+  const parsedDate = new Date(date + "T00:00:00");
+  return parsedDate.toLocaleDateString("en-US", {
+    weekday: "short", // e.g., Mon
+    month: "2-digit", // e.g., 06
+    day: "2-digit",   // e.g., 09
+    year: "numeric",  // e.g., 2025
+  });
 }
 
 export function createTodoElement(todo) {
