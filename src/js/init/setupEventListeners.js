@@ -24,10 +24,10 @@ export default function setupEventListeners() {
   } = getDOMElements();
 
   const filters = [
-    { button: inbox, filter: "inbox" },
-    { button: today, filter: "today" },
-    { button: week, filter: "week" },
-    { button: completed, filter: "completed" },
+    { button: inbox, filter: "inbox", labelText: "Inbox", },
+    { button: today, filter: "today", labelText: "Today", },
+    { button: week, filter: "week", labelText: "This Week", },
+    { button: completed, filter: "completed", labelText: "Completed", },
   ];
 
   setupDialogEvents({
