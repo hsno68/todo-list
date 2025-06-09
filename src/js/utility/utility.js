@@ -105,7 +105,7 @@ export function toggleCheckbox(todo, checkbox, event) {
 }
 
 export function isDueToday(due) {
-  const today = new Date().toISOString().split("T")[0];
+  const today = new Date().toLocaleDateString("en-CA");
   return due === today;
 }
 
@@ -117,7 +117,7 @@ export function isDueThisWeek(due) {
   startOfWeek.setDate(today.getDate() - dayOfWeek);
   startOfWeek.setHours(0, 0, 0, 0);
 
-  const endOfWeek = new Date(today);
+  const endOfWeek = new Date(startOfWeek);
   endOfWeek.setDate(startOfWeek.getDate() + 6);
   endOfWeek.setHours(23, 59, 59, 999);
 
