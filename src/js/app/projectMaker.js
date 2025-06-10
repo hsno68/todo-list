@@ -15,7 +15,12 @@ export default class ProjectMaker {
   }
 
   #assignProperties({ title }) {
-    this.title = title;
+    if (title.trim() === "") {
+      this.title = "Untitled";
+    }
+    else {
+      this.title = title;
+    }
   }
 
   get id() {

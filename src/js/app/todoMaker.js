@@ -31,6 +31,10 @@ export default class TodoMaker {
     return this.#todoId;
   }
 
+  get projectId() {
+    return this.#projectId;
+  }
+
   update({ title, description, due }) {
     this.#assignProperties({ title, description, due });
     this.element = this.#render();
@@ -83,6 +87,7 @@ export default class TodoMaker {
     this.element.addEventListener("click", (event) => {
       toggleCheckbox(this, checkbox, event);
       this.element.classList.toggle("completed", this.completed);
+      console.log(this);
     });
   }
 }
