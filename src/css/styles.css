@@ -557,6 +557,23 @@ textarea {
   gap: 0.5rem;
 }
 
+select {
+  cursor: pointer;
+}
+
+.select-wrapper {
+  position: relative;
+  flex: 1;
+}
+
+.select-wrapper span {
+  position: absolute;
+  top: 50%;
+  right: 5px;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
 select option[value=""] {
   font-style: italic;
 }
