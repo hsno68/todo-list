@@ -507,6 +507,7 @@ label {
 }
 
 input,
+select,
 textarea {
   flex: 1;
   padding: 0.5rem;
@@ -521,6 +522,7 @@ textarea {
 }
 
 input:focus,
+select:focus,
 textarea:focus {
   outline: none;
   border-color: var(--dialog-input-focus);
@@ -542,6 +544,21 @@ textarea {
   width: 500px;
   height: 250px;
   resize: none;
+}
+
+.form-section-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.form-section-container div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+select option[value=""] {
+  font-style: italic;
 }
 
 menu {

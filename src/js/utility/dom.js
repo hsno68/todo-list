@@ -32,4 +32,5 @@ const selectors = {
   week: "button#week",
   important: "button#important",
   completed: "button#completed",
+  projectSelect: "select#project"
 };
