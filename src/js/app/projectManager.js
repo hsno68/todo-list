@@ -68,11 +68,22 @@ class ProjectManager {
   }
 
   renderProjects() {
-    const { projectsContainer } = getDOMElements();
+    const { selectInput, projectsContainer } = getDOMElements();
+
     projectsContainer.replaceChildren();
+    while (selectInput.options.length > 1) {
+      selectInput.remove(1);
+    }
 
     for (const projectId of this.#projectIds) {
-      projectsContainer.appendChild(this.#projectsByIds[projectId].element);
+      const project = this.#projectsByIds[projectId];
+
+      const option = document.createElement("option");
+      option.setAttribute("value", project.title);
+      option.textContent = project.title;
+      selectInput.appendChild(option);
+
+      projectsContainer.appendChild(project.element);
     }
   }
 }

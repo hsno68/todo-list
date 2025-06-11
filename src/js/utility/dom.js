@@ -25,6 +25,7 @@ const selectors = {
   projectTitleInput: "input#project-title",
   titleInput: "input#title",
   descriptionInput: "textarea#description",
+  selectInput: "select#project",
   dueInput: "input#due",
   label: "h2.label",
   inbox: "button#inbox",
@@ -32,5 +33,4 @@ const selectors = {
   week: "button#week",
   important: "button#important",
   completed: "button#completed",
-  projectSelect: "select#project"
 };
