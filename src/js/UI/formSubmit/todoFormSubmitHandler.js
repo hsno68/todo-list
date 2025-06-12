@@ -15,7 +15,7 @@ export default function todoFormSubmitHandler(todoFormObject, submitType) {
   }
 
   if (submitType === "confirm") {
-    const todo = new TodoMaker({...todoFormObject, projectId});
+    const todo = new TodoMaker(todoFormObject);
     todoForm.setAttribute("data-todo-id", todo.id);
     project.add(todo);
   }
