@@ -17,7 +17,7 @@ function dateFormatter(date) {
   });
 }
 
-export function createTodoElement(todo, projectTitle) {
+export function createTodoElement(todo) {
   const div = document.createElement("div");
   div.classList.add("todo");
 
@@ -34,7 +34,7 @@ export function createTodoElement(todo, projectTitle) {
 
   const project = document.createElement("div");
   project.classList.add("todo-project");
-  project.textContent = projectTitle;
+  project.textContent = todo.project;
 
   const container = document.createElement("div");
   container.classList.add("title-container");

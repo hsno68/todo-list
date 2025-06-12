@@ -1,22 +1,19 @@
-import projectManager from "./projectManager.js";
 import { generateId, createTodoElement, createButton, toggleCheckbox, toggleImportant } from "./../utility/utility.js";
 import setupTodoDialogForm from "./../UI/formSetup/setupTodoDialogForm.js";
 import todoDeleteHandler from "./../UI/deleteHandler/todoDeleteHandler.js";
 
 export default class TodoMaker {
   #todoId = generateId();
-  #projectId;
 
-  constructor({ title, description, due, projectId }) {
+  constructor({ title, description, due, project}) {
     this.completed = false;
     this.important = false;
-    this.#projectId = projectId;
-    this.#assignProperties({ title, description, due });
+    this.#assignProperties({ title, description, due, project });
     this.element = this.#render();
     this.#setupEventListeners();
   }
 
-  #assignProperties({ title, description, due }) {
+  #assignProperties({ title, description, due, project }) {
     if (title.trim() === "") {
       this.title = "Untitled";
     }
@@ -24,6 +21,7 @@ export default class TodoMaker {
       this.title = title;
     }
     this.description = description;
+    this.project = project;
     this.due = due;
   }
 
@@ -31,20 +29,14 @@ export default class TodoMaker {
     return this.#todoId;
   }
 
-  get projectId() {
-    return this.#projectId;
-  }
-
-  update({ title, description, due }) {
-    this.#assignProperties({ title, description, due });
+  update({ title, description, due, project }) {
+    this.#assignProperties({ title, description, due, project });
     this.element = this.#render();
     this.#setupEventListeners();
   }
 
   #render() {
-    const projectTitle = projectManager.get(this.#projectId).title;
-
-    const todo = createTodoElement(this, projectTitle);
+    const todo = createTodoElement(this);
 
     const buttons = document.createElement("div");
     buttons.classList.add("buttons");
