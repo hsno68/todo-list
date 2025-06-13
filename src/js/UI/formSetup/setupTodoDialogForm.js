@@ -1,4 +1,5 @@
 import getDOMElements from "./../../utility/dom.js";
+import projectManager from "./../../app/projectManager.js";
 
 export default function setupTodoDialogForm({ mode, todo }) {
   const {
@@ -7,6 +8,8 @@ export default function setupTodoDialogForm({ mode, todo }) {
     todoFormSubmitButton,
     titleInput,
     descriptionInput,
+    selectInput,
+    hiddenSelectInput,
     dueInput,
   } = getDOMElements();
 
@@ -24,13 +27,29 @@ export default function setupTodoDialogForm({ mode, todo }) {
   };
 
   const { reset, buttonText, buttonValue } = config[mode];
+  const project = projectManager.currentProject;
 
+  // Resets form fields when adding new todos
   if (reset) {
     todoForm.reset();
   }
 
+  // Creating or editing todos within the context of a project and not global state
+  if (project) {
+    // Visually preselects the correct project in the <select> dropdown
+    selectInput.value = project.id;
+
+    // Prevents the user from interacting with the <select> dropdown
+    selectInput.disabled = true;
+
+    // Hidden input for form submission because the disabled <select> above does not submit
+    hiddenSelectInput.value = project.id;
+  }
+
+  // For editing todos
+  // A todo object is only passed in as function argument during edit mode (see TodoMaker)
   if (todo) {
-    todoForm.setAttribute("data-todo-id", todo.id);
+    // Prepopulates form fields with existing todo data
     titleInput.value = todo.title;
     descriptionInput.value = todo.description;
     dueInput.value = todo.due;

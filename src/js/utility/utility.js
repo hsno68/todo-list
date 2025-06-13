@@ -34,7 +34,7 @@ export function createTodoElement(todo) {
 
   const project = document.createElement("div");
   project.classList.add("todo-project");
-  project.textContent = todo.project;
+  project.textContent = todo.projectTitle;
 
   const container = document.createElement("div");
   container.classList.add("title-container");

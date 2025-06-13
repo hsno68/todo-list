@@ -3,27 +3,21 @@ import projectManager from "./../../app/projectManager.js";
 import TodoMaker from "./../../app/todoMaker.js";
 
 export default function todoFormSubmitHandler(todoFormObject, submitType) {
-  const { todoDialog, projectForm, todoForm } = getDOMElements();
+  const { todoDialog, todoForm } = getDOMElements();
 
-  const projectId = projectForm.dataset.projectId;
+  const projectId = todoFormObject.project
   const project = projectManager.get(projectId);
-
-  if (!project) {
-    console.log('Project not found');
-    todoDialog.close();
-    return;
-  }
+  const projectTitle = project.title;
 
   if (submitType === "confirm") {
-    const todo = new TodoMaker(todoFormObject);
-    todoForm.setAttribute("data-todo-id", todo.id);
+    const todo = new TodoMaker({ ...todoFormObject, projectTitle });
+    console.log({todoFormObject, projectTitle, todo});
     project.add(todo);
   }
 
   if (submitType === "update") {
-    const todoId = todoForm.dataset.todoId;
-    const todo = project.get(todoId);
-    todo.update(todoFormObject);
+    const todo = projectManager.currentTodo;
+    todo.update({ ...todoFormObject, projectTitle });
     project.edit(todo);
   }
 

@@ -1,3 +1,4 @@
+import projectManager from "./projectManager.js";
 import { generateId, createTodoElement, createButton, toggleCheckbox, toggleImportant } from "./../utility/utility.js";
 import setupTodoDialogForm from "./../UI/formSetup/setupTodoDialogForm.js";
 import todoDeleteHandler from "./../UI/deleteHandler/todoDeleteHandler.js";
@@ -5,15 +6,15 @@ import todoDeleteHandler from "./../UI/deleteHandler/todoDeleteHandler.js";
 export default class TodoMaker {
   #todoId = generateId();
 
-  constructor({ title, description, due, project}) {
+  constructor({ title, description, due, projectTitle }) {
     this.completed = false;
     this.important = false;
-    this.#assignProperties({ title, description, due, project });
+    this.#assignProperties({ title, description, due, projectTitle });
     this.element = this.#render();
     this.#setupEventListeners();
   }
 
-  #assignProperties({ title, description, due, project }) {
+  #assignProperties({ title, description, due, projectTitle }) {
     if (title.trim() === "") {
       this.title = "Untitled";
     }
@@ -21,16 +22,16 @@ export default class TodoMaker {
       this.title = title;
     }
     this.description = description;
-    this.project = project;
     this.due = due;
+    this.projectTitle = projectTitle;
   }
 
   get id() {
     return this.#todoId;
   }
 
-  update({ title, description, due, project }) {
-    this.#assignProperties({ title, description, due, project });
+  update({ title, description, due, projectTitle }) {
+    this.#assignProperties({ title, description, due, projectTitle });
     this.element = this.#render();
     this.#setupEventListeners();
   }
@@ -55,6 +56,7 @@ export default class TodoMaker {
       iconName: "edit_square",
       callback: (event) => {
         event.stopPropagation();
+        projectManager.currentTodo = this;
         setupTodoDialogForm({ mode: "edit", todo: this});
       }
     });
@@ -77,9 +79,9 @@ export default class TodoMaker {
   #setupEventListeners() {
     const checkbox = this.element.querySelector('input[type="checkbox"]');
     this.element.addEventListener("click", (event) => {
+      projectManager.currentTodo = this;
       toggleCheckbox(this, checkbox, event);
       this.element.classList.toggle("completed", this.completed);
-      console.log(this);
     });
   }
 }

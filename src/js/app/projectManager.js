@@ -5,6 +5,9 @@ class ProjectManager {
   #projectsByIds = {};
   #projectIds = [];
 
+  #currentProject = "";
+  #currentTodo = "";
+
   static #filters = {
     inbox: todos => todos,
     today: todos => todos.filter(todo => isDueToday(todo.due)),
@@ -19,6 +22,22 @@ class ProjectManager {
     week: "This Week",
     important: "Important",
     completed: "Completed",
+  }
+
+  get currentProject() {
+    return this.#currentProject;
+  }
+
+  set currentProject(project = "") {
+    this.#currentProject = project;
+  }
+
+  get currentTodo() {
+    return this.#currentTodo;
+  }
+
+  set currentTodo(todo = "") {
+    this.#currentTodo = todo;
   }
 
   get(projectId) {
@@ -53,7 +72,7 @@ class ProjectManager {
     return filter(todos);
   }
 
-  renderTodos(filter = "inbox") {
+  renderFilteredTodos(filter = "inbox") {
     const { label, todosContainer } = getDOMElements();
     todosContainer.replaceChildren();
 
@@ -79,7 +98,7 @@ class ProjectManager {
       const project = this.#projectsByIds[projectId];
 
       const option = document.createElement("option");
-      option.setAttribute("value", project.title);
+      option.setAttribute("value", project.id);
       option.textContent = project.title;
       selectInput.appendChild(option);
 

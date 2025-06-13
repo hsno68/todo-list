@@ -9,13 +9,12 @@ export default function projectFormSubmitHandler(projectFormObject, submitType) 
 
   if (submitType === "confirm") {
     project = new ProjectMaker(projectFormObject);
-    projectForm.setAttribute("data-project-id", project.id);
-    projectManager.add(project)
+    projectManager.add(project);
+    projectManager.currentProject = project;
   }
 
   if (submitType === "update") {
-    const projectId = projectForm.dataset.projectId;
-    project = projectManager.get(projectId);
+    project = projectManager.currentProject;
     project.update(projectFormObject);
     projectManager.edit(project);
   }

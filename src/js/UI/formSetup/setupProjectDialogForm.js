@@ -31,7 +31,6 @@ export default function setupProjectDialogForm({ mode, project }) {
   }
 
   if (project) {
-    projectForm.setAttribute("data-project-id", project.id);
     projectTitleInput.value = project.title;
   }
 
