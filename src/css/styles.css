@@ -561,6 +561,12 @@ select {
   cursor: pointer;
 }
 
+select.locked {
+  pointer-events: none;
+  background-color: #f0f0f0; /* visually looks disabled */
+  color: #555;
+}
+
 .select-wrapper {
   position: relative;
   flex: 1;

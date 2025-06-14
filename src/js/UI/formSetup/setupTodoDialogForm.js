@@ -41,10 +41,10 @@ export default function setupTodoDialogForm({ mode, todo }) {
     selectInput.value = project.id;
 
     // Prevents the user from interacting with the <select> dropdown
-    selectInput.disabled = true;
-
-    // Hidden input for form submission because the disabled <select> above does not submit
-    hiddenSelectInput.value = project.id;
+    selectInput.classList.add("locked");
+  }
+  else {
+    selectInput.classList.remove("locked");
   }
 
   // For editing todos
