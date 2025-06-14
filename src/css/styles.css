@@ -563,8 +563,10 @@ select {
 
 select.locked {
   pointer-events: none;
-  background-color: #f0f0f0; /* visually looks disabled */
-  color: #555;
+  background-color: #e9ecef;
+  color: #6c757d;
+  border-color: #ced4da;
+  opacity: 1;
 }
 
 .select-wrapper {

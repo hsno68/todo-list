@@ -26,7 +26,6 @@ const selectors = {
   titleInput: "input#title",
   descriptionInput: "textarea#description",
   selectInput: "select#project",
-  hiddenSelectInput: "input#hidden-project",
   dueInput: "input#due",
   label: "h2.label",
   inbox: "button#inbox",

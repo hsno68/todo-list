@@ -9,7 +9,6 @@ export default function setupTodoDialogForm({ mode, todo }) {
     titleInput,
     descriptionInput,
     selectInput,
-    hiddenSelectInput,
     dueInput,
   } = getDOMElements();
 
