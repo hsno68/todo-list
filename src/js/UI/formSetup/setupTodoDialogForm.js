@@ -27,6 +27,7 @@ export default function setupTodoDialogForm({ mode, todo }) {
   };
 
   const { reset, buttonText, buttonValue } = config[mode];
+
   const project = projectManager.currentProject;
 
   // Resets form fields when adding new todos
