@@ -3,6 +3,5 @@ import { defaultProject } from "./../app/projectMaker.js";
 
 export default function setupProject() {
   projectManager.add(defaultProject);
-  projectManager.currentProject = defaultProject;
   projectManager.renderProjects();
 }

@@ -40,6 +40,11 @@ class ProjectManager {
     this.#currentTodo = todo;
   }
 
+  resetContext() {
+    this.#currentProject = "";
+    this.#currentTodo = "";
+  }
+
   get(projectId) {
     return this.#projectsByIds[projectId];
   }
@@ -89,16 +94,16 @@ class ProjectManager {
   renderProjects() {
     const { selectInput, projectsContainer } = getDOMElements();
 
+    const firstOption = selectInput.options[0].cloneNode(true);
+
+    selectInput.replaceChildren(firstOption);
     projectsContainer.replaceChildren();
-    while (selectInput.options.length > 1) {
-      selectInput.remove(1);
-    }
 
     for (const projectId of this.#projectIds) {
       const project = this.#projectsByIds[projectId];
 
       const option = document.createElement("option");
-      option.setAttribute("value", project.id);
+      option.value =  project.id;
       option.textContent = project.title;
       selectInput.appendChild(option);
 
