@@ -1,7 +1,7 @@
-import projectManager from "./projectManager.js";
 import { generateId, createTodoElement, createButton, toggleCheckbox, toggleImportant } from "./../utility/utility.js";
 import setupTodoDialogForm from "./../UI/formSetup/setupTodoDialogForm.js";
 import todoDeleteHandler from "./../UI/deleteHandler/todoDeleteHandler.js";
+import { setCurrentTodo } from "./../utility/contextController.js";
 
 export default class TodoMaker {
   #todoId = generateId();
@@ -56,7 +56,7 @@ export default class TodoMaker {
       iconName: "edit_square",
       callback: (event) => {
         event.stopPropagation();
-        projectManager.currentTodo = this;
+        setCurrentTodo(this);
         setupTodoDialogForm({ mode: "edit", todo: this});
       }
     });
@@ -79,7 +79,6 @@ export default class TodoMaker {
   #setupEventListeners() {
     const checkbox = this.element.querySelector('input[type="checkbox"]');
     this.element.addEventListener("click", (event) => {
-      projectManager.currentTodo = this;
       toggleCheckbox(this, checkbox, event);
       this.element.classList.toggle("completed", this.completed);
     });

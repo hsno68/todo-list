@@ -1,8 +1,7 @@
-import projectManager from "./../../app/projectManager.js";
+import { getCurrentProject } from "../../utility/contextController.js";
 
 export default function todoDeleteHandler(todo) {
-  const project = projectManager.currentProject;
-
+  const project = getCurrentProject();
   project.delete(todo);
   project.renderTodos();
 }
