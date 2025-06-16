@@ -49,8 +49,8 @@ class ProjectManager {
 
   #getFilteredTodos(filter) {
     const todos = this.#getAllTodos();
-    filter = ProjectManager.#filters[filter];
-    return filter(todos);
+    const filterFunction = ProjectManager.#filters[filter];
+    return filterFunction(todos);
   }
 
   renderFilteredTodos(filter = "inbox") {
