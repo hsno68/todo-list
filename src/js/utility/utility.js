@@ -10,11 +10,11 @@ function dateFormatter(date) {
 
   const parsedDate = new Date(date + "T00:00:00");
   return parsedDate.toLocaleDateString("en-US", {
-    weekday: "short", // e.g., Mon
-    month: "short", // e.g., Jun
-    day: "2-digit",   // e.g., 09
-    year: "numeric",  // e.g., 2025
-  });
+      weekday: "short", // e.g., Mon
+      month: "short", // e.g., Jun
+      day: "2-digit",   // e.g., 09
+      year: "numeric",  // e.g., 2025
+    });
 }
 
 export function createTodoElement(todo) {
@@ -72,10 +72,10 @@ export function createProjectElement(project) {
     const div = document.createElement("div");
     div.classList.add("project");
 
-    const content = document.createElement("p");
-    content.textContent = project.title;
+    const title = document.createElement("p");
+    title.textContent = project.title;
 
-    div.appendChild(content);
+    div.appendChild(title);
 
     return div;
 }
