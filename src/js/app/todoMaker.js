@@ -1,20 +1,21 @@
+import projectManager from "./projectManager.js";
 import { generateId, createTodoElement, createButton, toggleCheckbox, toggleImportant } from "./../utility/utility.js";
 import setupTodoDialogForm from "./../UI/formSetup/setupTodoDialogForm.js";
 import todoDeleteHandler from "./../UI/deleteHandler/todoDeleteHandler.js";
-import { setCurrentTodo } from "./../utility/contextController.js";
+import { setCurrentProject, setCurrentTodo } from "./../utility/contextController.js";
 
 export default class TodoMaker {
   #todoId = generateId();
 
-  constructor({ title, description, due, projectTitle }) {
+  constructor({ title, description, due, projectId, projectTitle }) {
     this.completed = false;
     this.important = false;
-    this.#assignProperties({ title, description, due, projectTitle });
+    this.#assignProperties({ title, description, due, projectId, projectTitle });
     this.element = this.#render();
     this.#setupEventListeners();
   }
 
-  #assignProperties({ title, description, due, projectTitle }) {
+  #assignProperties({ title, description, due, projectId, projectTitle }) {
     if (title.trim() === "") {
       this.title = "Untitled";
     }
@@ -23,6 +24,7 @@ export default class TodoMaker {
     }
     this.description = description;
     this.due = due;
+    this.projectId = projectId;
     this.projectTitle = projectTitle;
   }
 
@@ -30,8 +32,8 @@ export default class TodoMaker {
     return this.#todoId;
   }
 
-  update({ title, description, due, projectTitle }) {
-    this.#assignProperties({ title, description, due, projectTitle });
+  update({ title, description, due , projectId, projectTitle }) {
+    this.#assignProperties({ title, description, due, projectId, projectTitle });
     this.element = this.#render();
     this.#setupEventListeners();
   }
@@ -56,6 +58,7 @@ export default class TodoMaker {
       iconName: "edit_square",
       callback: (event) => {
         event.stopPropagation();
+        setCurrentProject(projectManager.get(this.projectId));
         setCurrentTodo(this);
         setupTodoDialogForm({ mode: "edit", todo: this});
       }

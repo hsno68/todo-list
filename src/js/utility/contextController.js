@@ -1,5 +1,5 @@
-let currentProject;
-let currentTodo;
+let currentProject = null;
+let currentTodo = null;
 
 export function getCurrentProject() {
   return currentProject;
