@@ -24,7 +24,7 @@ export default function setupProjectDialogForm({ mode, project }) {
     }
   };
 
-  const { reset, titleText, buttonText, buttonValue } = config[mode];
+  const { reset, headerText, buttonText, buttonValue } = config[mode];
 
   if (reset) {
     projectForm.reset();
