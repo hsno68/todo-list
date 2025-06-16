@@ -1,6 +1,7 @@
 import getDOMElements from "./../../utility/dom.js";
 import projectManager from "./../../app/projectManager.js";
 import ProjectMaker from "./../../app/projectMaker.js";
+import { setCurrentProject, getCurrentProject } from "./../../utility/contextController.js";
 
 export default function projectFormSubmitHandler(projectFormObject, submitType) {
   const { projectDialog, projectForm } = getDOMElements();
@@ -10,13 +11,13 @@ export default function projectFormSubmitHandler(projectFormObject, submitType) 
   if (submitType === "confirm") {
     project = new ProjectMaker(projectFormObject);
     projectManager.add(project);
-    projectManager.currentProject = project;
+    setCurrentProject(project);
   }
 
   if (submitType === "update") {
-    project = projectManager.currentProject;
+    project = getCurrentProject();
     project.update(projectFormObject);
-    projectManager.edit(project);
+    projectManager.update(project);
   }
 
   projectManager.renderProjects();

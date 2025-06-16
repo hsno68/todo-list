@@ -1,8 +1,8 @@
 import getDOMElements from "./../utility/dom.js";
-import projectManager from "./projectManager.js";
 import { generateId, createProjectElement, createButton } from "./../utility/utility.js";
 import setupProjectDialogForm from "./../UI/formSetup/setupProjectDialogForm.js";
 import projectDeleteHandler from "./../UI/deleteHandler/projectDeleteHandler.js";
+import { setCurrentProject } from "./../utility/contextController.js";
 
 export default class ProjectMaker {
   #projectId = generateId();
@@ -58,8 +58,8 @@ export default class ProjectMaker {
   }
 
   renderTodos() {
-    const { label, todosContainer } = getDOMElements();
-    label.textContent = this.title;
+    const { header, todosContainer } = getDOMElements();
+    header.textContent = this.title;
     todosContainer.replaceChildren();
 
     for (const todoId of this.#todoIds) {
@@ -80,7 +80,7 @@ export default class ProjectMaker {
       iconName: "edit_square",
       callback: (event) => {
         event.stopPropagation();
-        projectManager.currentProject = this;
+        setCurrentProject(this);
         setupProjectDialogForm({ mode: "edit", project: this});
       }
     });
@@ -102,7 +102,7 @@ export default class ProjectMaker {
 
   #setupEventListeners() {
     this.element.addEventListener("click", () => {
-      projectManager.currentProject = this;
+      setCurrentProject(this);
       this.renderTodos();
     });
   }

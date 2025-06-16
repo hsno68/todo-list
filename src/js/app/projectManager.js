@@ -5,9 +5,6 @@ class ProjectManager {
   #projectsByIds = {};
   #projectIds = [];
 
-  #currentProject = "";
-  #currentTodo = "";
-
   static #filters = {
     inbox: todos => todos,
     today: todos => todos.filter(todo => isDueToday(todo.due)),
@@ -24,27 +21,6 @@ class ProjectManager {
     completed: "Completed",
   }
 
-  get currentProject() {
-    return this.#currentProject;
-  }
-
-  set currentProject(project = "") {
-    this.#currentProject = project;
-  }
-
-  get currentTodo() {
-    return this.#currentTodo;
-  }
-
-  set currentTodo(todo = "") {
-    this.#currentTodo = todo;
-  }
-
-  resetContext() {
-    this.#currentProject = "";
-    this.#currentTodo = "";
-  }
-
   get(projectId) {
     return this.#projectsByIds[projectId];
   }
@@ -54,7 +30,7 @@ class ProjectManager {
     this.#projectIds.push(project.id);
   }
 
-  edit(project) {
+  update(project) {
     this.#projectsByIds[project.id] = project;
   }
 
@@ -78,11 +54,11 @@ class ProjectManager {
   }
 
   renderFilteredTodos(filter = "inbox") {
-    const { label, todosContainer } = getDOMElements();
+    const { header, todosContainer } = getDOMElements();
     todosContainer.replaceChildren();
 
-    const labelText = ProjectManager.#filterLabels[filter];
-    label.textContent = labelText;
+    const headerText = ProjectManager.#filterLabels[filter];
+    header.textContent = headerText;
 
     const todos = this.#getFilteredTodos(filter);
 
