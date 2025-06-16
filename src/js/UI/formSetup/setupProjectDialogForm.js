@@ -2,7 +2,7 @@ import getDOMElements from "./../../utility/dom.js";
 
 export default function setupProjectDialogForm({ mode, project }) {
   const {
-    projectTitle,
+    projectHeader,
     projectDialog,
     projectForm,
     projectFormSubmitButton,
@@ -12,13 +12,13 @@ export default function setupProjectDialogForm({ mode, project }) {
   const config = {
     add: {
       reset: true,
-      titleText: "New project",
+      headerText: "New project",
       buttonText: "Add",
       buttonValue: "confirm",
     },
     edit: {
       reset: false,
-      titleText: "Edit project",
+      headerText: "Edit project",
       buttonText: "Update",
       buttonValue: "update",
     }
@@ -34,7 +34,7 @@ export default function setupProjectDialogForm({ mode, project }) {
     projectTitleInput.value = project.title;
   }
 
-  projectTitle.textContent = titleText;
+  projectHeader.textContent = headerText;
   projectFormSubmitButton.textContent = buttonText;
   projectFormSubmitButton.value = buttonValue;
   projectDialog.showModal();
