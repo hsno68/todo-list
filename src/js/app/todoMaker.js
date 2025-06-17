@@ -7,10 +7,10 @@ import { setCurrentTodo, setCurrentProject } from "./../utility/contextControlle
 export default class TodoMaker {
   #todoId = generateId();
 
-  constructor({ title, description, due, projectId, projectTitle }) {
-    this.completed = false;
-    this.important = false;
+  constructor({ title, description, due, important, completed, projectId, projectTitle }) {
     this.#assignProperties({ title, description, due, projectId, projectTitle });
+    this.important = important;
+    this.completed = completed;
     this.element = this.#render();
     this.#setupEventListeners();
   }
@@ -32,7 +32,7 @@ export default class TodoMaker {
     return this.#todoId;
   }
 
-  update({ title, description, due , projectId, projectTitle }) {
+  update({ title, description, due, projectId, projectTitle }) {
     this.#assignProperties({ title, description, due, projectId, projectTitle });
     this.element = this.#render();
     this.#setupEventListeners();

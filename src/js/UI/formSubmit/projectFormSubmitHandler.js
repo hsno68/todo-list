@@ -14,8 +14,7 @@ export default function projectFormSubmitHandler(projectFormObject, submitType) 
     projectManager.add(project);
     setCurrentProject(project);
   }
-
-  if (submitType === "update") {
+  else if (submitType === "update") {
     project = getCurrentProject();
     project.update(projectFormObject);
     projectManager.update(project);

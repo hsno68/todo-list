@@ -10,18 +10,22 @@ export default function todoFormSubmitHandler(todoFormObject, submitType) {
   const project = projectManager.get(projectId);
   const projectTitle = project.title;
 
+  const filter = getCurrentFilterContext();
+
+  let todo;
+
   if (submitType === "confirm") {
-    const todo = new TodoMaker({ ...todoFormObject, projectId, projectTitle });
+    const important = filter === "important";
+    const completed = filter === "completed";
+    todo = new TodoMaker({ ...todoFormObject, important, completed, projectId, projectTitle });
     project.add(todo);
   }
-
-  if (submitType === "update") {
-    const todo = getCurrentTodo();
+  else if (submitType === "update") {
+    todo = getCurrentTodo();
     todo.update({ ...todoFormObject, projectId, projectTitle });
     project.edit(todo);
   }
 
-  const filter = getCurrentFilterContext();
   const activeProject = getCurrentProject();
 
   if (filter === null && activeProject !== null) {
