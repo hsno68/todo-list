@@ -1,7 +1,7 @@
 import getDOMElements from "./../../utility/dom.js";
 import projectManager from "./../../app/projectManager.js";
 import ProjectMaker from "./../../app/projectMaker.js";
-import { setCurrentProject, getCurrentProject } from "./../../utility/contextController.js";
+import { setCurrentProject, getCurrentProject, resetCurrentProject, getCurrentFilterContext, resetCurrentFilterContext } from "./../../utility/contextController.js";
 
 export default function projectFormSubmitHandler(projectFormObject, submitType) {
   const { projectDialog, projectForm } = getDOMElements();
@@ -9,6 +9,7 @@ export default function projectFormSubmitHandler(projectFormObject, submitType) 
   let project;
 
   if (submitType === "confirm") {
+    resetCurrentFilterContext();
     project = new ProjectMaker(projectFormObject);
     projectManager.add(project);
     setCurrentProject(project);
@@ -21,7 +22,16 @@ export default function projectFormSubmitHandler(projectFormObject, submitType) 
   }
 
   projectManager.renderProjects();
-  project.renderTodos();
+
+  if (getCurrentFilterContext() === null && getCurrentProject() !== null) {
+    project.renderTodos();
+  }
+  else if (getCurrentFilterContext !== null) {
+    const filter = getCurrentFilterContext();
+    projectManager.renderFilteredTodos(filter);
+    resetCurrentProject();
+  }
+
   projectForm.reset();
   projectDialog.close();
 }

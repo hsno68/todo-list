@@ -53,7 +53,7 @@ class ProjectManager {
     return filterFunction(todos);
   }
 
-  renderFilteredTodos(filter = "inbox") {
+  renderFilteredTodos(filter) {
     const { header, todosContainer } = getDOMElements();
     todosContainer.replaceChildren();
 

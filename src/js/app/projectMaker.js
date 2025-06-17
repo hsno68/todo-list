@@ -2,7 +2,7 @@ import getDOMElements from "./../utility/dom.js";
 import { generateId, createProjectElement, createButton } from "./../utility/utility.js";
 import setupProjectDialogForm from "./../UI/formSetup/setupProjectDialogForm.js";
 import projectDeleteHandler from "./../UI/deleteHandler/projectDeleteHandler.js";
-import { setCurrentProject } from "./../utility/contextController.js";
+import { setCurrentProject, resetCurrentFilterContext, resetCurrentProject } from "./../utility/contextController.js";
 
 export default class ProjectMaker {
   #projectId = generateId();
@@ -36,6 +36,15 @@ export default class ProjectMaker {
     this.#assignProperties({ title });
     this.element = this.#render();
     this.#setupEventListeners();
+    this.updateTodoProjectTitles();
+  }
+
+  updateTodoProjectTitles() {
+    for (const todoId of this.#todoIds) {
+      const todo = this.#todosByIds[todoId];
+      todo.projectTitle = this.title;
+      todo.element.querySelector(".todo-project").textContent = this.title;
+    }
   }
 
   add(todo) {
@@ -64,8 +73,6 @@ export default class ProjectMaker {
 
     for (const todoId of this.#todoIds) {
       const todo = this.#todosByIds[todoId];
-      todo.projectTitle = this.title;
-      todo.element.querySelector(".todo-project").textContent = this.title;
       todosContainer.appendChild(todo.element);
     }
   }
@@ -102,6 +109,7 @@ export default class ProjectMaker {
 
   #setupEventListeners() {
     this.element.addEventListener("click", () => {
+      resetCurrentFilterContext();
       setCurrentProject(this);
       this.renderTodos();
     });
