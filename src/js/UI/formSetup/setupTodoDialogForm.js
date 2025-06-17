@@ -1,5 +1,6 @@
 import getDOMElements from "./../../utility/dom.js";
-import { getCurrentProject } from "../../utility/contextController.js";
+import { resetFilteredDueInputs } from "./../../utility/utility.js";
+import { getCurrentProject, getCurrentFilterContext } from "../../utility/contextController.js";
 
 export default function setupTodoDialogForm({ mode, todo }) {
   const {
@@ -39,6 +40,35 @@ export default function setupTodoDialogForm({ mode, todo }) {
   }
   else {
     selectInput.classList.remove("locked");
+  }
+
+  const filter = getCurrentFilterContext();
+  resetFilteredDueInputs();
+
+  if (filter === "today") {
+    const today = new Date().toISOString().split("T")[0];
+    dueInput.value = today;
+    dueInput.min = today;
+    dueInput.max = today;
+    dueInput.classList.add("locked");
+  }
+  else if (filter === "week") {
+    const today = new Date();
+    const dayOfWeek = today.getDay();
+
+    const startOfWeek = new Date(today);
+    startOfWeek.setDate(today.getDate() - dayOfWeek);
+    startOfWeek.setHours(0, 0, 0, 0);
+
+    const endOfWeek = new Date(startOfWeek);
+    endOfWeek.setDate(startOfWeek.getDate() + 6);
+    endOfWeek.setHours(23, 59, 59, 999);
+
+    const formatDate = (date) => date.toLocaleDateString("en-CA");
+
+    dueInput.value = formatDate(today);
+    dueInput.min = formatDate(startOfWeek);
+    dueInput.max = formatDate(endOfWeek);
   }
 
   if (todo) {

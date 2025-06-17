@@ -1,3 +1,5 @@
+import getDOMElements from "./dom.js";
+
 export function generateId() {
   const timestampBase36Id = Date.now().toString(36);
   return timestampBase36Id;
@@ -140,4 +142,13 @@ export function isDueThisWeek(due) {
 
   const dueDate = new Date(due + "T00:00:00");
   return dueDate >= startOfWeek && dueDate <= endOfWeek;
+}
+
+export function resetFilteredDueInputs() {
+  const { dueInput } = getDOMElements();
+
+  dueInput.value = "";
+  dueInput.removeAttribute("min");
+  dueInput.removeAttribute("max");
+  dueInput.classList.remove("locked");
 }
