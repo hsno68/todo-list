@@ -5,6 +5,7 @@ import setupProjectDialogForm from "./../UI/formSetup/setupProjectDialogForm.js"
 import setupTodoDialogForm from "./../UI/formSetup/setupTodoDialogForm.js";
 import projectFormSubmitHandler from "./../UI/formSubmit/projectFormSubmitHandler.js";
 import todoFormSubmitHandler from "./../UI/formSubmit/todoFormSubmitHandler.js";
+import { getCurrentFilterContext, getCurrentProject, getCurrentTodo } from "../utility/contextController.js";
 
 export default function setupEventListeners() {
   const {
@@ -61,5 +62,9 @@ export default function setupEventListeners() {
     if (typeof dueInput.showPicker === 'function') {
       dueInput.showPicker();
     }
+  });
+
+  window.addEventListener("click", () =>{
+    console.log({filter: getCurrentFilterContext(), project: getCurrentProject(), todo: getCurrentTodo()})
   });
 }

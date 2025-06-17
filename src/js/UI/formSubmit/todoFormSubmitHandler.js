@@ -1,7 +1,7 @@
 import getDOMElements from "./../../utility/dom.js";
 import projectManager from "./../../app/projectManager.js";
 import TodoMaker from "./../../app/todoMaker.js";
-import { getCurrentTodo, setCurrentProject } from "./../../utility/contextController.js";
+import { getCurrentTodo, getCurrentProject, resetCurrentProject, getCurrentFilterContext } from "./../../utility/contextController.js";
 
 export default function todoFormSubmitHandler(todoFormObject, submitType) {
   const { todoDialog, todoForm } = getDOMElements();
@@ -11,7 +11,6 @@ export default function todoFormSubmitHandler(todoFormObject, submitType) {
   const projectTitle = project.title;
 
   if (submitType === "confirm") {
-    setCurrentProject(project);
     const todo = new TodoMaker({ ...todoFormObject, projectId, projectTitle });
     project.add(todo);
   }
@@ -22,7 +21,15 @@ export default function todoFormSubmitHandler(todoFormObject, submitType) {
     project.edit(todo);
   }
 
-  project.renderTodos();
+  if (getCurrentFilterContext() === null && getCurrentProject !== null) {
+    project.renderTodos();
+  }
+  else if (getCurrentFilterContext !== null) {
+    const filter = getCurrentFilterContext();
+    projectManager.renderFilteredTodos(filter);
+    resetCurrentProject();
+  }
+
   todoForm.reset();
   todoDialog.close();
 }

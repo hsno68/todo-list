@@ -1,7 +1,15 @@
-import { getCurrentProject } from "../../utility/contextController.js";
+import projectManager from "./../../app/projectManager.js";
+import { getCurrentFilterContext } from "../../utility/contextController.js";
 
 export default function todoDeleteHandler(todo) {
-  const project = getCurrentProject();
+  const projectId = todo.projectId;
+  const project = projectManager.get(projectId);
   project.delete(todo);
-  project.renderTodos();
+  if (getCurrentFilterContext() !== null) {
+    const filter = getCurrentFilterContext();
+    projectManager.renderFilteredTodos(filter);
+  }
+  else {
+    project.renderTodos();
+  }
 }

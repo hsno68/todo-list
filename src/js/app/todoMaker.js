@@ -2,7 +2,7 @@ import projectManager from "./projectManager.js";
 import { generateId, createTodoElement, createButton, toggleCheckbox, toggleImportant } from "./../utility/utility.js";
 import setupTodoDialogForm from "./../UI/formSetup/setupTodoDialogForm.js";
 import todoDeleteHandler from "./../UI/deleteHandler/todoDeleteHandler.js";
-import { setCurrentProject, setCurrentTodo } from "./../utility/contextController.js";
+import { setCurrentTodo, setCurrentProject } from "./../utility/contextController.js";
 
 export default class TodoMaker {
   #todoId = generateId();
@@ -58,7 +58,9 @@ export default class TodoMaker {
       iconName: "edit_square",
       callback: (event) => {
         event.stopPropagation();
-        setCurrentProject(projectManager.get(this.projectId));
+        const projectId = this.projectId;
+        const project = projectManager.get(projectId);
+        setCurrentProject(project);
         setCurrentTodo(this);
         setupTodoDialogForm({ mode: "edit", todo: this});
       }
