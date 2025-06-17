@@ -4,4 +4,5 @@ import { defaultProject } from "./../app/projectMaker.js";
 export default function setupProject() {
   projectManager.add(defaultProject);
   projectManager.renderProjects();
+  projectManager.renderFilteredTodos("inbox");
 }
