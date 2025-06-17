@@ -63,8 +63,4 @@ export default function setupEventListeners() {
       dueInput.showPicker();
     }
   });
-
-  window.addEventListener("click", () =>{
-    console.log({filter: getCurrentFilterContext(), project: getCurrentProject(), todo: getCurrentTodo()})
-  });
 }

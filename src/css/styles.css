@@ -558,7 +558,7 @@ select {
   cursor: pointer;
 }
 
-select.locked {
+.locked {
   pointer-events: none;
   background-color: #e9ecef;
   color: #6c757d;
