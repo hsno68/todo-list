@@ -21,11 +21,13 @@ export default function todoFormSubmitHandler(todoFormObject, submitType) {
     project.edit(todo);
   }
 
-  if (getCurrentFilterContext() === null && getCurrentProject !== null) {
+  const filter = getCurrentFilterContext();
+  const activeProject = getCurrentProject();
+
+  if (filter === null && activeProject !== null) {
     project.renderTodos();
   }
-  else if (getCurrentFilterContext !== null) {
-    const filter = getCurrentFilterContext();
+  else if (filter !== null) {
     projectManager.renderFilteredTodos(filter);
     resetCurrentProject();
   }

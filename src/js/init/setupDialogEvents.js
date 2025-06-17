@@ -6,7 +6,8 @@ export default function setupDialogEvents({ addButton, cancelButton, dialog, for
   });
 
   cancelButton.addEventListener("click", () => {
-    if (getCurrentFilterContext() !== null) {
+    const filter = getCurrentFilterContext();
+    if (filter !== null) {
       resetCurrentProject();
     }
     dialog.close();

@@ -32,10 +32,10 @@ export default function setupTodoDialogForm({ mode, todo }) {
     todoForm.reset();
   }
 
-  const project = getCurrentProject();
+  const activeProject = getCurrentProject();
 
-  if (project) {
-    selectInput.value = project.id;
+  if (activeProject) {
+    selectInput.value = activeProject.id;
     selectInput.classList.add("locked");
   }
   else {

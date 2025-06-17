@@ -5,8 +5,8 @@ export default function todoDeleteHandler(todo) {
   const projectId = todo.projectId;
   const project = projectManager.get(projectId);
   project.delete(todo);
-  if (getCurrentFilterContext() !== null) {
-    const filter = getCurrentFilterContext();
+  const filter = getCurrentFilterContext();
+  if (filter !== null) {
     projectManager.renderFilteredTodos(filter);
   }
   else {
