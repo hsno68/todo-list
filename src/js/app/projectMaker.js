@@ -2,7 +2,7 @@ import getDOMElements from "./../utility/dom.js";
 import { generateId, createProjectElement, createButton } from "./../utility/utility.js";
 import setupProjectDialogForm from "./../UI/formSetup/setupProjectDialogForm.js";
 import projectDeleteHandler from "./../UI/deleteHandler/projectDeleteHandler.js";
-import { setCurrentProject, resetCurrentFilterContext, resetCurrentProject } from "./../utility/contextController.js";
+import { setCurrentProjectContext, setCurrentFilterContext } from "./../utility/contextController.js";
 
 export default class ProjectMaker {
   #projectId = generateId();
@@ -87,7 +87,6 @@ export default class ProjectMaker {
       iconName: "edit_square",
       callback: (event) => {
         event.stopPropagation();
-        setCurrentProject(this);
         setupProjectDialogForm({ mode: "edit", project: this});
       }
     });
@@ -109,8 +108,8 @@ export default class ProjectMaker {
 
   #setupEventListeners() {
     this.element.addEventListener("click", () => {
-      resetCurrentFilterContext();
-      setCurrentProject(this);
+      setCurrentFilterContext(null);
+      setCurrentProjectContext(this);
       this.renderTodos();
     });
   }

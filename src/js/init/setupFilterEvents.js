@@ -1,10 +1,9 @@
-import { resetCurrentProject, resetCurrentTodo, setCurrentFilterContext } from "./../utility/contextController";
-import projectManager from "./../app/projectManager";
+import { setCurrentProjectContext, setCurrentFilterContext } from "./../utility/contextController.js";
+import projectManager from "./../app/projectManager.js";
 
 export default function setupFilterEvents({ button, filter}) {
   button.addEventListener("click", () => {
-    resetCurrentProject();
-    resetCurrentTodo();
+    setCurrentProjectContext(null);
     setCurrentFilterContext(filter);
     projectManager.renderFilteredTodos(filter);
   });

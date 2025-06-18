@@ -1,29 +1,12 @@
+let currentProjectContext = null;
 let currentFilterContext = null;
-let currentProject = null;
-let currentTodo = null;
 
-export function getCurrentProject() {
-  return currentProject;
+export function getCurrentProjectContext() {
+  return currentProjectContext;
 }
 
-export function setCurrentProject(project) {
-  currentProject = project;
-}
-
-export function resetCurrentProject() {
-  currentProject = null;
-}
-
-export function getCurrentTodo() {
-  return currentTodo;
-}
-
-export function setCurrentTodo(todo) {
-  currentTodo = todo;
-}
-
-export function resetCurrentTodo() {
-  currentTodo = null;
+export function setCurrentProjectContext(project) {
+  currentProjectContext = project;
 }
 
 export function getCurrentFilterContext() {
@@ -32,8 +15,4 @@ export function getCurrentFilterContext() {
 
 export function setCurrentFilterContext(filter) {
   currentFilterContext = filter;
-}
-
-export function resetCurrentFilterContext() {
-  currentFilterContext = null;
 }

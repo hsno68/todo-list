@@ -1,38 +1,33 @@
 import getDOMElements from "./../../utility/dom.js";
 import projectManager from "./../../app/projectManager.js";
 import ProjectMaker from "./../../app/projectMaker.js";
-import { setCurrentProject, getCurrentProject, resetCurrentProject, getCurrentFilterContext, resetCurrentFilterContext } from "./../../utility/contextController.js";
+import { getCurrentProjectEdit } from "./../formSetup/setupProjectDialogForm.js";
+import { setCurrentProjectContext, setCurrentFilterContext } from "./../../utility/contextController.js";
+import { renderTodosBasedOnContext } from "./../../utility/utility.js";
 
 export default function projectFormSubmitHandler(projectFormObject, submitType) {
   const { projectDialog, projectForm } = getDOMElements();
 
   let project;
 
-  if (submitType === "confirm") {
-    resetCurrentFilterContext();
+  const isCreating = submitType === "confirm";
+  const isEditing = submitType === "update";
+
+  if (isCreating) {
     project = new ProjectMaker(projectFormObject);
     projectManager.add(project);
-    setCurrentProject(project);
+    setCurrentFilterContext(null);
+    setCurrentProjectContext(project);
   }
-  else if (submitType === "update") {
-    project = getCurrentProject();
+  
+  if (isEditing) {
+    project = getCurrentProjectEdit();
     project.update(projectFormObject);
     projectManager.update(project);
   }
 
   projectManager.renderProjects();
-
-  const filter = getCurrentFilterContext();
-  const activeProject = getCurrentProject();
-
-  if (filter === null && activeProject !== null) {
-    project.renderTodos();
-  }
-  else if (filter !== null) {
-    projectManager.renderFilteredTodos(filter);
-    resetCurrentProject();
-  }
-
+  renderTodosBasedOnContext(project);
   projectForm.reset();
   projectDialog.close();
 }

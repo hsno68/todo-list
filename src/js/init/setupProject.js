@@ -5,6 +5,6 @@ import { setCurrentFilterContext } from "./../utility/contextController.js";
 export default function setupProject() {
   projectManager.add(defaultProject);
   projectManager.renderProjects();
-  projectManager.renderFilteredTodos("inbox");
   setCurrentFilterContext("inbox");
+  projectManager.renderFilteredTodos("inbox");
 }

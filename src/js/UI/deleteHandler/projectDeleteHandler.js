@@ -1,10 +1,10 @@
 import projectManager from "./../../app/projectManager.js";
-import { resetCurrentFilterContext, resetCurrentProject } from "./../../utility/contextController.js";
+import { setCurrentFilterContext, setCurrentProjectContext } from "./../../utility/contextController.js";
 
 export default function projectDeleteHandler(project) {
   projectManager.delete(project);
   projectManager.renderProjects();
+  setCurrentFilterContext("inbox");
   projectManager.renderFilteredTodos("inbox");
-  resetCurrentFilterContext();
-  resetCurrentProject();
+  setCurrentProjectContext(null);
 }

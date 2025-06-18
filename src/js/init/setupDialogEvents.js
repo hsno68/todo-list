@@ -1,15 +1,9 @@
-import { getCurrentFilterContext, resetCurrentProject } from "./../utility/contextController";
-
 export default function setupDialogEvents({ addButton, cancelButton, dialog, form, setupForm, submitHandler }) {
   addButton.addEventListener("click", () => {
     setupForm({ mode: "add" });
   });
 
   cancelButton.addEventListener("click", () => {
-    const filter = getCurrentFilterContext();
-    if (filter !== null) {
-      resetCurrentProject();
-    }
     dialog.close();
   });
 

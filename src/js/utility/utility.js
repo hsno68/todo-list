@@ -1,4 +1,6 @@
 import getDOMElements from "./dom.js";
+import projectManager from "./../app/projectManager.js";
+import { getCurrentFilterContext, getCurrentProjectContext, setCurrentProjectContext } from "./contextController.js";
 
 export function generateId() {
   const timestampBase36Id = Date.now().toString(36);
@@ -151,4 +153,24 @@ export function resetFilteredDueInputs() {
   dueInput.removeAttribute("min");
   dueInput.removeAttribute("max");
   dueInput.classList.remove("locked");
+}
+
+export function getTodoDataFromFilterContext() {
+  const filter = getCurrentFilterContext();
+  return {
+    important: filter === "important",
+    completed: filter === "completed",
+  };
+}
+
+export function renderTodosBasedOnContext(project) {
+  const filter = getCurrentFilterContext();
+  const activeProject = getCurrentProjectContext();
+
+  if (filter === null && activeProject !== null) {
+    project.renderTodos();
+  } else if (filter !== null) {
+    setCurrentProjectContext(null);
+    projectManager.renderFilteredTodos(filter);
+  }
 }

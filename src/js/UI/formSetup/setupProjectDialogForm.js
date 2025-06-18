@@ -1,5 +1,7 @@
 import getDOMElements from "./../../utility/dom.js";
 
+let currentProjectEdit;
+
 export default function setupProjectDialogForm({ mode, project }) {
   const {
     projectHeader,
@@ -31,6 +33,7 @@ export default function setupProjectDialogForm({ mode, project }) {
   }
 
   if (project) {
+    currentProjectEdit = project;
     projectTitleInput.value = project.title;
   }
 
@@ -38,4 +41,8 @@ export default function setupProjectDialogForm({ mode, project }) {
   projectFormSubmitButton.textContent = buttonText;
   projectFormSubmitButton.value = buttonValue;
   projectDialog.showModal();
+}
+
+export function getCurrentProjectEdit() {
+  return currentProjectEdit;
 }
