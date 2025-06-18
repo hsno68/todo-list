@@ -48,7 +48,7 @@ export default function setupTodoDialogForm({ mode, todo }) {
   resetFilteredDueInputs();
 
   if (filter === "today") {
-    const today = new Date().toISOString().split("T")[0];
+    const today = new Date().toLocaleDateString("en-CA");
     dueInput.value = today;
     dueInput.min = today;
     dueInput.max = today;
