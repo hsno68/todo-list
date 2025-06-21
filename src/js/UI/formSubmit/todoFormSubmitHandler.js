@@ -2,7 +2,6 @@ import getDOMElements from "./../../utility/dom.js";
 import projectManager from "./../../app/projectManager.js";
 import TodoMaker from "./../../app/todoMaker.js";
 import { getCurrentTodoEdit } from "./../formSetup/setupTodoDialogForm.js";
-import { getCurrentProject, resetCurrentProject } from "./../../utility/contextController.js";
 import { getTodoDataFromFilterContext, renderTodosBasedOnContext } from "./../../utility/utility.js";
 
 export default function todoFormSubmitHandler(todoFormObject, submitType) {
@@ -14,8 +13,8 @@ export default function todoFormSubmitHandler(todoFormObject, submitType) {
 
   let todo;
 
-  const isCreating = submitType === "confirm";
-  const isEditing = submitType === "update";
+  const isCreating = submitType === "add";
+  const isEditing = submitType === "edit";
 
   if (isCreating) {
     const { important, completed } = getTodoDataFromFilterContext();

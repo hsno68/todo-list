@@ -1,19 +1,17 @@
 import getDOMElements from "./../utility/dom.js";
+import setupProjectInputEvents from "./setupProjectInputEvents.js";
 import setupDialogEvents from "./setupDialogEvents.js";
 import setupFilterEvents from "./setupFilterEvents.js";
-import setupProjectDialogForm from "./../UI/formSetup/setupProjectDialogForm.js";
 import setupTodoDialogForm from "./../UI/formSetup/setupTodoDialogForm.js";
-import projectFormSubmitHandler from "./../UI/formSubmit/projectFormSubmitHandler.js";
 import todoFormSubmitHandler from "./../UI/formSubmit/todoFormSubmitHandler.js";
+import { createFormElement } from "./../utility/utility.js";
 
 export default function setupEventListeners() {
   const {
     addProjectButton,
+    projectsContainer,
     addTodoButton,
-    projectFormCancelButton,
     todoFormCancelButton,
-    projectDialog,
-    projectForm,
     todoDialog,
     todoForm,
     dueInput,
@@ -24,21 +22,11 @@ export default function setupEventListeners() {
     completed,
   } = getDOMElements();
 
-  const filters = [
-    { button: inbox, filter: "inbox", },
-    { button: today, filter: "today", },
-    { button: week, filter: "week", },
-    { button: important, filter: "important", },
-    { button: completed, filter: "completed", },
-  ];
-
-  setupDialogEvents({
-    addButton: addProjectButton,
-    cancelButton: projectFormCancelButton,
-    dialog: projectDialog,
-    form: projectForm,
-    setupForm: setupProjectDialogForm,
-    submitHandler: projectFormSubmitHandler,
+  addProjectButton.addEventListener("click", () => {
+    const form = createFormElement({ mode: "add" });
+    const input = form.querySelector("input");
+    setupProjectInputEvents({ form, input, mode: "add" });
+    projectsContainer.appendChild(form);
   });
 
   setupDialogEvents({
@@ -49,6 +37,14 @@ export default function setupEventListeners() {
     setupForm: setupTodoDialogForm,
     submitHandler: todoFormSubmitHandler,
   });
+
+  const filters = [
+    { button: inbox, filter: "inbox", },
+    { button: today, filter: "today", },
+    { button: week, filter: "week", },
+    { button: important, filter: "important", },
+    { button: completed, filter: "completed", },
+  ];
 
   filters.forEach(filter => setupFilterEvents(filter));
 

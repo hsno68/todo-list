@@ -1,7 +1,7 @@
 import getDOMElements from "./../utility/dom.js";
-import { generateId, createProjectElement, createButton } from "./../utility/utility.js";
-import setupProjectDialogForm from "./../UI/formSetup/setupProjectDialogForm.js";
 import projectDeleteHandler from "./../UI/deleteHandler/projectDeleteHandler.js";
+import setupProjectInputEvents from "./../init/setupProjectInputEvents.js";
+import { generateId, createFormElement, createProjectElement, createButton } from "./../utility/utility.js";
 import { setCurrentProjectContext, setCurrentFilterContext } from "./../utility/contextController.js";
 
 export default class ProjectMaker {
@@ -87,7 +87,16 @@ export default class ProjectMaker {
       iconName: "edit_square",
       callback: (event) => {
         event.stopPropagation();
-        setupProjectDialogForm({ mode: "edit", project: this});
+        const form = createFormElement({ mode: "edit", project: this });
+        const input = form.querySelector("input");
+        setupProjectInputEvents({
+          form,
+          input,
+          mode: "edit",
+          currentProjectEdit: this,
+          currentProjectElement: this.element,
+        });
+        this.element.replaceWith(form);
       }
     });
 

@@ -155,7 +155,7 @@ header h1 {
   color: #DA6E6E;
 }
 
-.content-sidebar ul li {
+ul li {
   list-style-type: none;
 }
 
@@ -189,14 +189,14 @@ header h1 {
   border-bottom: 1px solid var(--sidebar-content-border);
 }
 
-.content-sidebar nav + div button {
+.content-sidebar button.add-project {
   margin-top: 1.5rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.content-sidebar nav + div button span {
+.content-sidebar button.add-project span {
   padding: var(--padding-sidebar-ui);
 }
 
@@ -460,7 +460,7 @@ input[type="checkbox"] {
 
 /* Main Content End */
 
-/* Dialog Start */
+/* Form Start */
 
 dialog[open] {
   animation: dialogFadeIn 0.3s ease-in-out;
@@ -487,13 +487,13 @@ dialog > div {
   gap: 0.5rem;
 }
 
-form {
+dialog form {
   display: flex;
   flex-direction: column;
   gap: 1rem;
 }
 
-form > div {
+dialog form > div {
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
@@ -533,6 +533,12 @@ input[type="date"] {
   cursor: pointer;
 }
 
+input::placeholder {
+  color: #999;
+  font-style: italic;
+  opacity: 1;
+}
+
 input[type="date"]::-webkit-calendar-picker-indicator {
   cursor: pointer;
 }
@@ -543,12 +549,12 @@ textarea {
   resize: none;
 }
 
-.form-section-container {
+.form-selects-due-section {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
 }
 
-.form-section-container div {
+.form-selects-due-section div {
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
@@ -579,16 +585,23 @@ select {
   pointer-events: none;
 }
 
-select option[value=""] {
-  font-style: italic;
+select option {
+  color: var(--color-text-primary);
+  font-style: normal;
 }
 
-menu {
+select option[value=""],
+select:has(option:checked[value=""]) {
+  font-style: italic;
+  color: #999;
+}
+
+.todo-form-buttons {
   display: flex;
   gap: 0.5rem;
 }
 
-menu > button {
+.todo-form-buttons > button {
   flex: 1;
   padding: 0.7rem 1.4rem;
   color: var(--color-text-primary);
@@ -600,30 +613,42 @@ menu > button {
   transition: background-color 0.2s ease-in-out, box-shadow 0.2s ease;
 }
 
-menu > button:first-of-type {
+.todo-form-buttons > button:first-of-type {
   background-color: var(--dialog-btn-secondary-bg);
 }
 
-menu > button:first-of-type:hover {
+.todo-form-buttons > button:first-of-type:hover {
   background-color: var(--dialog-btn-secondary-hover);
   box-shadow: var(--hover-box-shadow);
 }
 
-menu > button:first-of-type:active {
+.todo-form-buttons > button:first-of-type:active {
   background-color: var(--dialog-btn-secondary-active);
 }
 
-menu > button:last-of-type {
+.todo-form-buttons > button:last-of-type {
   background-color: var(--dialog-btn-bg);
 }
 
-menu > button:last-of-type:hover {
+.todo-form-buttons > button:last-of-type:hover {
   background-color: var(--dialog-btn-hover);
   box-shadow: var(--hover-box-shadow);
 }
 
-menu > button:last-of-type:active {
+.todo-form-buttons > button:last-of-type:active {
   background-color: var(--dialog-btn-active);
 }
 
-/* Dialog End */
+.project-form {
+  margin: 0.5rem 0;
+  padding: var(--padding-sidebar-ui);
+  display: flex;
+  align-items: center;
+  border-radius: 12px;
+}
+
+.project-form input {
+  width: 100%;
+}
+
+/* Form End */

@@ -22,8 +22,8 @@ function dateFormatter(date) {
 }
 
 export function createTodoElement(todo) {
-  const div = document.createElement("div");
-  div.classList.add("todo");
+  const li = document.createElement("li");
+  li.classList.add("todo");
 
   if (todo.completed) {
     div.classList.add("completed");
@@ -67,21 +67,21 @@ export function createTodoElement(todo) {
   dueDate.classList.add("due-date");
   dueDate.textContent = dateFormatter(todo.due);
 
-  div.append(checkbox, project, container, description, dueDate);
+  li.append(checkbox, project, container, description, dueDate);
 
-  return div;
+  return li;
 }
 
 export function createProjectElement(project) {
-    const div = document.createElement("div");
-    div.classList.add("project");
+  const li = document.createElement("li");
+  li.classList.add("project");
 
-    const title = document.createElement("p");
-    title.textContent = project.title;
+  const title = document.createElement("p");
+  title.textContent = project.title;
 
-    div.appendChild(title);
+  li.appendChild(title);
 
-    return div;
+  return li;
 }
 
 export function createButton({ iconName, buttonClass, callback }) {
@@ -99,6 +99,37 @@ export function createButton({ iconName, buttonClass, callback }) {
   button.addEventListener("click", callback);
 
   return button;
+}
+
+export function createFormElement({ mode, project }) {
+  const form = document.createElement("form");
+  form.id = "project-form";
+  form.classList.add("project-form");
+  form.autocomplete = "off";
+
+  const input = document.createElement("input");
+  input.type = "text";
+  input.id = "project-title";
+  input.name = "title";
+  input.placeholder = "Project name";
+  input.maxLength = "14";
+
+  const isCreating = mode === "add";
+  const isEditing = mode === "edit";
+
+  if (isCreating) {
+    input.value = "";
+  }
+
+  if (isEditing) {
+    input.value = project.title;
+  }
+
+  form.appendChild(input);
+
+  setTimeout(() => input.focus(), 0);
+
+  return form;
 }
 
 const checkboxAttributes = {

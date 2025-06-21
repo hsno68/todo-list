@@ -1,7 +1,7 @@
 import projectManager from "./projectManager.js";
-import { generateId, createTodoElement, createButton, toggleCheckbox, toggleImportant } from "./../utility/utility.js";
 import setupTodoDialogForm from "./../UI/formSetup/setupTodoDialogForm.js";
 import todoDeleteHandler from "./../UI/deleteHandler/todoDeleteHandler.js";
+import { generateId, createTodoElement, createButton, toggleCheckbox, toggleImportant } from "./../utility/utility.js";
 import { setCurrentProjectContext } from "./../utility/contextController.js";
 
 export default class TodoMaker {

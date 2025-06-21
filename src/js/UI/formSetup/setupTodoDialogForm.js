@@ -19,12 +19,12 @@ export default function setupTodoDialogForm({ mode, todo }) {
     add: {
       reset: true,
       buttonText: "Add",
-      buttonValue: "confirm"
+      buttonValue: "add"
     },
     edit: {
       reset: false,
       buttonText: "Update",
-      buttonValue: "update"
+      buttonValue: "edit"
     },
   };
 
