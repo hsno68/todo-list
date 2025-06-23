@@ -33,8 +33,8 @@ export default function setupEventListeners() {
   addProjectButton.addEventListener("click", () => {
     const form = createFormElement({ mode: "add" });
     const input = form.querySelector("input");
-    setupProjectInputEvents({ form, input, mode: "add" });
     projectsContainer.appendChild(form);
+    setupProjectInputEvents({ form, input, mode: "add" });
   });
 
   setupDialogEvents({

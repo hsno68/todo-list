@@ -3,7 +3,7 @@ import projectFormSubmitHandler from "./../UI/formSubmit/projectFormSubmitHandle
 export default function setupProjectInputEvents({ form, input, mode, currentProjectEdit, currentProjectElement }) {
   let hasSubmitted = false;
 
-  const originalInputValue =  input.value.trim();
+  const originalInputValue = input.value.trim();
 
   const isCreating = mode === "add";
   const isEditing = mode === "edit";
@@ -20,7 +20,11 @@ export default function setupProjectInputEvents({ form, input, mode, currentProj
   }
 
   function cancelForm() {
+    if (hasSubmitted) {
+      return;
+    }
     hasSubmitted = true;
+
     if (isCreating) {
       form.remove();
     } else if (isEditing) {
@@ -34,7 +38,7 @@ export default function setupProjectInputEvents({ form, input, mode, currentProj
   });
 
   input.addEventListener("blur", () => {
-    const currentInputValue =  input.value.trim();
+    const currentInputValue = input.value.trim();
     const hasChanged = originalInputValue !== currentInputValue;
 
     if (hasChanged) {
