@@ -1,7 +1,7 @@
 import projectManager from "./../../app/projectManager.js";
 import ProjectMaker from "./../../app/projectMaker.js";
 import { setCurrentProjectContext, setCurrentFilterContext } from "./../../utility/contextController.js";
-import { renderTodosBasedOnContext } from "./../../utility/utility.js";
+import { renderTodosBasedOnContext, persistAppState } from "./../../utility/utility.js";
 
 export default function projectFormSubmitHandler({ projectFormObject, mode, currentProjectEdit }) {
   let project;
@@ -15,13 +15,14 @@ export default function projectFormSubmitHandler({ projectFormObject, mode, curr
     setCurrentFilterContext(null);
     setCurrentProjectContext(project);
   }
-  
+
   if (isEditing) {
     project = currentProjectEdit;
     project.update(projectFormObject);
     projectManager.update(project);
   }
 
+  persistAppState();
   projectManager.renderProjects();
-  renderTodosBasedOnContext(project);
+  renderTodosBasedOnContext();
 }

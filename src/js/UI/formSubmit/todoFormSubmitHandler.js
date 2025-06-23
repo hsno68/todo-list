@@ -2,7 +2,7 @@ import getDOMElements from "./../../utility/dom.js";
 import projectManager from "./../../app/projectManager.js";
 import TodoMaker from "./../../app/todoMaker.js";
 import { getCurrentTodoEdit } from "./../formSetup/setupTodoDialogForm.js";
-import { getTodoDataFromFilterContext, renderTodosBasedOnContext } from "./../../utility/utility.js";
+import { getTodoDataFromFilterContext, renderTodosBasedOnContext, persistAppState } from "./../../utility/utility.js";
 
 export default function todoFormSubmitHandler(todoFormObject, submitType) {
   const { todoDialog, todoForm } = getDOMElements();
@@ -28,7 +28,8 @@ export default function todoFormSubmitHandler(todoFormObject, submitType) {
     project.edit(todo);
   }
 
-  renderTodosBasedOnContext(project);
+  persistAppState();
+  renderTodosBasedOnContext();
   todoForm.reset();
   todoDialog.close();
 }

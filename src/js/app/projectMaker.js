@@ -1,7 +1,8 @@
 import getDOMElements from "./../utility/dom.js";
+import TodoMaker from "./todoMaker.js";
 import projectDeleteHandler from "./../UI/deleteHandler/projectDeleteHandler.js";
 import setupProjectInputEvents from "./../init/setupProjectInputEvents.js";
-import { generateId, createFormElement, createProjectElement, createButton } from "./../utility/utility.js";
+import { generateId, createFormElement, createProjectElement, createButton, persistAppState } from "./../utility/utility.js";
 import { setCurrentProjectContext, setCurrentFilterContext } from "./../utility/contextController.js";
 
 export default class ProjectMaker {
@@ -22,6 +23,26 @@ export default class ProjectMaker {
     else {
       this.title = title;
     }
+  }
+
+  serialize() {
+    return {
+      id: this.#projectId,
+      title: this.title,
+      todos: this.#todoIds.map(todoId => this.#todosByIds[todoId].serialize()),
+    }
+  }
+
+  static deserialize(data) {
+    const project = new ProjectMaker(data);
+    project.#projectId = data.id;
+
+    for (const todoData of data.todos) {
+      const todo = TodoMaker.deserialize(todoData);
+      project.add(todo);
+    }
+
+    return project;
   }
 
   get id() {
@@ -119,6 +140,7 @@ export default class ProjectMaker {
     this.element.addEventListener("click", () => {
       setCurrentFilterContext(null);
       setCurrentProjectContext(this);
+      persistAppState();
       this.renderTodos();
     });
   }

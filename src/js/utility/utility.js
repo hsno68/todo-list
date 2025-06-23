@@ -1,6 +1,6 @@
 import getDOMElements from "./dom.js";
 import projectManager from "./../app/projectManager.js";
-import { getCurrentFilterContext, getCurrentProjectContext, setCurrentProjectContext } from "./contextController.js";
+import { getCurrentFilterContext, getCurrentProjectContext, setCurrentFilterContext, setCurrentProjectContext } from "./contextController.js";
 
 export function generateId() {
   const timestampBase36Id = Date.now().toString(36);
@@ -26,11 +26,11 @@ export function createTodoElement(todo) {
   li.classList.add("todo");
 
   if (todo.completed) {
-    div.classList.add("completed");
+    li.classList.add("completed");
   }
 
   if (todo.important) {
-    div.classList.add("important");
+    li.classList.add("important");
   }
 
   const checkbox = createCheckbox();
@@ -194,14 +194,38 @@ export function getTodoDataFromFilterContext() {
   };
 }
 
-export function renderTodosBasedOnContext(project) {
+export function renderTodosBasedOnContext() {
   const filter = getCurrentFilterContext();
   const activeProject = getCurrentProjectContext();
 
   if (filter === null && activeProject !== null) {
-    project.renderTodos();
+    activeProject.renderTodos();
   } else if (filter !== null) {
     setCurrentProjectContext(null);
     projectManager.renderFilteredTodos(filter);
   }
+}
+
+export function persistAppState() {
+  const appState = {
+    projectManager: projectManager.serialize(),
+    currentFilterContext: getCurrentFilterContext(),
+    currentProjectContextId: getCurrentProjectContext()?.id?? null,
+  }
+
+  localStorage.setItem("appState", JSON.stringify(appState));
+}
+
+export function loadAppState() {
+  const appData = localStorage.getItem("appState");
+  if (!appData) {
+    return;
+  }
+
+  const { projectManager: data, currentFilterContext, currentProjectContextId } = JSON.parse(appData);
+
+  projectManager.hydrate(data);
+  const hydratedProject = projectManager.get(currentProjectContextId);
+  setCurrentFilterContext(currentFilterContext);
+  setCurrentProjectContext(hydratedProject);
 }

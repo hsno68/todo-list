@@ -1,8 +1,7 @@
 import projectManager from "./projectManager.js";
 import setupTodoDialogForm from "./../UI/formSetup/setupTodoDialogForm.js";
 import todoDeleteHandler from "./../UI/deleteHandler/todoDeleteHandler.js";
-import { generateId, createTodoElement, createButton, toggleCheckbox, toggleImportant } from "./../utility/utility.js";
-import { setCurrentProjectContext } from "./../utility/contextController.js";
+import { generateId, createTodoElement, createButton, toggleCheckbox, toggleImportant, persistAppState } from "./../utility/utility.js";
 
 export default class TodoMaker {
   #todoId = generateId();
@@ -28,6 +27,25 @@ export default class TodoMaker {
     this.projectTitle = projectTitle;
   }
 
+  serialize() {
+    return {
+      id: this.#todoId,
+      title: this.title,
+      description: this.description,
+      due: this.due,
+      important: this.important,
+      completed: this.completed,
+      projectId: this.projectId,
+      projectTitle: this.projectTitle,
+    }
+  }
+
+  static deserialize(data) {
+    const todo = new TodoMaker(data);
+    todo.#todoId = data.id;
+    return todo;
+  }
+
   get id() {
     return this.#todoId;
   }
@@ -51,6 +69,7 @@ export default class TodoMaker {
         event.stopPropagation();
         toggleImportant(this);
         this.element.classList.toggle("important", this.important);
+        persistAppState();
       }
     });
 
@@ -60,8 +79,7 @@ export default class TodoMaker {
         event.stopPropagation();
         const projectId = this.projectId;
         const project = projectManager.get(projectId);
-        setCurrentProjectContext(project);
-        setupTodoDialogForm({ mode: "edit", todo: this});
+        setupTodoDialogForm({ mode: "edit", todo: this, project});
       }
     });
 
@@ -85,6 +103,7 @@ export default class TodoMaker {
     this.element.addEventListener("click", (event) => {
       toggleCheckbox(this, checkbox, event);
       this.element.classList.toggle("completed", this.completed);
+      persistAppState();
     });
   }
 }

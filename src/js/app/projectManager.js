@@ -1,9 +1,26 @@
 import getDOMElements from "./../utility/dom.js";
+import ProjectMaker from "./projectMaker.js";
 import { isDueToday, isDueThisWeek } from "./../utility/utility.js";
 
 class ProjectManager {
   #projectsByIds = {};
   #projectIds = [];
+
+  serialize() {
+    return {
+      projects: this.#projectIds.map(projectId => this.#projectsByIds[projectId].serialize()),
+    }
+  }
+
+  hydrate(data) {
+    this.#projectsByIds = {};
+    this.#projectIds = [];
+
+    for (const projectData of data.projects) {
+      const project = ProjectMaker.deserialize(projectData);
+      this.add(project);
+    }
+  }
 
   static #filters = {
     inbox: todos => todos,

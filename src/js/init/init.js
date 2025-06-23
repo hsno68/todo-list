@@ -1,7 +1,7 @@
-import setupProject from "./setupProject.js";
+import setupProjects from "./setupProjects.js";
 import setupEventListeners from "./setupEventListeners.js";
 
 export default function init() {
-  setupProject();
+  setupProjects();
   setupEventListeners();
 }

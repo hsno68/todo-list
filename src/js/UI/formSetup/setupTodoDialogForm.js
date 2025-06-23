@@ -1,10 +1,10 @@
 import getDOMElements from "./../../utility/dom.js";
 import { resetFilteredDueInputs } from "./../../utility/utility.js";
-import { getCurrentProjectContext, getCurrentFilterContext } from "./../../utility/contextController.js";
+import { getCurrentFilterContext, getCurrentProjectContext } from "./../../utility/contextController.js";
 
 let currentTodoEdit;
 
-export default function setupTodoDialogForm({ mode, todo }) {
+export default function setupTodoDialogForm({ mode, todo, project }) {
   const {
     todoDialog,
     todoForm,
@@ -34,7 +34,7 @@ export default function setupTodoDialogForm({ mode, todo }) {
     todoForm.reset();
   }
 
-  const activeProject = getCurrentProjectContext();
+  const activeProject = project ?? getCurrentProjectContext();
 
   if (activeProject) {
     selectInput.value = activeProject.id;
