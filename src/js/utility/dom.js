@@ -16,6 +16,7 @@ const selectors = {
   todoForm: "form#todo-form",
   todoFormSubmitButton: "button.todo-submit",
   todoFormCancelButton: "button.todo-cancel",
+  todoDialogCloseButton: "#todo-dialog button.dialog-close-button",
   todosContainer: "ul.todos-container",
   titleInput: "input#title",
   descriptionInput: "textarea#description",
@@ -31,4 +32,5 @@ const selectors = {
   deleteForm: "form#delete-form",
   deleteMessage: "p.delete-msg",
   deleteFormCancelButton: "button.delete-cancel",
+  deleteDialogCloseButton: "#delete-dialog button.dialog-close-button",
 };

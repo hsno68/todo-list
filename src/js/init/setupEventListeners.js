@@ -15,6 +15,7 @@ export default function setupEventListeners() {
     projectsContainer,
     addTodoButton,
     todoFormCancelButton,
+    todoDialogCloseButton,
     todoDialog,
     todoForm,
     dueInput,
@@ -26,6 +27,7 @@ export default function setupEventListeners() {
     deleteForm,
     deleteDialog,
     deleteFormCancelButton,
+    deleteDialogCloseButton,
   } = getDOMElements();
 
   addProjectButton.addEventListener("click", () => {
@@ -38,6 +40,7 @@ export default function setupEventListeners() {
   setupDialogEvents({
     addButton: addTodoButton,
     cancelButton: todoFormCancelButton,
+    closeButton: todoDialogCloseButton,
     dialog: todoDialog,
     form: todoForm,
     setupForm: setupTodoDialogForm,
@@ -59,15 +62,14 @@ export default function setupEventListeners() {
     if (dueInput.disabled || dueInput.readOnly) {
       return;
     }
-
     if (typeof dueInput.showPicker === 'function') {
       dueInput.showPicker();
     }
   });
 
-  deleteFormCancelButton.addEventListener("click", () => {
-    deleteDialog.close();
-  });
+  deleteFormCancelButton.addEventListener("click", () => deleteDialog.close());
+
+  deleteDialogCloseButton.addEventListener("click", () => deleteDialog.close());
 
   deleteForm.addEventListener("submit", (event) => {
     event.preventDefault();

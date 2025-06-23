@@ -707,3 +707,36 @@ select:has(option:checked[value=""]) {
   background-color: #888;
   border-radius: 12px;
 }
+
+/* Delete Dialog */
+
+.delete-title {
+  font-weight: bold;
+}
+
+#delete-dialog {
+  padding: 1.75rem;
+  width: clamp(16rem, 20vw, 24rem);
+  line-height: 1.75rem;
+}
+
+.dialog-close-button {
+  position: absolute;
+  top: 0.5rem;
+  right: 1.5rem;
+  color: var(--color-text-primary);
+  text-shadow: var(--text-shadow);
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+#todo-dialog .dialog-close-button {
+  font-size: 2rem;
+}
+
+#delete-dialog .dialog-close-button {
+  top: 0.5rem;
+  right: 1.5rem;
+  font-size: 1.5rem;
+}

@@ -1,11 +1,11 @@
-export default function setupDialogEvents({ addButton, cancelButton, dialog, form, setupForm, submitHandler }) {
+export default function setupDialogEvents({ addButton, cancelButton, closeButton, dialog, form, setupForm, submitHandler }) {
   addButton.addEventListener("click", () => {
     setupForm({ mode: "add" });
   });
 
-  cancelButton.addEventListener("click", () => {
-    dialog.close();
-  });
+  cancelButton.addEventListener("click", () => dialog.close());
+
+  closeButton.addEventListener("click", () => dialog.close());
 
   form.addEventListener("submit", (event) => {
     event.preventDefault();
