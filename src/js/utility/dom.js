@@ -27,4 +27,8 @@ const selectors = {
   week: "button#week",
   important: "button#important",
   completed: "button#completed",
+  deleteDialog: "dialog#delete-dialog",
+  deleteForm: "form#delete-form",
+  deleteMessage: "p.delete-msg",
+  deleteFormCancelButton: "button.delete-cancel",
 };

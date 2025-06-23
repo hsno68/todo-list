@@ -10,6 +10,15 @@
   <header>
     <h1><span class="material-symbols-rounded">checklist</span>ToDo</h1>
   </header>
+  <dialog id="delete-dialog">
+    <form id="delete-form">
+      <p class="delete-msg"></p>
+      <div class="form-buttons">
+        <button type="button" class="delete-cancel" value="cancel">Cancel</button>
+        <button type="submit" class="delete-submit" value="confirm">Delete</button>
+      </div>
+    </form>
+  </dialog>
   <dialog id="todo-dialog">
     <div>
       <h2>What would you like to do?</h2>
@@ -37,7 +46,7 @@
             <input type="date" id="due" name="due">
           </div>
         </div>
-        <div class="todo-form-buttons">
+        <div class="form-buttons">
           <button type="button" class="todo-cancel" value="cancel">Cancel</button>
           <button type="submit" class="todo-submit" value="confirm">Add</button>
         </div>

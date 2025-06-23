@@ -4,7 +4,10 @@ import setupDialogEvents from "./setupDialogEvents.js";
 import setupFilterEvents from "./setupFilterEvents.js";
 import setupTodoDialogForm from "./../UI/formSetup/setupTodoDialogForm.js";
 import todoFormSubmitHandler from "./../UI/formSubmit/todoFormSubmitHandler.js";
+import todoDeleteHandler from "./../UI/deleteHandler/todoDeleteHandler.js";
+import projectDeleteHandler from "./../UI/deleteHandler/projectDeleteHandler.js";
 import { createFormElement } from "./../utility/utility.js";
+import { getDeleteContext } from "./../UI/formSetup/setupDeleteDialogForm.js";
 
 export default function setupEventListeners() {
   const {
@@ -20,6 +23,9 @@ export default function setupEventListeners() {
     week,
     important,
     completed,
+    deleteForm,
+    deleteDialog,
+    deleteFormCancelButton,
   } = getDOMElements();
 
   addProjectButton.addEventListener("click", () => {
@@ -57,5 +63,23 @@ export default function setupEventListeners() {
     if (typeof dueInput.showPicker === 'function') {
       dueInput.showPicker();
     }
+  });
+
+  deleteFormCancelButton.addEventListener("click", () => {
+    deleteDialog.close();
+  });
+
+  deleteForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+    const { mode, item } = getDeleteContext();
+
+    if (mode === "project") {
+      projectDeleteHandler(item);
+    }
+    else if (mode === "todo") {
+      todoDeleteHandler(item);
+    }
+
+    deleteDialog.close();
   });
 }

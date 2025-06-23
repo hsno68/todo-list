@@ -1,7 +1,7 @@
 import getDOMElements from "./../utility/dom.js";
 import TodoMaker from "./todoMaker.js";
-import projectDeleteHandler from "./../UI/deleteHandler/projectDeleteHandler.js";
 import setupProjectInputEvents from "./../init/setupProjectInputEvents.js";
+import setupDeleteDialogForm from "./../UI/formSetup/setupDeleteDialogForm.js";
 import { generateId, createFormElement, createProjectElement, createButton, persistAppState } from "./../utility/utility.js";
 import { setCurrentProjectContext, setCurrentFilterContext } from "./../utility/contextController.js";
 
@@ -126,7 +126,7 @@ export default class ProjectMaker {
       buttonClass: "delete-button",
       callback: (event) => {
         event.stopPropagation();
-        projectDeleteHandler(this);
+        setupDeleteDialogForm({ mode: "project", project: this });
       }
     });
 

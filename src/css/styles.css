@@ -604,12 +604,12 @@ select:has(option:checked[value=""]) {
   color: #999;
 }
 
-.todo-form-buttons {
+.form-buttons {
   display: flex;
   gap: 0.5rem;
 }
 
-.todo-form-buttons > button {
+.form-buttons > button {
   flex: 1;
   padding: 0.7rem 1.4rem;
   color: var(--color-text-primary);
@@ -621,29 +621,29 @@ select:has(option:checked[value=""]) {
   transition: background-color 0.2s ease-in-out, box-shadow 0.2s ease;
 }
 
-.todo-form-buttons > button:first-of-type {
+.form-buttons > button:first-of-type {
   background-color: var(--dialog-btn-secondary-bg);
 }
 
-.todo-form-buttons > button:first-of-type:hover {
+.form-buttons > button:first-of-type:hover {
   background-color: var(--dialog-btn-secondary-hover);
   box-shadow: var(--hover-box-shadow);
 }
 
-.todo-form-buttons > button:first-of-type:active {
+.form-buttons > button:first-of-type:active {
   background-color: var(--dialog-btn-secondary-active);
 }
 
-.todo-form-buttons > button:last-of-type {
+.form-buttons > button:last-of-type {
   background-color: var(--dialog-btn-bg);
 }
 
-.todo-form-buttons > button:last-of-type:hover {
+.form-buttons > button:last-of-type:hover {
   background-color: var(--dialog-btn-hover);
   box-shadow: var(--hover-box-shadow);
 }
 
-.todo-form-buttons > button:last-of-type:active {
+.form-buttons > button:last-of-type:active {
   background-color: var(--dialog-btn-active);
 }
 
