@@ -2,7 +2,7 @@ import getDOMElements from "./../utility/dom.js";
 import TodoMaker from "./todoMaker.js";
 import setupProjectInputEvents from "./../init/setupProjectInputEvents.js";
 import setupDeleteDialogForm from "./../UI/formSetup/setupDeleteDialogForm.js";
-import { generateId, createFormElement, createProjectElement, createButton, persistAppState } from "./../utility/utility.js";
+import { generateId, createFormElement, createProjectElement, createButton, persistAppState, toggleSelectedTab } from "./../utility/utility.js";
 import { setCurrentProjectContext, setCurrentFilterContext } from "./../utility/contextController.js";
 
 export default class ProjectMaker {
@@ -10,9 +10,9 @@ export default class ProjectMaker {
   #todosByIds = {};
   #todoIds = [];
 
-  constructor({ title }) {
+  constructor({ title, isSelected }) {
     this.#assignProperties({ title });
-    this.element = this.#render();
+    this.element = this.#render(isSelected);
     this.#setupEventListeners();
   }
 
@@ -34,7 +34,7 @@ export default class ProjectMaker {
   }
 
   static deserialize(data) {
-    const project = new ProjectMaker(data);
+    const project = new ProjectMaker({...data, isSelected: false});
     project.#projectId = data.id;
 
     for (const todoData of data.todos) {
@@ -53,9 +53,9 @@ export default class ProjectMaker {
     return this.#todosByIds[todoId];
   }
 
-  update({ title }) {
+  update({ title, isSelected }) {
     this.#assignProperties({ title });
-    this.element = this.#render();
+    this.element = this.#render(isSelected);
     this.#setupEventListeners();
     this.updateTodoProjectTitles();
   }
@@ -98,14 +98,24 @@ export default class ProjectMaker {
     }
   }
 
-  #render() {
-    const project = createProjectElement(this);
+  #render(isSelected) {
+    const project = createProjectElement({ project: this, isSelected});
 
     const buttons = document.createElement("div");
     buttons.classList.add("buttons");
 
+    const dropdownButton = createButton({
+      iconName: "more_vert",
+      buttonClass: "dropdown",
+      callback: (event) => {
+        event.stopPropagation();
+        buttons.classList.toggle("open");
+      }
+    });
+
     const editButton = createButton({
-      iconName: "edit_square",
+      iconName: "edit",
+      text: "Rename",
       callback: (event) => {
         event.stopPropagation();
         const form = createFormElement({ mode: "edit", project: this });
@@ -123,6 +133,7 @@ export default class ProjectMaker {
 
     const deleteButton = createButton({
       iconName: "delete",
+      text: "Delete",
       buttonClass: "delete-button",
       callback: (event) => {
         event.stopPropagation();
@@ -131,13 +142,14 @@ export default class ProjectMaker {
     });
 
     buttons.append(editButton, deleteButton);
-    project.appendChild(buttons);
+    project.append(dropdownButton, buttons);
 
     return project;
   }
 
   #setupEventListeners() {
     this.element.addEventListener("click", () => {
+      toggleSelectedTab(this.element);
       setCurrentFilterContext(null);
       setCurrentProjectContext(this);
       persistAppState();

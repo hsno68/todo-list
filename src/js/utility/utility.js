@@ -14,11 +14,11 @@ function dateFormatter(date) {
 
   const parsedDate = new Date(date + "T00:00:00");
   return parsedDate.toLocaleDateString("en-US", {
-      weekday: "short", // e.g., Mon
-      month: "short", // e.g., Jun
-      day: "2-digit",   // e.g., 09
-      year: "numeric",  // e.g., 2025
-    });
+    weekday: "short", // e.g., Mon
+    month: "short", // e.g., Jun
+    day: "2-digit", // e.g., 09
+    year: "numeric", // e.g., 2025
+  });
 }
 
 export function createTodoElement(todo) {
@@ -72,9 +72,18 @@ export function createTodoElement(todo) {
   return li;
 }
 
-export function createProjectElement(project) {
+export function createProjectElement({ project, isSelected }) {
   const li = document.createElement("li");
   li.classList.add("project");
+  li.setAttribute("role", "tab");
+
+  if (isSelected) {
+    li.setAttribute("aria-selected", "true");
+    li.setAttribute("tabindex", "0");
+  } else {
+    li.setAttribute("aria-selected", "false");
+    li.setAttribute("tabindex", "-1");
+  }
 
   const title = document.createElement("p");
   title.textContent = project.title;
@@ -84,19 +93,29 @@ export function createProjectElement(project) {
   return li;
 }
 
-export function createButton({ iconName, buttonClass, callback }) {
+export function createButton({ iconName, text, buttonClass, callback }) {
   const button = document.createElement("button");
   button.setAttribute("type", "button");
+
+  if (iconName) {
+    const span = document.createElement("span");
+    span.classList.add("material-symbols-rounded");
+    span.textContent = iconName;
+    button.appendChild(span);
+  }
+
+  if (text) {
+    const textNode = document.createTextNode(text);
+    button.appendChild(textNode);
+  }
+
   if (buttonClass) {
     button.classList.add(buttonClass);
   }
 
-  const span = document.createElement("span");
-  span.classList.add("material-symbols-rounded");
-  span.textContent = iconName;
-
-  button.appendChild(span);
-  button.addEventListener("click", callback);
+  if (callback) {
+    button.addEventListener("click", callback);
+  }
 
   return button;
 }
@@ -210,8 +229,8 @@ export function persistAppState() {
   const appState = {
     projectManager: projectManager.serialize(),
     currentFilterContext: getCurrentFilterContext(),
-    currentProjectContextId: getCurrentProjectContext()?.id?? null,
-  }
+    currentProjectContextId: getCurrentProjectContext()?.id ?? null,
+  };
 
   localStorage.setItem("appState", JSON.stringify(appState));
 }
@@ -226,6 +245,22 @@ export function loadAppState() {
 
   projectManager.hydrate(data);
   const hydratedProject = projectManager.get(currentProjectContextId);
+  if (hydratedProject) {
+    toggleSelectedTab(hydratedProject.element);
+  }
   setCurrentFilterContext(currentFilterContext);
   setCurrentProjectContext(hydratedProject);
+}
+
+export function toggleSelectedTab(element) {
+  const allTabs = document.querySelectorAll('li[role="tab"]');
+
+  for (const tab of allTabs) {
+    tab.setAttribute("aria-selected", "false");
+    tab.setAttribute("tabindex", "-1");
+  }
+
+  const selected = element.closest('li[role="tab"]');
+  selected.setAttribute("aria-selected", "true");
+  selected.setAttribute("tabindex", "0");
 }

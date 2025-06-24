@@ -162,7 +162,10 @@ ul li {
   transition: background-color 0.2s ease-in-out, box-shadow 0.2s ease;
 }
 
-.content-sidebar button:hover {
+.content-sidebar [aria-selected="true"] > button:not(.dropdown),
+.project[aria-selected="true"],
+.content-sidebar button:hover,
+.project:hover:not(:has(.buttons:hover)) {
   background-color: var(--color-sidebar-hover);
   box-shadow: var(--hover-box-shadow);
 }
@@ -200,23 +203,40 @@ ul li {
   border-radius: 12px;
   cursor: pointer;
   transition: background-color 0.2s ease-in-out, box-shadow 0.2s ease;
+  position: relative;
 }
 
-.project:hover {
-  background-color: var(--color-sidebar-hover);
-  box-shadow: var(--hover-box-shadow);
+.project button.dropdown {
+  width: auto;
 }
 
-.projects-container .buttons {
+.project .buttons {
+  padding: 0.5rem;
   display: flex;
-  gap: 5px;
+  flex-direction: column;
+  background-color: var(--color-todos);
+  border-radius: 0.5rem;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  visibility: hidden;
+  z-index: 1;
+}
+
+.project .buttons.open {
+  visibility: visible;
+}
+
+.project .buttons button {
+  width: 100%;
+  font-size: 14px;
 }
 
 .project:active {
   background-color: var(--color-sidebar-active);
 }
 
-.project:has(.buttons button:active) {
+.project:has(button:active) {
   background-color: var(--color-sidebar-hover);
 }
 
@@ -251,7 +271,6 @@ ul li {
   gap: 1rem;
   width: 50%;
   min-height: 0;
-  overflow: hidden;
 }
 
 .content-main .delete-button > span {
