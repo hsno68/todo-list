@@ -218,7 +218,7 @@ ul li {
   border-radius: 0.5rem;
   position: absolute;
   top: 100%;
-  left: 0;
+  right: 0;
   visibility: hidden;
   z-index: 1;
 }
