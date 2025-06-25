@@ -264,3 +264,10 @@ export function toggleSelectedTab(element) {
   selected.setAttribute("aria-selected", "true");
   selected.setAttribute("tabindex", "0");
 }
+
+export function closeDropdown() {
+  const dropdown = document.querySelector(".buttons.open");
+  if (dropdown) {
+    dropdown.classList.remove("open");
+  }
+}

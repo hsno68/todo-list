@@ -2,7 +2,7 @@ import getDOMElements from "./../utility/dom.js";
 import TodoMaker from "./todoMaker.js";
 import setupProjectInputEvents from "./../init/setupProjectInputEvents.js";
 import setupDeleteDialogForm from "./../UI/formSetup/setupDeleteDialogForm.js";
-import { generateId, createFormElement, createProjectElement, createButton, persistAppState, toggleSelectedTab } from "./../utility/utility.js";
+import { generateId, createFormElement, createProjectElement, createButton, persistAppState, toggleSelectedTab, closeDropdown } from "./../utility/utility.js";
 import { setCurrentProjectContext, setCurrentFilterContext } from "./../utility/contextController.js";
 
 export default class ProjectMaker {
@@ -109,6 +109,11 @@ export default class ProjectMaker {
       buttonClass: "dropdown",
       callback: (event) => {
         event.stopPropagation();
+        //Closes all (usually one) opened dropdowns, usually the previously opened one, when toggling a new one
+        const openDropdown = document.querySelector(".buttons.open");
+        if (openDropdown && openDropdown !== buttons) {
+          openDropdown.classList.remove("open");
+        }
         buttons.classList.toggle("open");
       }
     });
@@ -118,6 +123,7 @@ export default class ProjectMaker {
       text: "Rename",
       callback: (event) => {
         event.stopPropagation();
+        closeDropdown();
         const form = createFormElement({ mode: "edit", project: this });
         const input = form.querySelector("input");
         setupProjectInputEvents({

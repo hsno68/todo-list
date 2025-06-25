@@ -84,4 +84,12 @@ export default function setupEventListeners() {
 
     deleteDialog.close();
   });
+
+  //Closes all (usually one) opened dropdowns when clicking anywhere not inside the opened dropdown
+  document.addEventListener("click", (event) => {
+    const openDropdown = document.querySelector(".buttons.open");
+    if (openDropdown && !openDropdown.contains(event.target)) {
+      openDropdown.classList.remove("open");
+    }
+  });
 }

@@ -1,7 +1,7 @@
 import projectManager from "./projectManager.js";
 import setupTodoDialogForm from "./../UI/formSetup/setupTodoDialogForm.js";
 import setupDeleteDialogForm from "./../UI/formSetup/setupDeleteDialogForm.js";
-import { generateId, createTodoElement, createButton, toggleCheckbox, toggleImportant, persistAppState } from "./../utility/utility.js";
+import { generateId, createTodoElement, createButton, toggleCheckbox, toggleImportant, persistAppState, closeDropdown } from "./../utility/utility.js";
 
 export default class TodoMaker {
   #todoId = generateId();
@@ -67,6 +67,7 @@ export default class TodoMaker {
       buttonClass: "important-button",
       callback: (event) => {
         event.stopPropagation();
+        closeDropdown();
         toggleImportant(this);
         this.element.classList.toggle("important", this.important);
         persistAppState();
@@ -77,6 +78,7 @@ export default class TodoMaker {
       iconName: "edit_square",
       callback: (event) => {
         event.stopPropagation();
+        closeDropdown();
         const projectId = this.projectId;
         const project = projectManager.get(projectId);
         setupTodoDialogForm({ mode: "edit", todo: this, project });
@@ -88,6 +90,7 @@ export default class TodoMaker {
       buttonClass: "delete-button",
       callback: (event) => {
         event.stopPropagation();
+        closeDropdown();
         setupDeleteDialogForm({ mode: "todo", todo: this });
       }
     });
