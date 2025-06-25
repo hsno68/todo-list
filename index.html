@@ -58,20 +58,20 @@
   <main id="content">
     <aside class="content-sidebar">
       <nav>
-        <ul>
-          <li>
+        <ul role="tablist">
+          <li role="tab" aria-selected="true" tabindex="0">
             <button type="button" id="inbox"><span class="material-symbols-rounded">inbox</span>Inbox</button>
           </li>
-          <li>
+          <li role="tab" aria-selected="false" tabindex="-1">
             <button type="button" id="today"><span class="material-symbols-rounded">today</span>Today</button>
           </li>
-          <li>
+          <li role="tab" aria-selected="false" tabindex="-1">
             <button type="button" id="week"><span class="material-symbols-rounded">date_range</span>This Week</button>
           </li>
-          <li>
+          <li role="tab" aria-selected="false" tabindex="-1">
             <button type="button" id="important"><span class="material-symbols-rounded">star</span>Important</button>
           </li>
-          <li>
+          <li role="tab" aria-selected="false" tabindex="-1">
             <button type="button" id="completed"><span class="material-symbols-rounded">check_box</span>Completed</button>
           </li>
         </ul>
@@ -79,7 +79,7 @@
       <div>
         <button type="button" class="add-project" value="add-project">New project<span class="material-symbols-rounded">create_new_folder</span></button>
       </div>
-      <ul class="projects-container"></ul>
+      <ul role="tablist" class="projects-container"></ul>
     </aside>
     <section class="content-main">
       <div class="container">
