@@ -659,34 +659,13 @@ select:has(option:checked[value=""]) {
 .todos-container {
   flex: 1;
   min-height: 0;
-  /* 1) hide the scrollbar until hover */
   overflow-y: hidden;
-  transition: overflow 0.3s ease;
-
-  /* 2) fade‐edge mask at top & bottom */
-  mask-image: linear-gradient(to top, transparent, var(--color-sidebar-bg) 32px),
-              linear-gradient(to bottom, transparent, var(--color-sidebar-bg) 32px);
-  mask-size: 100% 200%;      /* big enough to slide */
-  mask-position: 0 100%;     /* start with fades showing */
-  mask-repeat: no-repeat;
-
-  /* webkit prefix for Safari/Chrome */
-  -webkit-mask-image: linear-gradient(to top, transparent, var(--color-sidebar-bg) 32px),
-                      linear-gradient(to bottom, transparent, var(--color-sidebar-bg) 32px);
-  -webkit-mask-size: 100% 200%;
-  -webkit-mask-position: 0 100%;
-  -webkit-mask-repeat: no-repeat;
   scrollbar-gutter: stable;
 }
 
 .projects-container:hover,
 .todos-container:hover {
-  /* allow scrolling + instantly reveal the content */
   overflow-y: auto;
-
-  /* slide the mask so it becomes a solid rectangle */
-  mask-position: 0 0;
-  -webkit-mask-position: 0 0;
 }
 
 .projects-container::-webkit-scrollbar,
@@ -698,6 +677,11 @@ select:has(option:checked[value=""]) {
 .todos-container::-webkit-scrollbar-thumb {
   background-color: #888;
   border-radius: 12px;
+}
+
+.projects-container::-webkit-scrollbar-track,
+.todos-container::-webkit-scrollbar-track {
+  background: transparent;
 }
 
 /* Delete Dialog */
