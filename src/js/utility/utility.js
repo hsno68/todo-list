@@ -245,8 +245,11 @@ export function loadAppState() {
 
   projectManager.hydrate(data);
   const hydratedProject = projectManager.get(currentProjectContextId);
+  const filterButton = document.querySelector(`button#${currentFilterContext}`);
   if (hydratedProject) {
     toggleSelectedTab(hydratedProject.element);
+  } else if (filterButton) {
+    toggleSelectedTab(filterButton);
   }
   setCurrentFilterContext(currentFilterContext);
   setCurrentProjectContext(hydratedProject);
