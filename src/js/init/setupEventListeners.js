@@ -1,6 +1,7 @@
 import getDOMElements from "./../utility/dom.js";
 import setupProjectInputEvents from "./setupProjectInputEvents.js";
 import setupDialogEvents from "./setupDialogEvents.js";
+import setupDialogCloseEvents from "./setupDialogCloseEvents.js";
 import setupFilterEvents from "./setupFilterEvents.js";
 import setupTodoDialogForm from "./../UI/formSetup/setupTodoDialogForm.js";
 import todoFormSubmitHandler from "./../UI/formSubmit/todoFormSubmitHandler.js";
@@ -30,13 +31,7 @@ export default function setupEventListeners() {
     deleteDialogCloseButton,
   } = getDOMElements();
 
-  addProjectButton.addEventListener("click", () => {
-    const form = createFormElement({ mode: "add" });
-    const input = form.querySelector("input");
-    projectsContainer.appendChild(form);
-    setupProjectInputEvents({ form, input, mode: "add" });
-  });
-
+  // Add todo button and todo dialog/form
   setupDialogEvents({
     addButton: addTodoButton,
     cancelButton: todoFormCancelButton,
@@ -47,6 +42,7 @@ export default function setupEventListeners() {
     submitHandler: todoFormSubmitHandler,
   });
 
+  // Filter nav tabs
   const filters = [
     { button: inbox, filter: "inbox", },
     { button: today, filter: "today", },
@@ -57,19 +53,20 @@ export default function setupEventListeners() {
 
   filters.forEach(filter => setupFilterEvents(filter));
 
-  //Allows entire date picker input to be clicked
-  dueInput.addEventListener('click', () => {
-    if (dueInput.disabled || dueInput.readOnly) {
-      return;
-    }
-    if (typeof dueInput.showPicker === 'function') {
-      dueInput.showPicker();
-    }
+  // Projects
+  addProjectButton.addEventListener("click", () => {
+    const form = createFormElement({ mode: "add" });
+    const input = form.querySelector("input");
+    projectsContainer.appendChild(form);
+    setupProjectInputEvents({ form, input, mode: "add" });
   });
 
-  deleteFormCancelButton.addEventListener("click", () => deleteDialog.close());
-
-  deleteDialogCloseButton.addEventListener("click", () => deleteDialog.close());
+  //Close dialog events for delete dialog/form
+  setupDialogCloseEvents({
+    cancelButton: deleteFormCancelButton,
+    closeButton: deleteDialogCloseButton,
+    dialog: deleteDialog,
+  });
 
   deleteForm.addEventListener("submit", (event) => {
     event.preventDefault();
@@ -83,6 +80,16 @@ export default function setupEventListeners() {
     }
 
     deleteDialog.close();
+  });
+
+  //Allows entire date picker input to be clicked
+  dueInput.addEventListener('click', () => {
+    if (dueInput.disabled || dueInput.readOnly) {
+      return;
+    }
+    if (typeof dueInput.showPicker === 'function') {
+      dueInput.showPicker();
+    }
   });
 
   //Closes all (usually one) opened dropdowns when clicking anywhere not inside the opened dropdown
