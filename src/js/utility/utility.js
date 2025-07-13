@@ -274,3 +274,10 @@ export function closeDropdown() {
     dropdown.classList.remove("open");
   }
 }
+
+export function closeSidebarMenu() {
+  const sidebar = document.querySelector('.content-sidebar');
+  const overlay = document.querySelector('.sidebar-overlay');
+  sidebar.classList.remove('open');
+  overlay.classList.remove('active');
+}

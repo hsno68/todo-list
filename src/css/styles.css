@@ -262,6 +262,7 @@ ul li {
   background-color: var(--color-main-content-bg);
   box-shadow: var(--main-content-box-shadow);
   border-radius: 12px;
+  position: relative;
 }
 
 .content-main > .container {
@@ -566,9 +567,9 @@ select {
 
 .locked {
   pointer-events: none;
-  background-color: #2F2F33;   /* Charcoal Velvet — matches dialog bg */
-  color: #71717A;              /* Fogged Steel — muted but readable */
-  border-color: #3A3A3E;       /* Warm Graphite — subtle border */
+  background-color: #2F2F33;   /* Charcoal Velvet */
+  color: #71717A;              /* Fogged Steel    */
+  border-color: #3A3A3E;       /* Warm Graphite   */
   opacity: 1;
 }
 
@@ -715,4 +716,102 @@ select:has(option:checked[value=""]) {
   top: 0.5rem;
   right: 1.5rem;
   font-size: 1.5rem;
+}
+
+/* Mobile */
+
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--color-text-primary);
+  font-size: 24px;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  :root {
+    --text-size: 16px;
+    --padding-header-top: 1rem;
+    --padding-header-side: 1rem;
+    --padding-side: 1rem;
+  }
+
+  header {
+    display: flex;
+    justify-content: center;
+    position: relative;
+  }
+
+  .menu-toggle {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    left: 0;
+    transform: translateX(50%);
+  }
+
+  .content-sidebar {
+    display: none;
+    width: 95vw;
+  }
+
+  .content-sidebar.open {
+    display: flex;
+  }
+
+  .content-main > .container {
+    width: 100%;
+    padding: 1rem;
+  }
+
+  .todo-wrapper {
+    padding: 1rem;
+    width: 100%;
+  }
+
+    /* 1) Switch to two columns: checkbox + content */
+  .todo {
+    display: grid !important;
+    grid-template-columns: auto 1fr;
+    grid-template-rows: repeat(4, auto);
+    row-gap: 0.5rem;
+    column-gap: 0.75rem;
+    padding: 1rem;
+  }
+
+  .todo input[type="checkbox"] {
+    grid-column: 1;
+    grid-row: 1 / span 4;
+  }
+
+  .todo .title-container {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  .todo .todo-project {
+    grid-column: 2;
+    grid-row: 2;
+    font-size: 0.8rem;
+  }
+
+  .todo .due-date {
+    grid-column: 2;
+    grid-row: 2;
+    justify-self: end;
+    font-size: 0.8rem;
+  }
+
+  .todo .description {
+    grid-column: 2 / -1;
+    grid-row: 3;
+  }
+
+  .todo .buttons {
+    grid-column: 1 / -1;
+    grid-row: 4;
+    justify-self: end;
+    gap: 0.5rem;
+  }
 }

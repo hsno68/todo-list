@@ -33,4 +33,7 @@ const selectors = {
   deleteMessage: "p.delete-msg",
   deleteFormCancelButton: "button.delete-cancel",
   deleteDialogCloseButton: "#delete-dialog button.dialog-close-button",
+  menuToggle: ".menu-toggle",
+  sidebar: ".content-sidebar",
+  overlay: ".sidebar-overlay",
 };

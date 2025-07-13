@@ -2,7 +2,7 @@ import getDOMElements from "./../utility/dom.js";
 import TodoMaker from "./todoMaker.js";
 import setupProjectInputEvents from "./../init/setupProjectInputEvents.js";
 import setupDeleteDialogForm from "./../UI/formSetup/setupDeleteDialogForm.js";
-import { generateId, createFormElement, createProjectElement, createButton, persistAppState, toggleSelectedTab, closeDropdown } from "./../utility/utility.js";
+import { generateId, createFormElement, createProjectElement, createButton, persistAppState, toggleSelectedTab, closeDropdown, closeSidebarMenu } from "./../utility/utility.js";
 import { setCurrentProjectContext, setCurrentFilterContext } from "./../utility/contextController.js";
 
 export default class ProjectMaker {
@@ -160,6 +160,7 @@ export default class ProjectMaker {
       setCurrentProjectContext(this);
       persistAppState();
       this.renderTodos();
+      closeSidebarMenu();
     });
   }
 }

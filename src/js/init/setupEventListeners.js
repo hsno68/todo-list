@@ -29,6 +29,9 @@ export default function setupEventListeners() {
     deleteDialog,
     deleteFormCancelButton,
     deleteDialogCloseButton,
+    menuToggle,
+    sidebar,
+    overlay,
   } = getDOMElements();
 
   // Add todo button and todo dialog/form
@@ -98,5 +101,15 @@ export default function setupEventListeners() {
     if (openDropdown && !openDropdown.contains(event.target)) {
       openDropdown.classList.remove("open");
     }
+  });
+
+  menuToggle.addEventListener("click", () => {
+    sidebar.classList.toggle("open");
+    overlay.classList.toggle("active");
+  });
+
+  overlay.addEventListener('click', () => {
+    sidebar.classList.remove("open");
+    overlay.classList.remove("active");
   });
 }
