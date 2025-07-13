@@ -740,7 +740,6 @@ select:has(option:checked[value=""]) {
   header {
     display: flex;
     justify-content: center;
-    position: relative;
   }
 
   .menu-toggle {
@@ -770,11 +769,10 @@ select:has(option:checked[value=""]) {
     width: 100%;
   }
 
-    /* 1) Switch to two columns: checkbox + content */
   .todo {
-    display: grid !important;
-    grid-template-columns: auto 1fr;
-    grid-template-rows: repeat(4, auto);
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    grid-template-rows: repeat(3, auto);
     row-gap: 0.5rem;
     column-gap: 0.75rem;
     padding: 1rem;
@@ -782,7 +780,8 @@ select:has(option:checked[value=""]) {
 
   .todo input[type="checkbox"] {
     grid-column: 1;
-    grid-row: 1 / span 4;
+    grid-row: 1 / span 3;
+    align-self: start;
   }
 
   .todo .title-container {
@@ -797,7 +796,7 @@ select:has(option:checked[value=""]) {
   }
 
   .todo .due-date {
-    grid-column: 2;
+    grid-column: 3;
     grid-row: 2;
     justify-self: end;
     font-size: 0.8rem;
@@ -809,8 +808,8 @@ select:has(option:checked[value=""]) {
   }
 
   .todo .buttons {
-    grid-column: 1 / -1;
-    grid-row: 4;
+    grid-column: 2 / -1;
+    grid-row: 3;
     justify-self: end;
     gap: 0.5rem;
   }
