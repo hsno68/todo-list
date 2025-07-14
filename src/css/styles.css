@@ -737,9 +737,31 @@ select:has(option:checked[value=""]) {
     --padding-side: 1rem;
   }
 
+  html, body {
+    overflow: hidden;
+    height: 100%;
+  }
+
+  #content {
+    overflow: hidden;
+    height: calc(100vh - var(--padding-header-top) - var(--padding-header-top));
+  }
+
+  .content-main {
+    padding: 1rem 0;
+  }
+
+  .content-main > .container {
+    width: 100%;
+    padding: 1rem;
+  }
+
   header {
     display: flex;
     justify-content: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
   }
 
   .menu-toggle {
@@ -759,9 +781,10 @@ select:has(option:checked[value=""]) {
     display: flex;
   }
 
-  .content-main > .container {
-    width: 100%;
-    padding: 1rem;
+  .todo-wrapper,
+  .todos-container {
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
   }
 
   .todo-wrapper {
