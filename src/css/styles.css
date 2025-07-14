@@ -774,7 +774,6 @@ select:has(option:checked[value=""]) {
 
   .content-sidebar {
     display: none;
-    width: 95vw;
   }
 
   .content-sidebar.open {
