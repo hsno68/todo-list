@@ -7,11 +7,9 @@ export default function setupProject() {
   if (!localStorage.getItem("appState")) {
     projectManager.add(defaultProject);
     setCurrentFilterContext("inbox");
-    projectManager.renderProjects();
-  }
-  else {
+  } else {
     loadAppState();
-    projectManager.renderProjects();
   }
+  projectManager.renderProjects();
   renderTodosBasedOnContext();
 }
