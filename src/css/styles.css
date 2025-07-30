@@ -825,7 +825,7 @@ select:has(option:checked[value=""]) {
   }
 
   .todo .description {
-    grid-column: 2 / -1;
+    grid-column: 2 / 3;
     grid-row: 3;
   }
 
