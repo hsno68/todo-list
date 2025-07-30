@@ -729,7 +729,7 @@ select:has(option:checked[value=""]) {
   cursor: pointer;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1400px) {
   :root {
     --text-size: 16px;
     --padding-header-top: 1rem;
